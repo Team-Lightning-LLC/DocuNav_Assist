@@ -26,14 +26,14 @@ button{font-family:var(--f);cursor:pointer}
 .shell{display:flex;flex-direction:column;height:100vh}
 
 /* ═══ TOPBAR ═══ */
-.topbar{height:44px;background:var(--card);border-bottom:1px solid var(--b1);display:flex;align-items:center;padding:0 20px;flex-shrink:0}
-.topbar-brand{display:flex;align-items:center;padding-right:20px;border-right:1px solid var(--b1);margin-right:12px}
-.logo{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--t1);letter-spacing:-.03em}
+.topbar{height:44px;background:var(--ac);border-bottom:none;display:flex;align-items:center;padding:0 20px;flex-shrink:0}
+.topbar-brand{display:flex;align-items:center;padding-right:20px;border-right:1px solid rgba(255,255,255,0.15);margin-right:12px}
+.logo{font-family:var(--serif);font-size:18px;font-weight:700;color:#fff;letter-spacing:-.03em}
 .topbar-r{display:flex;align-items:center;gap:4px;margin-left:auto}
-.tr{padding:5px 10px;font-size:11px;font-weight:500;border:1px solid var(--b1);border-radius:var(--r);background:var(--card);color:var(--t3);transition:all .1s;display:flex;align-items:center;gap:4px}
-.tr:hover{background:var(--bg2);color:var(--t2);border-color:var(--b2)}
+.tr{padding:5px 10px;font-size:11px;font-weight:500;border:1px solid rgba(255,255,255,0.2);border-radius:var(--r);background:transparent;color:rgba(255,255,255,0.75);transition:all .1s;display:flex;align-items:center;gap:4px}
+.tr:hover{background:rgba(255,255,255,0.1);color:#fff;border-color:rgba(255,255,255,0.3)}
 .tr svg{width:13px;height:13px}
-.avatar{width:28px;height:28px;border-radius:50%;background:var(--bg3);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--t2);margin-left:6px;cursor:pointer;position:relative}
+.avatar{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#fff;margin-left:6px;cursor:pointer;position:relative}
 
 /* Avatar dropdown */
 .av-menu{position:absolute;top:34px;right:0;background:var(--card);border:1px solid var(--b1);border-radius:var(--r);padding:4px;min-width:140px;display:none;z-index:50;box-shadow:0 4px 12px rgba(0,0,0,.08)}
@@ -44,6 +44,7 @@ button{font-family:var(--f);cursor:pointer}
 
 /* ═══ BODY ═══ */
 .main-body{flex:1;display:flex;min-height:0;overflow:hidden}
+.accent-bar{height:3px;background:linear-gradient(90deg,var(--ac) 0%,#3a8f7a 50%,var(--ac2) 100%);flex-shrink:0}
 
 /* ═══ LEFT ═══ */
 .left{display:flex;flex-direction:column;min-height:0;overflow:hidden;flex:1}
@@ -63,9 +64,11 @@ button{font-family:var(--f);cursor:pointer}
 .ws-name{font-weight:600;font-size:13px;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ws-meta{font-size:10px;color:var(--t3);margin-top:1px}
 .ws-actions{display:flex;gap:1px;flex-shrink:0}
-.wa{width:24px;height:24px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;border-radius:4px;color:var(--t4);transition:all .1s}
-.wa:hover{background:var(--bg3);color:var(--t2)}
-.wa svg{width:13px;height:13px}
+.wa{width:26px;height:26px;display:flex;align-items:center;justify-content:center;border:none;background:transparent;border-radius:4px;color:var(--t3);transition:all .1s}
+.wa:hover{background:var(--bg3);color:var(--t1)}
+.wa svg{width:14px;height:14px}
+.ws-expiry{font-size:9px;color:var(--t4);margin-top:2px}
+.ws-expiry.soon{color:#b34040}
 
 .saved-area{flex-shrink:0;padding:4px 24px 8px}
 .saved-head{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--t4);margin-bottom:5px}
@@ -87,6 +90,8 @@ button{font-family:var(--f);cursor:pointer}
 .cw-check svg{width:14px;height:14px}
 .cw-name{font-size:12px;color:var(--t2);text-decoration:line-through;text-decoration-color:var(--b2);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cw-meta{font-size:10px;color:var(--t4)}
+.cw-expiry{font-size:9px;color:var(--t4);margin-left:auto;flex-shrink:0}
+.cw-expiry.soon{color:#b34040}
 
 /* ═══ CHAT VIEW ═══ */
 .chat-view{display:none;flex-direction:column;flex:1;min-height:0}
@@ -96,6 +101,7 @@ button{font-family:var(--f);cursor:pointer}
 .chat-back:hover{color:var(--t1)}
 .chat-label{font-weight:600;font-size:14px;flex:1}
 .chat-stamp{font-size:11px;color:var(--t3)}
+.chat-actions{display:flex;gap:2px;margin-left:4px}
 .chat-split-btn{padding:4px 10px;font-size:11px;font-weight:500;border:1px solid var(--b1);border-radius:var(--r);background:var(--card);color:var(--t3);display:flex;align-items:center;gap:4px}
 .chat-split-btn:hover{background:var(--bg2);color:var(--t2)}
 .chat-split-btn svg{width:13px;height:13px}
@@ -138,23 +144,76 @@ button{font-family:var(--f);cursor:pointer}
 .send-btn{padding:10px 20px;background:var(--ac);color:#fff;border:none;border-radius:var(--rl);font-size:13px;font-weight:600}
 .send-btn:hover{background:var(--ac2)}
 
-.lib-bar{display:flex;align-items:center;gap:8px;margin-top:8px;padding:7px 12px;background:var(--bg);border:1px solid var(--b1);border-radius:var(--rl)}
-.lb-label{font-size:11px;color:var(--t3);font-weight:600;white-space:nowrap}
-.lb-pills{display:flex;gap:4px;flex-wrap:wrap;flex:1}
-.lp{padding:4px 12px;font-size:11px;font-weight:600;border:1.5px solid var(--b1);border-radius:99px;background:var(--card);color:var(--t3);transition:all .1s}
-.lp:hover{border-color:var(--b2);color:var(--t2)}
-.lp.on{background:var(--ac);color:#fff;border-color:var(--ac)}
-.lp-n{font-weight:400;opacity:.7;margin-left:3px}
-.lp-add{padding:4px 10px;font-size:11px;color:var(--t4);border:1.5px dashed var(--b2);border-radius:99px;background:none}
-.lp-add:hover{border-color:var(--ac);color:var(--ac)}
-.lb-sep{width:1px;height:16px;background:var(--b1)}
-.lb-presets{display:flex;gap:4px;align-items:center}
-.lb-preset{padding:4px 10px;font-size:10px;font-weight:500;border:1px solid var(--b1);border-radius:99px;background:var(--card);color:var(--t4);transition:all .1s}
-.lb-preset:hover{border-color:var(--b2);color:var(--t2)}
-.lb-preset.active{background:var(--bg2);color:var(--t2);border-color:var(--b2)}
-.lb-save-preset{padding:4px 8px;font-size:10px;color:var(--t4);border:1px dashed var(--b2);border-radius:99px;background:none}
-.lb-save-preset:hover{color:var(--ac);border-color:var(--ac)}
-.lb-count{font-size:10px;color:var(--t4);margin-left:auto;white-space:nowrap}
+/* ═══ SCOPE BUILDER ═══ */
+.scope-area{display:flex;height:170px;flex-shrink:0;border-top:1px solid var(--b1);background:var(--card)}
+.presets-col{width:170px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--b1);display:flex;flex-direction:column;transition:width .2s;overflow:hidden}
+.presets-col.collapsed{width:0;min-width:0;border-right:none}
+.presets-col.collapsed .pc-inner,.presets-col.collapsed .pc-top{display:none}
+.pc-top{display:flex;align-items:center;padding:5px 10px;flex-shrink:0;border-bottom:1px solid var(--b1)}
+.pc-toggle-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t4)}
+.pc-inner{flex:1;overflow-y:auto;padding:3px 4px}
+.preset{padding:4px 7px;border-radius:4px;cursor:pointer;transition:all .1s;display:flex;align-items:center;gap:5px}
+.preset:hover{background:var(--card)}
+.preset.active{background:var(--card);box-shadow:0 0 0 1.5px var(--ac)}
+.preset-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.preset-name{font-size:10px;font-weight:500;color:var(--t1);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.preset-ct{font-size:9px;color:var(--t4);flex-shrink:0}
+.preset-menu{position:relative}
+.preset-menu-btn{background:none;border:none;color:var(--t4);cursor:pointer;font-size:11px;line-height:1;padding:0 3px;border-radius:2px;opacity:0;transition:opacity .1s}
+.preset:hover .preset-menu-btn{opacity:1}
+.preset-menu-btn:hover{color:var(--t2)}
+.preset-dd{display:none;position:absolute;right:0;top:14px;background:var(--card);border:1px solid var(--b1);border-radius:5px;padding:3px;min-width:100px;z-index:20;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+.preset-dd.open{display:block}
+.pdd-item{display:block;width:100%;padding:5px 10px;font-size:10px;color:var(--t2);border:none;background:none;text-align:left;border-radius:3px;cursor:pointer;font-family:var(--f)}
+.pdd-item:hover{background:var(--bg2)}
+.pdd-item.danger{color:#b34040}
+.pdd-item.danger:hover{background:#fef2f2}
+.cards-col{flex:1;min-width:0;overflow:hidden;display:flex;flex-direction:column;padding:8px 14px}
+.cards-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-shrink:0}
+.ch-title{font-size:15px;font-weight:700;color:var(--t1);flex-shrink:0}
+.ch-summary{font-size:10px;color:var(--t4);flex:1}
+.ch-actions{display:flex;gap:4px;flex-shrink:0}
+.ch-btn{padding:4px 10px;font-size:10px;font-weight:500;border:1px solid var(--b1);border-radius:5px;background:var(--card);color:var(--t2);cursor:pointer;font-family:var(--f);display:flex;align-items:center;gap:3px;transition:all .1s;white-space:nowrap}
+.ch-btn:hover{border-color:var(--b2);background:var(--bg2)}
+.ch-btn.primary{background:var(--ac);color:#fff;border-color:var(--ac)}
+.ch-btn.primary:hover{background:var(--ac2)}
+.ch-btn.toggle{color:var(--t4)}
+.ch-btn.toggle.on{background:var(--bg2);color:var(--t1);border-color:var(--b2)}
+.track-wrap{flex:1;min-height:0;overflow:hidden;position:relative}
+.track-wrap::before,.track-wrap::after{content:'';position:absolute;top:0;bottom:4px;width:32px;z-index:2;pointer-events:none;transition:opacity .2s}
+.track-wrap::before{left:0;background:linear-gradient(to right,var(--card) 0%,transparent 100%);opacity:0}
+.track-wrap::after{right:0;background:linear-gradient(to left,var(--card) 0%,transparent 100%);opacity:0}
+.track-wrap.fade-left::before{opacity:1}
+.track-wrap.fade-right::after{opacity:1}
+.cards-track{display:flex;gap:6px;overflow-x:auto;height:100%;align-items:stretch;padding-bottom:4px}
+.cards-track::-webkit-scrollbar{height:3px}
+.cards-track::-webkit-scrollbar-thumb{background:var(--b2);border-radius:3px}
+.cards-track::-webkit-scrollbar-track{background:transparent}
+.lib-card{width:160px;min-width:160px;background:var(--card);border:1px solid var(--b1);border-radius:var(--rl);padding:8px 10px;transition:all .1s;display:flex;flex-direction:column;flex-shrink:0}
+.lib-card:hover{border-color:var(--b2);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.lc-top{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.lc-icon{width:18px;height:18px;border-radius:4px;background:var(--ac-s);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lc-icon svg{width:10px;height:10px;color:var(--ac)}
+.lc-name{font-size:11px;font-weight:600;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.lc-remove{background:none;border:none;color:var(--t4);cursor:pointer;font-size:13px;line-height:1;padding:0 2px;border-radius:2px;opacity:0;transition:opacity .1s;flex-shrink:0}
+.lib-card:hover .lc-remove{opacity:1}
+.lc-remove:hover{color:#b34040}
+.lc-ct{font-size:9px;color:var(--t3);margin-bottom:2px}
+.lc-files{display:flex;flex-direction:column;gap:1px;flex:1}
+.lc-file{font-size:9px;color:var(--t3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:4px;line-height:1.3}
+.lc-file::before{content:'';width:2px;height:2px;border-radius:50%;background:var(--b2);flex-shrink:0}
+.lc-more{font-size:8px;color:var(--t4);margin-top:auto;padding-top:2px}
+.scope-empty{font-size:11px;color:var(--t4);display:flex;align-items:center;flex:1}
+.scope-picker{display:none;position:absolute;top:100%;right:0;margin-top:4px;width:280px;background:var(--card);border:1.5px solid var(--ac);border-radius:var(--rl);padding:6px;flex-direction:column;z-index:10;box-shadow:0 8px 24px rgba(0,0,0,0.12);max-height:250px}
+.scope-picker.open{display:flex}
+.scope-picker-search{padding:6px 10px;background:var(--bg);border:1px solid var(--b1);border-radius:5px;font-size:11px;color:var(--t1);outline:none;font-family:var(--f);margin-bottom:4px}
+.scope-picker-search:focus{border-color:var(--ac)}
+.scope-picker-search::placeholder{color:var(--t4)}
+.scope-picker-list{flex:1;overflow-y:auto}
+.spk-item{padding:5px 8px;font-size:11px;color:var(--t2);border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:5px;transition:background .08s}
+.spk-item:hover{background:var(--bg2);color:var(--t1)}
+.spk-item-ct{font-size:9px;color:var(--t4);margin-left:auto}
+.spk-item svg{width:10px;height:10px;color:var(--t3);flex-shrink:0}
 
 /* ═══ RESIZE ═══ */
 .resize-handle{width:5px;background:transparent;cursor:col-resize;flex-shrink:0;position:relative;z-index:5}
@@ -163,29 +222,67 @@ button{font-family:var(--f);cursor:pointer}
 
 /* ═══ RIGHT — LIBRARY ═══ */
 .right{width:480px;min-width:320px;max-width:700px;display:flex;flex-direction:column;min-height:0;overflow:hidden;background:var(--card);border-left:1px solid var(--b1)}
-.lib-head{padding:10px 16px 8px;border-bottom:1px solid var(--b1);flex-shrink:0;display:flex;align-items:center;justify-content:space-between}
+.lib-head{padding:10px 16px 0;flex-shrink:0}
+.lib-head-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
 .lib-head-label{font-size:12px;font-weight:600;color:var(--t2)}
 .lib-head-count{font-size:11px;color:var(--t4)}
+.lib-search{width:100%;padding:7px 10px 7px 30px;background:var(--bg);border:1px solid var(--b1);border-radius:var(--r);font-size:12px;color:var(--t1);outline:none;font-family:var(--f);margin-bottom:6px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%23b8b3a6' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:9px center}
+.lib-search:focus{border-color:var(--ac);box-shadow:0 0 0 3px var(--ac-s)}
+.lib-search::placeholder{color:var(--t4)}
 
-.lib-scroll{flex:1;overflow-y:auto}
+.lib-scroll{flex:1;overflow-y:auto;padding:0 10px 10px;position:relative}
+.lib-scroll-wrap{flex:1;min-height:0;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.lib-scroll-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40px;background:linear-gradient(to top,var(--card) 0%,transparent 100%);pointer-events:none;z-index:2}
 
-/* Library sections stacked */
-.lib-section{border-bottom:1px solid var(--b1)}
-.lib-section:last-child{border-bottom:none}
-.lib-section-head{padding:8px 16px;background:var(--bg2);display:flex;align-items:center;justify-content:space-between;cursor:pointer;position:sticky;top:0;z-index:2}
-.lib-section-head:hover{background:var(--bg3)}
-.lib-section-name{font-size:12px;font-weight:600;color:var(--t1)}
-.lib-section-count{font-size:10px;color:var(--t3)}
-.lib-section-toggle{font-size:11px;color:var(--t4);transition:transform .15s}
+/* Section dividers */
+.rlib-divider{padding:6px 4px;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t4);display:flex;align-items:center;gap:6px;margin:2px 0 4px}
+.rlib-divider::after{content:'';flex:1;height:1px;background:var(--b1)}
+.rlib-divider.active-div{color:var(--ac)}
+.rlib-divider.active-div::after{background:var(--ac-b)}
 
-.lib-list{padding:2px 8px 4px}
-.ld{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:var(--r);cursor:pointer;transition:all .08s;border:1px solid transparent}
-.ld:hover{background:var(--bg2)}
-.ld.viewing{background:var(--ac-s);border-color:var(--ac-b)}
-.ld-icon{width:15px;height:15px;flex-shrink:0;color:var(--ac);opacity:.45}
-.ld-icon svg{width:15px;height:15px}
-.ld-name{flex:1;font-size:12px;font-weight:500;color:var(--t1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ld-date{font-size:10px;color:var(--t4);flex-shrink:0}
+/* Cards — active */
+.rlib-card{background:var(--card);border:1px solid var(--b1);border-radius:var(--rl);padding:10px 12px;margin-bottom:6px;transition:all .2s;cursor:pointer;position:relative}
+.rlib-card.scoped{border-color:var(--ac);box-shadow:0 0 0 1.5px var(--ac),0 0 12px rgba(45,106,90,0.15);background:rgba(45,106,90,0.02)}
+.rlib-card.scoped:hover{box-shadow:0 0 0 1.5px var(--ac),0 0 12px rgba(45,106,90,0.15),0 2px 8px rgba(0,0,0,0.06)}
+.rlib-card-top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.rlib-card-icon{width:22px;height:22px;border-radius:5px;background:var(--ac-s);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.rlib-card-icon svg{width:12px;height:12px;color:var(--ac)}
+.rlib-card-name{font-size:12px;font-weight:600;color:var(--t1);flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rlib-card-ct{font-size:10px;color:var(--t3);flex-shrink:0}
+.rlib-card-files{display:flex;flex-wrap:wrap;gap:3px}
+.rlib-card-file{font-size:10px;color:var(--t2);padding:2px 8px;background:var(--bg);border-radius:99px;white-space:nowrap;cursor:pointer;transition:all .08s}
+.rlib-card-file:hover{background:var(--ac-s);color:var(--ac)}
+.rlib-card-file.match{background:rgba(45,106,90,0.1);color:var(--ac);font-weight:500}
+
+/* Cards — available (greyed) */
+.rlib-card.avail{background:var(--bg);border-color:var(--b1)}
+.rlib-card.avail:hover{border-color:var(--b2);background:var(--bg2);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.rlib-card.avail .rlib-card-icon{background:var(--bg3);opacity:.7}
+.rlib-card.avail .rlib-card-icon svg{color:var(--t3)}
+.rlib-card.avail .rlib-card-name{color:var(--t3);font-weight:500}
+.rlib-card.avail .rlib-card-ct{color:var(--t4)}
+.rlib-card.avail .rlib-card-file{background:var(--card);color:var(--t1);border:0.5px solid var(--b1);font-weight:500}
+
+/* Available — checked */
+.rlib-card.avail.checked{background:var(--card);border-color:var(--ac);border-style:dashed}
+.rlib-card.avail.checked .rlib-card-name{color:var(--t1);font-weight:600}
+.rlib-card.avail.checked .rlib-card-icon{background:var(--ac-s);opacity:1}
+.rlib-card.avail.checked .rlib-card-icon svg{color:var(--ac)}
+.rlib-check{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--b2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;font-size:9px;color:transparent}
+.rlib-check.on{background:var(--ac);border-color:var(--ac);color:#fff}
+
+/* Action bar */
+.rlib-action-bar{display:none;padding:10px 16px;border-top:1px solid var(--b1);background:var(--card);flex-shrink:0;align-items:center;gap:8px}
+.rlib-action-bar.show{display:flex}
+.rlib-ab-text{font-size:12px;font-weight:500;color:var(--t2);flex:1}
+.rlib-ab-text strong{color:var(--ac)}
+.rlib-ab-btn{padding:6px 16px;font-size:12px;font-weight:600;border:none;border-radius:var(--r);cursor:pointer;font-family:var(--f);transition:all .1s}
+.rlib-ab-cancel{background:var(--bg);color:var(--t3);border:1px solid var(--b1)}
+.rlib-ab-cancel:hover{background:var(--bg2);color:var(--t2)}
+.rlib-ab-add{background:var(--ac);color:#fff}
+.rlib-ab-add:hover{background:var(--ac2)}
+
+.rlib-empty{padding:24px;text-align:center;color:var(--t4);font-size:12px}
 
 /* Doc viewer */
 .lib-viewer{display:none;flex-direction:column;flex:1;min-height:0}
@@ -227,8 +324,8 @@ button{font-family:var(--f);cursor:pointer}
 .setting-toggle.on::after{transform:translateX(16px)}
 
 /* ═══ DEV TOGGLE ═══ */
-.tr.active{background:var(--ac);color:#fff;border-color:var(--ac)}
-.topbar-sep{width:1px;height:20px;background:var(--b1);margin:0 4px}
+.tr.active{background:#fff;color:var(--ac);border-color:#fff}
+.topbar-sep{width:1px;height:20px;background:rgba(255,255,255,0.15);margin:0 4px}
 
 /* ═══ DEV CONSOLE ═══ */
 .dev-console{display:none;flex-direction:column;flex:1;min-height:0;overflow:hidden;background:#1a1d23}
@@ -330,6 +427,7 @@ button{font-family:var(--f);cursor:pointer}
   </div>
 </div>
 
+<div class="accent-bar"></div>
 <div class="main-body" id="main-app">
 <div class="left">
   <div class="ws-view" id="ws-view">
@@ -348,6 +446,12 @@ button{font-family:var(--f);cursor:pointer}
     <div class="chat-top">
       <button class="chat-back" onclick="backToWs()">←</button>
       <div class="chat-label" id="ch-label"></div>
+      <div class="chat-actions">
+        <button class="wa" title="Save" onclick="if(S.aWs)saveWs(S.aWs)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg></button>
+        <button class="wa" title="Complete" onclick="if(S.aWs)completeWs(S.aWs)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></button>
+        <button class="wa" title="Download" onclick="if(S.aWs)downloadWs(S.aWs)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></button>
+        <button class="wa" title="Delete" onclick="if(S.aWs)delWs(S.aWs)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
+      </div>
       <button class="chat-split-btn" id="split-btn" onclick="toggleSplit()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="12" y1="3" x2="12" y2="21"/></svg>Split</button>
       <div class="chat-stamp" id="ch-stamp"></div>
     </div>
@@ -358,12 +462,31 @@ button{font-family:var(--f);cursor:pointer}
     </div>
   </div>
 
+  <div class="scope-area" id="scope-area">
+    <div class="presets-col" id="scope-presets-col">
+      <div class="pc-top"><span class="pc-toggle-label">Presets</span></div>
+      <div class="pc-inner" id="scope-preset-list"></div>
+    </div>
+    <div class="cards-col">
+      <div class="cards-head">
+        <span class="ch-title">Active Scope</span>
+        <span class="ch-summary" id="scope-summary"></span>
+        <div class="ch-actions">
+          <button class="ch-btn toggle" id="scope-preset-toggle" onclick="scopeTogglePresets()">Presets</button>
+          <button class="ch-btn" onclick="scopeSavePreset()">Save preset</button>
+          <button class="ch-btn" onclick="scopeClear()">Clear</button>
+          <div style="position:relative"><button class="ch-btn primary" id="scope-add-btn" onclick="scopeTogglePicker(event)">+ Add library<div class="scope-picker" id="scope-picker" onclick="event.stopPropagation()"><input class="scope-picker-search" id="scope-pk-search" placeholder="Search libraries..." oninput="scopeRenderPicker()"><div class="scope-picker-list" id="scope-pk-list"></div></div></button></div>
+        </div>
+      </div>
+      <div class="track-wrap" id="track-wrap"><div class="cards-track" id="scope-cards-track"></div></div>
+    </div>
+  </div>
+
   <div class="input-area">
     <div class="input-row">
       <input type="text" class="input-f" id="inp" placeholder="Ask a question..." autocomplete="off">
       <button class="send-btn" onclick="send()">Send</button>
     </div>
-    <div class="lib-bar" id="lib-bar"></div>
   </div>
 </div>
 
@@ -371,11 +494,21 @@ button{font-family:var(--f);cursor:pointer}
 
 <div class="right" id="right-panel">
   <div class="lib-head">
-    <div class="lib-head-label">Document Libraries</div>
-    <div class="lib-head-count" id="rlib-count"></div>
+    <div class="lib-head-row">
+      <div class="lib-head-label">Document Libraries</div>
+      <div class="lib-head-count" id="rlib-count"></div>
+    </div>
+    <input class="lib-search" id="lib-search" placeholder="Search folders and documents..." oninput="rightSearch=this.value;renderRightLibs()">
   </div>
+  <div class="lib-scroll-wrap">
   <div class="lib-scroll" id="lib-scroll">
-    <div id="lib-sections"></div>
+    <div id="lib-cards"></div>
+  </div>
+  </div>
+  <div class="rlib-action-bar" id="rlib-action-bar">
+    <div class="rlib-ab-text" id="rlib-ab-text"></div>
+    <button class="rlib-ab-btn rlib-ab-cancel" onclick="rightChecked.clear();renderRightLibs()">Cancel</button>
+    <button class="rlib-ab-btn rlib-ab-add" onclick="commitRightAdd()">Add to scope</button>
   </div>
   <div class="lib-viewer" id="lib-viewer">
     <div class="lv-head">
@@ -538,36 +671,135 @@ const MOCK_LIBS=[
     {n:'SECURE 2.0 Summary',d:'2024',c:'RMD: 73 (2023), 75 (2033).\nRoth employer: no lifetime RMD.\nStudent loan match. Emergency savings: $2,500.'},
     {n:'DOL Fiduciary',d:'2025',c:'Participant interest. Prudent expert.\nDiversify. Follow plan docs. Reasonable fees.'},
   ]},
+  {id:'onboarding',name:'New Client Onboarding',docs:[
+    {n:'Welcome Packet',d:'Mar 2026',c:''},{n:'Account Setup Checklist',d:'Feb 2026',c:''},{n:'KYC Requirements',d:'Jan 2026',c:''},
+    {n:'Fee Schedule',d:'Mar 2026',c:''},{n:'Service Agreement Template',d:'Jan 2026',c:''},{n:'Implementation Timeline',d:'Feb 2026',c:''},
+    {n:'Data Collection Form',d:'Jan 2026',c:''},{n:'Payroll Integration Guide',d:'Feb 2026',c:''},
+  ]},
+  {id:'claims',name:'Claims Processing',docs:[
+    {n:'Filing Procedure',d:'Feb 2026',c:''},{n:'Required Documentation',d:'Jan 2026',c:''},{n:'Appeal Process Guide',d:'Nov 2025',c:''},
+    {n:'Timeframes & Deadlines',d:'Jan 2026',c:''},{n:'Disability Claims',d:'Dec 2025',c:''},
+  ]},
+  {id:'hsa',name:'HSA & FSA Plans',docs:[
+    {n:'HSA Eligibility Rules',d:'Jan 2026',c:''},{n:'Contribution Limits 2026',d:'Jan 2026',c:''},{n:'FSA General Rules',d:'2025',c:''},
+    {n:'DCFSA Guidelines',d:'2025',c:''},{n:'Carryover Rules',d:'2025',c:''},{n:'Investment Options',d:'Jan 2026',c:''},
+  ]},
+  {id:'erisa',name:'ERISA Compliance',docs:[
+    {n:'Fiduciary Standards',d:'2025',c:''},{n:'Prohibited Transactions',d:'2025',c:''},{n:'Reporting Requirements',d:'2026',c:''},
+    {n:'Plan Document Rules',d:'2025',c:''},{n:'Audit Checklist',d:'2026',c:''},{n:'Participant Rights',d:'2025',c:''},
+    {n:'ERISA §404(c) Safe Harbor',d:'2025',c:''},
+  ]},
+  {id:'dol',name:'DOL Fiduciary Standards',docs:[
+    {n:'Fiduciary Checklist',d:'2026',c:''},{n:'Best Interest Rule',d:'2025',c:''},{n:'PTE 2020-02',d:'2025',c:''},
+    {n:'Advisory Opinions',d:'2025',c:''},{n:'Enforcement Actions',d:'2026',c:''},{n:'Fee Reasonableness',d:'2025',c:''},
+  ]},
+  {id:'training',name:'Training Materials',docs:[
+    {n:'Advisor Onboarding',d:'Mar 2026',c:''},{n:'Product Knowledge',d:'Feb 2026',c:''},{n:'Compliance Training',d:'Jan 2026',c:''},
+    {n:'System User Guides',d:'Mar 2026',c:''},{n:'Client Communication',d:'Feb 2026',c:''},{n:'Regulatory Updates',d:'Mar 2026',c:''},
+  ]},
+  {id:'ndt',name:'Non-Discrimination Testing',docs:[
+    {n:'ADP/ACP Test',d:'2026',c:''},{n:'Top-Heavy Test',d:'2026',c:''},{n:'Coverage Test',d:'2025',c:''},
+    {n:'Minimum Participation',d:'2025',c:''},{n:'Cross-Testing',d:'2026',c:''},{n:'Gateway Contribution',d:'2025',c:''},
+  ]},
+  {id:'smith',name:'Client: Smith Group',docs:[
+    {n:'Q1 Review',d:'Mar 2026',c:''},{n:'Q2 Review',d:'Jun 2025',c:''},{n:'Fee Analysis',d:'Jan 2026',c:''},
+    {n:'Renewal Proposal',d:'Feb 2026',c:''},{n:'Plan Design Summary',d:'Jan 2026',c:''},{n:'Coverage Summary',d:'Dec 2025',c:''},
+    {n:'Compliance Notes',d:'Mar 2026',c:''},
+  ]},
+  {id:'anderson',name:'Client: Anderson Holdings',docs:[
+    {n:'Onboarding Packet',d:'Jan 2026',c:''},{n:'Investment Policy Statement',d:'Feb 2026',c:''},
+    {n:'Beneficiary Audit',d:'Mar 2026',c:''},{n:'Fee Comparison',d:'Jan 2026',c:''},{n:'Annual Review',d:'Mar 2026',c:''},
+  ]},
+  {id:'tax',name:'Tax Treaty — Canada',docs:[
+    {n:'Article XXI Summary',d:'2025',c:''},{n:'TFSA vs 401k Comparison',d:'2025',c:''},
+    {n:'Withholding Rules',d:'2026',c:''},{n:'Cross-Border Income Guide',d:'2025',c:''},
+  ]},
 ];
+
+// ═══ FUZZY SEARCH ═══
+function fuzzyMatch(query,target){
+  const q=query.toLowerCase();
+  const t=target.toLowerCase();
+  if(!q)return{match:true,score:0,indices:[]};
+  let qi=0,score=0,indices=[],lastIdx=-1,consecutive=0;
+  for(let ti=0;ti<t.length&&qi<q.length;ti++){
+    if(t[ti]===q[qi]){
+      indices.push(ti);
+      // Bonus: consecutive characters
+      if(ti===lastIdx+1){consecutive++;score+=consecutive*3}else{consecutive=0}
+      // Bonus: match at start of word
+      if(ti===0||' -—_/('.includes(t[ti-1]))score+=5;
+      // Bonus: match at start of string
+      if(ti===0)score+=8;
+      score+=1;
+      lastIdx=ti;
+      qi++;
+    }
+  }
+  if(qi<q.length)return{match:false,score:0,indices:[]};
+  // Penalty for spread — tighter matches score higher
+  const spread=indices.length>1?indices[indices.length-1]-indices[0]:0;
+  score-=spread*0.5;
+  return{match:true,score,indices};
+}
+
+function fuzzyHighlight(text,indices){
+  if(!indices.length)return text;
+  let out='';const idxSet=new Set(indices);
+  for(let i=0;i<text.length;i++){
+    if(idxSet.has(i))out+=`<b style="color:var(--ac);font-weight:600">${text[i]}</b>`;
+    else out+=text[i];
+  }
+  return out;
+}
 
 // ═══ LIVE LIBS — populated from Box or mock ═══
 let LIBS=[...MOCK_LIBS];
 
 let S={
-  selLibs:['loans'],
+  selLibs:['loans','compliance'],
   ws:[],saved:[],completed:[],notes:[],
   aWs:null,wc:0,split:false,
   viewingDoc:null,
-  presets:[{name:'All',libs:['loans','compliance']},{name:'Loans only',libs:['loans']}],
   activePanel:1,
 };
 
 function init(){
   S.ws=[
-    {id:'w1',title:'Hardship distribution process',meta:'4 cards · Loans',msgs:[],t:new Date(Date.now()-86400000)},
-    {id:'w2',title:'RMD calculation walkthrough',meta:'2 cards · Compliance',msgs:[],t:new Date(Date.now()-172800000)},
-    {id:'w3',title:'Roth conversion tax implications',meta:'6 cards · Compliance',msgs:[],t:new Date(Date.now()-345600000)},
-    {id:'w4',title:'Loan eligibility — unpaid leave',meta:'3 cards · Loans',msgs:[],t:new Date(Date.now()-3600000)},
+    {id:'w1',title:'Hardship distribution process',meta:'4 cards · Loans',t:new Date(Date.now()-86400000),scope:['loans'],msgs:[
+      {c:'What qualifies as a hardship distribution?',u:true,p:1},
+      {c:'<p>Under the safe harbor rules, a hardship distribution requires an <strong>immediate and heavy financial need</strong>. Qualifying events include:</p><ul><li>Medical expenses</li><li>Purchase of primary residence</li><li>Tuition and education fees</li><li>Prevention of eviction</li><li>Funeral expenses</li><li>Casualty repair</li></ul><p>The participant must have exhausted loan options first. A 10% early withdrawal penalty applies if under 59½.</p>',u:false,ci:['Hardship Rules','Plan Summary'],p:1},
+      {c:'Is there a minimum or maximum amount?',u:true,p:1},
+      {c:'<p>There is no specific minimum for hardship distributions. The maximum is limited to the <strong>amount of the financial need</strong>, including taxes and penalties. The plan does not allow hardship distributions to exceed the participant\'s elective deferral balance.</p>',u:false,ci:['Hardship Rules'],p:1},
+    ]},
+    {id:'w2',title:'RMD calculation walkthrough',meta:'2 cards · Compliance',t:new Date(Date.now()-172800000),scope:['compliance'],msgs:[
+      {c:'When do RMDs start under SECURE 2.0?',u:true,p:1},
+      {c:'<p>Under SECURE 2.0, RMDs now begin at <strong>age 73</strong> (effective 2023). This increases to <strong>age 75</strong> starting in 2033. Roth employer contributions are no longer subject to lifetime RMD requirements.</p>',u:false,ci:['SECURE 2.0 Summary'],p:1},
+    ]},
+    {id:'w3',title:'Roth conversion tax implications',meta:'6 cards · Compliance',t:new Date(Date.now()-345600000),scope:['compliance','erisa'],msgs:[
+      {c:'Can participants do in-plan Roth conversions?',u:true,p:1},
+      {c:'<p>Yes. The 2025 plan amendment added <strong>Roth in-plan conversion</strong> capability. Participants can convert pre-tax balances to Roth within the plan. The converted amount is taxable in the year of conversion but grows tax-free thereafter.</p>',u:false,ci:['Plan Amendment 2025'],p:1},
+      {c:'What about the tax impact on high earners?',u:true,p:1},
+      {c:'<p>High earners should consider the <strong>marginal tax rate impact</strong>. A large conversion could push income into a higher bracket. Many advisors recommend partial conversions spread across multiple tax years. There is no income limit on Roth conversions.</p>',u:false,ci:['IRC Section 403(b)'],p:1},
+      {c:'Are there any ERISA considerations?',u:true,p:1},
+      {c:'<p>The fiduciary standard under ERISA requires that the conversion option be offered <strong>in the best interest of participants</strong>. The plan sponsor should ensure adequate participant education and that the conversion feature was properly adopted via plan amendment.</p>',u:false,ci:['ERISA §404(c) Safe Harbor'],p:1},
+    ]},
+    {id:'w4',title:'Loan eligibility — unpaid leave',meta:'3 cards · Loans',t:new Date(Date.now()-3600000),scope:['loans','compliance'],msgs:[
+      {c:'Can someone on unpaid leave take a plan loan?',u:true,p:1},
+      {c:'<p>No. Per <strong>Section 7.1</strong>, loans require active employment. Unpaid leave disqualifies the participant. However, <strong>paid FMLA leave</strong> is permitted — the participant can initiate a new loan while on paid FMLA.</p>',u:false,ci:['Loan Policy §7'],p:1},
+      {c:'What happens to existing loans during leave?',u:true,p:1},
+      {c:'<p>Existing loans remain active. Repayment continues via payroll deduction if on paid leave. If on <strong>unpaid leave</strong>, the participant may need to make direct payments to avoid default. Loans default after <strong>90 days</strong> of missed payments.</p>',u:false,ci:['Loan Policy §7','Plan Summary'],p:1},
+    ]},
   ];
   S.wc=4;
   S.saved=[
-    {q:'Can a participant take a loan while on leave?',a:'Loans require active employment. Unpaid leave disqualifies per §7.1...',time:'7m'},
-    {q:'2026 contribution limits?',a:'$23,500 deferral, $7,500 catch-up, $70,000 total...',time:'1h'},
-    {q:'FMLA and loan eligibility?',a:'Paid FMLA permits initiation. Unpaid falls under §7.1...',time:'2h'},
+    {q:'Can a participant take a loan while on leave?',a:'Loans require active employment. Unpaid leave disqualifies per §7.1...',time:'7m',wsId:'w4'},
+    {q:'2026 contribution limits?',a:'$23,500 deferral, $7,500 catch-up, $70,000 total...',time:'1h',wsId:'w2'},
+    {q:'FMLA and loan eligibility?',a:'Paid FMLA permits initiation. Unpaid falls under §7.1...',time:'2h',wsId:'w4'},
   ];
   S.completed=[
-    {title:'Distribution options — Dr. Chen',meta:'5 cards · Mar 11'},
-    {title:'Spousal consent requirements',meta:'2 cards · Mar 9'},
+    {title:'Distribution options — Dr. Chen',meta:'5 cards · Mar 11',t:new Date(Date.now()-86400000*8)},
+    {title:'Spousal consent requirements',meta:'2 cards · Mar 9',t:new Date(Date.now()-86400000*10)},
   ];
   S.notes=[{text:'Remember to check spousal consent rules for loans over $5K',time:new Date(Date.now()-3600000)}];
   renderAll();
@@ -575,35 +807,64 @@ function init(){
   initResize();
 }
 
-function renderAll(){renderWs();renderSaved();renderCompleted();renderLibBar();renderRightLibs();updatePlaceholder()}
+function renderAll(){renderWs();renderSaved();renderCompleted();scopeRender();renderRightLibs();updatePlaceholder()}
 
 // ═══ WORKSPACES ═══
 function renderWs(){
   document.getElementById('ws-count').textContent=S.ws.length;
-  document.getElementById('ws-list').innerHTML=S.ws.map(w=>
-    `<div class="ws ${S.aWs===w.id?'active':''}" onclick="openWs('${w.id}')"><div class="ws-body"><div class="ws-name">${w.title}</div><div class="ws-meta">${w.meta}</div></div><div class="ws-actions" onclick="event.stopPropagation()"><button class="wa" title="Save" onclick="saveWs('${w.id}')">${IC.save}</button><button class="wa" title="Complete" onclick="completeWs('${w.id}')">${IC.check}</button><button class="wa" title="Download" onclick="downloadWs('${w.id}')">${IC.dl}</button><button class="wa" title="Delete" onclick="delWs('${w.id}')">${IC.trash}</button></div></div>`
-  ).join('');
+  document.getElementById('ws-list').innerHTML=S.ws.map(w=>{
+    const exp=expiryLabel(w.t,5);
+    return `<div class="ws ${S.aWs===w.id?'active':''}" onclick="openWs('${w.id}')"><div class="ws-body"><div class="ws-name">${w.title}</div><div class="ws-meta">${w.meta}<span class="ws-expiry ${exp.cls}"> · ${exp.text}</span></div></div><div class="ws-actions" onclick="event.stopPropagation()"><button class="wa" title="Save" onclick="saveWs('${w.id}')">${IC.save}</button><button class="wa" title="Complete" onclick="completeWs('${w.id}')">${IC.check}</button><button class="wa" title="Download" onclick="downloadWs('${w.id}')">${IC.dl}</button><button class="wa" title="Delete" onclick="delWs('${w.id}')">${IC.trash}</button></div></div>`;
+  }).join('');
 }
+let beforeChatScope=null;
+let beforeChatPreset=-1;
+
 function openWs(id){
   const w=S.ws.find(x=>x.id===id);if(!w)return;
   S.aWs=id;
+  // Save current scope so we can restore on back
+  if(!beforeChatScope){beforeChatScope=[...activeIds];beforeChatPreset=scopeActivePreset}
+  // Load this workspace's scope
+  if(w.scope){activeIds=new Set(w.scope);syncScope();scopeActivePreset=-1}
+  // Hide presets in chat mode
+  document.getElementById('scope-presets-col').classList.add('collapsed');
+  document.getElementById('scope-preset-toggle').style.display='none';
+  scopeRender();
   document.getElementById('ws-view').classList.add('hidden');
   document.getElementById('chat-view').classList.add('active');
   document.getElementById('ch-label').textContent=w.title;
   document.getElementById('ch-stamp').textContent=fmtTime(w.t)+' · '+fmtDate(w.t);
   renderMsgs(1,w.msgs);
 }
-function backToWs(){S.aWs=null;S.split=false;document.getElementById('ws-view').classList.remove('hidden');document.getElementById('chat-view').classList.remove('active');renderSplitState();renderWs()}
-function saveWs(id){const w=S.ws.find(x=>x.id===id);if(!w||!w.msgs.length)return;const lq=w.msgs.filter(m=>m.u).pop();const la=w.msgs.filter(m=>!m.u).pop();if(lq&&la){S.saved.unshift({q:lq.c,a:la.c.replace(/<[^>]+>/g,'').slice(0,100)+'...',time:'now'});renderSaved()}}
+function backToWs(){
+  S.aWs=null;S.split=false;
+  // Restore pre-chat scope
+  if(beforeChatScope){activeIds=new Set(beforeChatScope);scopeActivePreset=beforeChatPreset;beforeChatScope=null;beforeChatPreset=-1;syncScope()}
+  // Restore presets visibility
+  document.getElementById('scope-preset-toggle').style.display='';
+  if(scopePresetsVisible)document.getElementById('scope-presets-col').classList.remove('collapsed');
+  scopeRender();
+  document.getElementById('ws-view').classList.remove('hidden');
+  document.getElementById('chat-view').classList.remove('active');
+  renderSplitState();renderWs();
+}
+function saveWs(id){const w=S.ws.find(x=>x.id===id);if(!w||!w.msgs.length)return;const lq=w.msgs.filter(m=>m.u).pop();const la=w.msgs.filter(m=>!m.u).pop();if(lq&&la){S.saved.unshift({q:lq.c,a:la.c.replace(/<[^>]+>/g,'').slice(0,100)+'...',time:'now',wsId:id});renderSaved()}}
 function completeWs(id){const w=S.ws.find(x=>x.id===id);if(!w)return;S.ws=S.ws.filter(x=>x.id!==id);S.completed.unshift({title:w.title,meta:w.msgs.length+' cards · just now'});if(S.aWs===id)backToWs();renderWs();renderCompleted()}
 function downloadWs(id){const w=S.ws.find(x=>x.id===id);if(!w)return;const txt=w.msgs.map(m=>(m.u?'Q: ':'A: ')+m.c.replace(/<[^>]+>/g,'')).join('\n\n');const b=new Blob([txt],{type:'text/plain'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=w.title.replace(/[^a-zA-Z0-9]/g,'_')+'.txt';a.click()}
 function delWs(id){if(!confirm('Delete this workspace?'))return;S.ws=S.ws.filter(x=>x.id!==id);if(S.aWs===id)backToWs();renderWs()}
 function renderSaved(){
   document.getElementById('saved-head').textContent='Saved · '+S.saved.length;
-  document.getElementById('saved-row').innerHTML=S.saved.map(s=>`<div class="sc"><div class="sc-top"><span class="sc-badge">Q&A</span><span class="sc-time">${s.time}</span></div><div class="sc-q">${s.q}</div><div class="sc-a">${s.a}</div></div>`).join('');
+  document.getElementById('saved-row').innerHTML=S.saved.map(s=>{
+    const click=s.wsId?`onclick="openWs('${s.wsId}')"`:''
+    return `<div class="sc" ${click}><div class="sc-top"><span class="sc-badge">Q&A</span><span class="sc-time">${s.time}</span></div><div class="sc-q">${s.q}</div><div class="sc-a">${s.a}</div></div>`;
+  }).join('');
 }
 function renderCompleted(){
-  document.getElementById('completed-list').innerHTML=S.completed.map(c=>`<div class="cw"><div class="cw-check">${IC.chk}</div><div class="cw-name">${c.title}</div><div class="cw-meta">${c.meta}</div></div>`).join('');
+  document.getElementById('completed-list').innerHTML=S.completed.map(c=>{
+    const exp=c.t?expiryLabel(c.t,2):{text:'',cls:''};
+    return `<div class="cw"><div class="cw-check">${IC.chk}</div><div class="cw-name">${c.title}</div><div class="cw-meta">${c.meta}</div>${exp.text?`<span class="cw-expiry ${exp.cls}">${exp.text}</span>`:''}</div>`;
+  }).join('');
 }
 
 // ═══ SPLIT CHAT ═══
@@ -626,7 +887,7 @@ function renderSplitState(){
 function send(){
   const inp=document.getElementById('inp');const t=inp.value.trim();if(!t)return;inp.value='';
   const panel=S.split?S.activePanel:1;
-  if(!S.aWs){S.wc++;const w={id:'w'+S.wc,title:t.length>42?t.slice(0,42)+'...':t,meta:'0 cards · '+getSelLibNames(),msgs:[],t:new Date()};S.ws.unshift(w);openWs(w.id)}
+  if(!S.aWs){S.wc++;const w={id:'w'+S.wc,title:t.length>42?t.slice(0,42)+'...':t,meta:'0 cards · '+getSelLibNames(),msgs:[],t:new Date(),scope:[...activeIds]};S.ws.unshift(w);openWs(w.id)}
   const w=S.ws.find(x=>x.id===S.aWs);if(!w)return;
   const el=document.getElementById('ch-msgs-'+panel);if(el.querySelector('.empty-c'))el.innerHTML='';
   w.msgs.push({c:t,u:true,p:panel});aMsg(panel,t,true);showT(panel);
@@ -655,42 +916,189 @@ function gen(q){
   return{t:'<p>I can answer questions about the <strong>'+names+'</strong> documents.</p>',ci:[]};
 }
 
-// ═══ LIBRARY BAR ═══
-function renderLibBar(){
-  let h='<div class="lb-label">Libraries</div><div class="lb-pills">';
-  h+=LIBS.map(l=>{const on=S.selLibs.includes(l.id);return `<button class="lp ${on?'on':''}" onclick="toggleLib('${l.id}')">${l.name}<span class="lp-n">${l.docs.length}</span></button>`}).join('');
-  h+='</div><div class="lb-sep"></div><div class="lb-presets">';
-  h+=S.presets.map((p,i)=>`<button class="lb-preset" onclick="applyPreset(${i})">${p.name}</button>`).join('');
-  h+=`<button class="lb-save-preset" onclick="savePreset()">Save preset</button></div>`;
-  const total=S.selLibs.reduce((a,id)=>{const l=LIBS.find(x=>x.id===id);return a+(l?l.docs.length:0)},0);
-  h+=`<div class="lb-count">${total} docs</div>`;
-  document.getElementById('lib-bar').innerHTML=h;
-}
-function toggleLib(id){const i=S.selLibs.indexOf(id);if(i>=0&&S.selLibs.length>1)S.selLibs.splice(i,1);else if(i<0)S.selLibs.push(id);renderLibBar();renderRightLibs();updatePlaceholder()}
-function applyPreset(i){S.selLibs=[...S.presets[i].libs];renderLibBar();renderRightLibs();updatePlaceholder()}
-function savePreset(){const name=prompt('Preset name:',getSelLibNames());if(name){S.presets.push({name,libs:[...S.selLibs]});renderLibBar()}}
-function updatePlaceholder(){document.getElementById('inp').placeholder='Ask about '+getSelLibNames()+'...'}
-function getSelLibNames(){return S.selLibs.map(id=>LIBS.find(x=>x.id===id)?.name).filter(Boolean).join(' + ')}
+// ═══ SCOPE BUILDER ═══
+let scopePresets=[
+  {name:'All',color:'#2d6a5a',ids:['loans','compliance','onboarding','claims','hsa','erisa','dol','training','ndt','smith','anderson','tax']},
+  {name:'Loans & Compliance',color:'#185FA5',ids:['loans','compliance']},
+  {name:'Smith Review',color:'#854F0B',ids:['smith','loans','compliance','ndt']},
+  {name:'New Client',color:'#993556',ids:['onboarding','hsa','training']},
+  {name:'ERISA Audit',color:'#534AB7',ids:['erisa','dol','ndt','compliance']},
+];
+let scopeActivePreset=1;
+let activeIds=new Set(['loans','compliance']);
+let scopePickerOpen=false;
+let scopePresetsVisible=true;
+let scopeOpenMenu=null;
 
-// ═══ RIGHT PANEL — with Box embed support ═══
-function renderRightLibs(){
-  const total=S.selLibs.reduce((a,id)=>{const l=LIBS.find(x=>x.id===id);return a+(l?l.docs.length:0)},0);
-  document.getElementById('rlib-count').textContent=total+' documents across '+S.selLibs.length+' librar'+(S.selLibs.length===1?'y':'ies');
-  document.getElementById('lib-sections').innerHTML=S.selLibs.map(id=>{
-    const l=LIBS.find(x=>x.id===id);if(!l)return'';
-    return `<div class="lib-section"><div class="lib-section-head" onclick="toggleSection('${id}')"><div class="lib-section-name">${l.name}</div><div class="lib-section-count">${l.docs.length} docs</div></div><div class="lib-list" id="sec-${id}">${l.docs.map((d,i)=>`<div class="ld" onclick="openV('${id}',${i})" data-fileid="${d.fileId||''}"><div class="ld-icon">${IC.doc}</div><div class="ld-name">${d.n}</div><div class="ld-date">${d.d}</div></div>`).join('')}</div></div>`;
+function syncScope(){
+  S.selLibs=[...activeIds];
+  // Keep active workspace's scope in sync
+  if(S.aWs){const w=S.ws.find(x=>x.id===S.aWs);if(w)w.scope=[...activeIds]}
+  renderRightLibs();
+  updatePlaceholder();
+}
+function scopeRender(){scopeRenderPresets();scopeRenderCards();scopeUpdateSummary();scopeUpdateFades();
+  if(!S.aWs)document.getElementById('scope-preset-toggle').classList.toggle('on',scopePresetsVisible)}
+function scopeRenderPresets(){
+  document.getElementById('scope-preset-list').innerHTML=scopePresets.map((p,i)=>
+    `<div class="preset ${i===scopeActivePreset?'active':''}" onclick="scopeLoadPreset(${i})"><div class="preset-dot" style="background:${p.color}"></div><span class="preset-name">${p.name}</span><span class="preset-ct">${p.ids.length}</span><div class="preset-menu"><button class="preset-menu-btn" onclick="event.stopPropagation();scopeToggleMenu(${i})">⋯</button><div class="preset-dd ${scopeOpenMenu===i?'open':''}" id="spmenu-${i}"><button class="pdd-item" onclick="event.stopPropagation();scopeRenamePreset(${i})">Rename</button><button class="pdd-item" onclick="event.stopPropagation();scopeDupePreset(${i})">Duplicate</button><button class="pdd-item danger" onclick="event.stopPropagation();scopeDeletePreset(${i})">Delete</button></div></div></div>`
+  ).join('');
+}
+function scopeRenderCards(){
+  const track=document.getElementById('scope-cards-track');
+  if(!activeIds.size){track.innerHTML='<div class="scope-empty">No libraries selected.</div>';return}
+  track.innerHTML=[...activeIds].map(id=>{
+    const f=LIBS.find(x=>x.id===id);if(!f)return'';
+    const docs=f.docs||[];
+    const show=docs.slice(0,5);
+    const more=docs.length-5;
+    return `<div class="lib-card"><div class="lc-top"><div class="lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div><span class="lc-name">${f.name}</span><button class="lc-remove" onclick="scopeRemoveLib('${id}')">×</button></div><div class="lc-ct">${docs.length} docs</div><div class="lc-files">${show.map(d=>`<div class="lc-file">${d.n||d.name||d}</div>`).join('')}${more>0?`<div class="lc-more">+${more} more</div>`:''}</div></div>`;
   }).join('');
+}
+function scopeRenderPicker(){
+  const term=(document.getElementById('scope-pk-search')?.value||'').toLowerCase();
+  const available=LIBS.filter(f=>!activeIds.has(f.id)).map(f=>{
+    const fm=fuzzyMatch(term,f.name);
+    const docHits=(f.docs||[]).some(d=>fuzzyMatch(term,d.n||d.name||d).match);
+    return{lib:f,match:fm.match||docHits||!term,score:fm.score,indices:fm.indices};
+  }).filter(x=>x.match).sort((a,b)=>b.score-a.score);
+  document.getElementById('scope-pk-list').innerHTML=available.map(({lib:f,indices})=>
+    `<div class="spk-item" onclick="event.stopPropagation();scopeAddLib('${f.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>${indices.length?fuzzyHighlight(f.name,indices):f.name}<span class="spk-item-ct">${(f.docs||[]).length}</span></div>`
+  ).join('')||'<div style="padding:6px;font-size:10px;color:var(--t4)">No matches.</div>';
+}
+function scopeUpdateSummary(){
+  const total=[...activeIds].reduce((a,id)=>{const f=LIBS.find(x=>x.id===id);return a+(f?(f.docs||[]).length:0)},0);
+  document.getElementById('scope-summary').textContent=activeIds.size?total+' docs · '+activeIds.size+' libraries':'';
+}
+function scopeUpdateFades(){
+  const track=document.querySelector('.cards-track');
+  const wrap=document.getElementById('track-wrap');
+  if(!track||!wrap)return;
+  const sl=track.scrollLeft;
+  const maxScroll=track.scrollWidth-track.clientWidth;
+  wrap.classList.toggle('fade-left',sl>4);
+  wrap.classList.toggle('fade-right',maxScroll>4&&sl<maxScroll-4);
+}
+function scopeLoadPreset(i){
+  if(i<0){activeIds.clear();scopeActivePreset=-1}
+  else{scopeActivePreset=i;activeIds=new Set(scopePresets[i].ids)}
+  scopePickerOpen=false;scopeClosePicker();scopeOpenMenu=null;scopeRender();syncScope();
+}
+function scopeRemoveLib(id){activeIds.delete(id);scopeActivePreset=-1;scopeRender();syncScope()}
+function scopeAddLib(id){activeIds.add(id);scopeActivePreset=-1;scopeRender();syncScope();scopeRenderPicker()}
+function scopeClear(){activeIds.clear();scopeActivePreset=-1;scopeRender();syncScope()}
+function scopeTogglePicker(e){e.stopPropagation();scopePickerOpen=!scopePickerOpen;document.getElementById('scope-picker').classList.toggle('open',scopePickerOpen);if(scopePickerOpen){scopeRenderPicker();setTimeout(()=>{document.getElementById('scope-pk-search')?.focus()},50)}}
+function scopeClosePicker(){scopePickerOpen=false;document.getElementById('scope-picker')?.classList.remove('open')}
+function scopeTogglePresets(){scopePresetsVisible=!scopePresetsVisible;document.getElementById('scope-presets-col').classList.toggle('collapsed',!scopePresetsVisible);document.getElementById('scope-preset-toggle').classList.toggle('on',scopePresetsVisible);requestAnimationFrame(scopeUpdateFades)}
+function scopeToggleMenu(i){scopeOpenMenu=scopeOpenMenu===i?null:i;scopeRenderPresets()}
+function scopeSavePreset(){
+  if(!activeIds.size)return;const name=prompt('Preset name:');if(!name)return;
+  const colors=['#2d6a5a','#185FA5','#854F0B','#993556','#534AB7','#993C1D','#0F6E56','#791F1F'];
+  scopePresets.push({name,color:colors[scopePresets.length%colors.length],ids:[...activeIds]});
+  scopeActivePreset=scopePresets.length-1;scopeOpenMenu=null;scopeRender();
+}
+function scopeRenamePreset(i){const name=prompt('Rename:',scopePresets[i].name);if(name){scopePresets[i].name=name;scopeOpenMenu=null;scopeRender()}}
+function scopeDupePreset(i){scopePresets.push({...scopePresets[i],name:scopePresets[i].name+' (copy)',ids:[...scopePresets[i].ids]});scopeOpenMenu=null;scopeRender()}
+function scopeDeletePreset(i){if(!confirm('Delete "'+scopePresets[i].name+'"?'))return;scopePresets.splice(i,1);if(scopeActivePreset===i)scopeActivePreset=-1;else if(scopeActivePreset>i)scopeActivePreset--;scopeOpenMenu=null;scopeRender()}
+function updatePlaceholder(){
+  const names=[...activeIds].map(id=>LIBS.find(x=>x.id===id)?.name).filter(Boolean);
+  const display=names.slice(0,2).join(' + ')+(names.length>2?' +\u2009'+(names.length-2):'');
+  document.getElementById('inp').placeholder=activeIds.size?'Ask about '+display+'...':'Add libraries to begin...';
+}
+function getSelLibNames(){return [...activeIds].map(id=>LIBS.find(x=>x.id===id)?.name).filter(Boolean).join(' + ')}
+
+// ═══ RIGHT PANEL — Card-based with multi-select ═══
+let rightSearch='';
+let rightChecked=new Set();
+
+function rightMatchSearch(lib,term){
+  if(!term)return{folder:true,score:0,folderIndices:[],docMatches:[]};
+  const fm=fuzzyMatch(term,lib.name);
+  const docs=lib.docs||[];
+  const docMatches=docs.map(d=>{const m=fuzzyMatch(term,d.n||d.name||d);return{doc:d,match:m.match,score:m.score,indices:m.indices}}).filter(dm=>dm.match);
+  const hit=fm.match||docMatches.length>0;
+  const bestScore=Math.max(fm.score,...docMatches.map(d=>d.score),0);
+  return{folder:hit,score:bestScore,folderIndices:fm.match?fm.indices:[],docMatches};
+}
+
+function rightFileChips(lib,searchResult,max,isScoped){
+  const docs=lib.docs||[];
+  const show=docs.slice(0,max);
+  const more=docs.length-max;
+  const matchedSet=new Set((searchResult.docMatches||[]).map(dm=>(dm.doc.n||dm.doc.name||dm.doc)));
+  return show.map((d,i)=>{
+    const name=d.n||d.name||d;
+    const dm=(searchResult.docMatches||[]).find(m=>(m.doc.n||m.doc.name||m.doc)===name);
+    const label=dm?fuzzyHighlight(name,dm.indices):name;
+    if(isScoped){
+      return `<span class="rlib-card-file ${dm?'match':''}" onclick="event.stopPropagation();openV('${lib.id}',${i})">${label}</span>`;
+    }
+    return `<span class="rlib-card-file ${dm?'match':''}">${label}</span>`;
+  }).join('')+(more>0?`<span class="rlib-card-file">+${more}</span>`:'');
+}
+
+function renderRightLibs(){
+  const term=rightSearch.toLowerCase();
+  const scopedLibs=LIBS.filter(l=>activeIds.has(l.id));
+  const unscopedLibs=LIBS.filter(l=>!activeIds.has(l.id));
+  const totalDocs=scopedLibs.reduce((a,l)=>a+(l.docs||[]).length,0);
+
+  document.getElementById('rlib-count').textContent=totalDocs+' docs · '+scopedLibs.length+' in scope';
+
+  const filteredScoped=scopedLibs.map(l=>({lib:l,sr:rightMatchSearch(l,term)})).filter(x=>x.sr.folder).sort((a,b)=>b.sr.score-a.sr.score);
+  const filteredUnscoped=unscopedLibs.map(l=>({lib:l,sr:rightMatchSearch(l,term)})).filter(x=>x.sr.folder).sort((a,b)=>b.sr.score-a.sr.score);
+
+  const folderIcon='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>';
+  let h='';
+
+  if(filteredScoped.length){
+    h+=`<div class="rlib-divider active-div">Active · ${filteredScoped.length}</div>`;
+    filteredScoped.forEach(({lib:l,sr:m})=>{
+      const nameHtml=m.folderIndices.length?fuzzyHighlight(l.name,m.folderIndices):l.name;
+      h+=`<div class="rlib-card scoped" onclick="scopeRemoveLib('${l.id}')"><div class="rlib-card-top"><div class="rlib-card-icon">${folderIcon}</div><div class="rlib-card-name">${nameHtml}</div><div class="rlib-card-ct">${(l.docs||[]).length} docs</div></div><div class="rlib-card-files">${rightFileChips(l,m,5,true)}</div></div>`;
+    });
+  }
+
+  if(filteredUnscoped.length){
+    h+=`<div class="rlib-divider">Available · ${filteredUnscoped.length}</div>`;
+    filteredUnscoped.forEach(({lib:l,sr:m})=>{
+      const nameHtml=m.folderIndices.length?fuzzyHighlight(l.name,m.folderIndices):l.name;
+      const ck=rightChecked.has(l.id);
+      h+=`<div class="rlib-card avail ${ck?'checked':''}" onclick="toggleRightCheck('${l.id}')"><div class="rlib-card-top"><div class="rlib-check ${ck?'on':''}">✓</div><div class="rlib-card-name">${nameHtml}</div><div class="rlib-card-ct">${(l.docs||[]).length} docs</div></div><div class="rlib-card-files">${rightFileChips(l,m,4,false)}</div></div>`;
+    });
+  }
+
+  if(!filteredScoped.length&&!filteredUnscoped.length){
+    h+=`<div class="rlib-empty">No libraries match "${rightSearch}"</div>`;
+  }
+
+  document.getElementById('lib-cards').innerHTML=h;
+
+  const bar=document.getElementById('rlib-action-bar');
+  bar.classList.toggle('show',rightChecked.size>0);
+  document.getElementById('rlib-ab-text').innerHTML=`<strong>${rightChecked.size}</strong> librar${rightChecked.size===1?'y':'ies'} selected`;
+
   document.getElementById('lib-scroll').style.display='block';
   document.getElementById('lib-viewer').classList.remove('active');
   document.getElementById('lv-frame').style.display='none';
   document.getElementById('lv-b').style.display='block';
 }
-function toggleSection(id){const el=document.getElementById('sec-'+id);el.style.display=el.style.display==='none'?'block':'none'}
+
+function toggleRightCheck(id){
+  rightChecked.has(id)?rightChecked.delete(id):rightChecked.add(id);
+  renderRightLibs();
+}
+
+function commitRightAdd(){
+  rightChecked.forEach(id=>scopeAddLib(id));
+  rightChecked.clear();
+}
 
 async function openV(libId,i){
   const l=LIBS.find(x=>x.id===libId);if(!l||!l.docs[i])return;
   const d=l.docs[i];
   document.getElementById('lib-scroll').style.display='none';
+  document.getElementById('rlib-action-bar').classList.remove('show');
   document.getElementById('lib-viewer').classList.add('active');
   document.getElementById('lv-t').textContent=d.n;
   document.getElementById('lv-d').textContent=d.d+' · '+l.name;
@@ -756,6 +1164,19 @@ function initResize(){
 function fmtTime(d){return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}
 function fmtDate(d){return d.toLocaleDateString([],{month:'short',day:'numeric'})}
 function fmtSize(bytes){return bytes>1048576?(bytes/1048576).toFixed(1)+' MB':(bytes/1024).toFixed(0)+' KB'}
+function businessDaysLeft(fromDate,totalDays){
+  // Count business days from fromDate, return how many remain of totalDays
+  let elapsed=0,d=new Date(fromDate);
+  const now=new Date();
+  while(d<now&&elapsed<totalDays){d.setDate(d.getDate()+1);const day=d.getDay();if(day!==0&&day!==6)elapsed++}
+  return Math.max(0,totalDays-elapsed);
+}
+function expiryLabel(fromDate,totalDays){
+  const left=businessDaysLeft(fromDate,totalDays);
+  if(left===0)return{text:'Expired',cls:'soon'};
+  if(left<=2)return{text:'Expires in '+left+'d',cls:'soon'};
+  return{text:'Expires in '+left+'d',cls:''};
+}
 
 // ═══ VIEW SWITCHING ═══
 function showDev(){
@@ -830,10 +1251,10 @@ function dcDisconnect(){
   boxToken=null;boxRootId=null;boxConnected=false;
   dcLibs=[];dcSelLib=null;
   dcUpdateUI();dcRender();
-  // Revert assistant to mock data
   LIBS=[...MOCK_LIBS];
-  S.selLibs=[LIBS[0]?.id].filter(Boolean);
-  S.presets=[{name:'All',libs:LIBS.map(l=>l.id)}];
+  activeIds=new Set([LIBS[0]?.id].filter(Boolean));
+  scopePresets=[{name:'All',color:'#2d6a5a',ids:LIBS.map(l=>l.id)},{name:'Loans only',color:'#854F0B',ids:['loans']}];
+  scopeActivePreset=0;
   renderAll();
   document.getElementById('dc-banner').style.display='none';
 }
@@ -860,17 +1281,17 @@ async function dcLoadLibs(){
 }
 
 function syncLibsToAssistant(){
-  // Convert dcLibs into the LIBS format the assistant view uses
   LIBS=dcLibs.map(l=>({
     id:l.id,
     name:l.name,
     docs:l.files.map(f=>({n:f.name.replace(/\.[^.]+$/,''),d:f.date,fileId:f.id,c:''}))
   }));
   if(LIBS.length){
-    S.selLibs=[LIBS[0].id];
-    S.presets=[{name:'All',libs:LIBS.map(l=>l.id)}];
+    activeIds=new Set([LIBS[0].id]);
+    scopePresets=[{name:'All',color:'#2d6a5a',ids:LIBS.map(l=>l.id)}];
+    scopeActivePreset=-1;
   }
-  renderLibBar();renderRightLibs();updatePlaceholder();
+  syncScope();scopeRender();
 }
 
 function dcRender(){
@@ -979,6 +1400,16 @@ async function dcRefresh(){
 
 init();
 dcUpdateUI();
+
+// Scope builder: wheel→horizontal scroll + fade edges + click-away
+document.querySelector('.cards-track')?.addEventListener('wheel',function(e){
+  if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();this.scrollLeft+=e.deltaY}
+},{passive:false});
+document.querySelector('.cards-track')?.addEventListener('scroll',scopeUpdateFades);
+document.addEventListener('click',e=>{
+  if(scopePickerOpen&&!e.target.closest('#scope-add-btn'))scopeClosePicker();
+  if(scopeOpenMenu!==null&&!e.target.closest('.preset-menu')){scopeOpenMenu=null;scopeRenderPresets()}
+});
 </script>
 </body>
 </html>
