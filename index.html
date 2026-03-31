@@ -139,7 +139,11 @@ button{font-family:var(--f);cursor:pointer}
 .msg-t p{margin-bottom:4px}.msg-t p:last-child{margin-bottom:0}
 .msg-t strong{font-weight:600;color:var(--ac)}
 .msg-t ul{margin:3px 0 3px 16px}.msg-t li{margin-bottom:2px}
-.msg-ci{font-size:var(--fs-meta);color:var(--t3);font-style:italic;margin-top:5px}
+.msg-ci{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;padding-top:8px;border-top:1px solid var(--b1)}
+.msg-ci-pill{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:var(--bg);border:1px solid var(--b1);border-radius:20px;font-size:var(--fs-micro);font-weight:500;color:var(--t2);cursor:pointer;transition:all .12s;font-style:normal}
+.msg-ci-pill:hover{border-color:var(--ac);color:var(--ac);background:var(--ac-s)}
+.msg-ci-pill svg{width:10px;height:10px;opacity:.5}
+.chat-panel.active-panel{box-shadow:inset 0 0 0 2px var(--ac);border-radius:4px}
 .msg-tm{font-size:var(--fs-micro);color:var(--t4);margin-top:3px}
 .typing{display:flex;gap:8px;align-items:center}
 .td{display:flex;gap:3px}
@@ -733,7 +737,8 @@ function saveWs(id){const w=S.ws.find(x=>x.id===id);if(!w||!w.msgs.length)return
 function delWs(id){if(!confirm('Delete?'))return;S.ws=S.ws.filter(x=>x.id!==id);if(S.aWs===id)backToWs();renderWs()}
 function renderSaved(){document.getElementById('saved-head').textContent='Saved · '+S.saved.length;document.getElementById('saved-row').innerHTML=S.saved.map(s=>`<div class="sc" ${s.wsId?`onclick="openWs('${s.wsId}')"`:''} ><div class="sc-top"><span class="sc-time">${s.time}</span></div><div class="sc-q">${s.q}</div><div class="sc-a">${s.a}</div></div>`).join('')}
 function toggleSplit(){S.split=!S.split;renderSplitState()}
-function renderSplitState(){const panels=document.getElementById('chat-panels');const btn=document.getElementById('split-btn');if(S.split){if(!document.getElementById('panel-2')){const p=document.createElement('div');p.className='chat-panel';p.id='panel-2';p.innerHTML='<div class="chat-panel-head"><span>Panel 2</span><button class="chat-panel-close" onclick="toggleSplit()">×</button></div><div class="chat-msgs" id="ch-msgs-2"><div class="empty-c">Ask in this panel for a parallel thread.</div></div>';panels.appendChild(p)}document.getElementById('panel-2').style.display='flex';btn.style.background='var(--ac-s)';btn.style.color='var(--ac)'}else{const p2=document.getElementById('panel-2');if(p2)p2.style.display='none';btn.style.background='';btn.style.color='';S.activePanel=1}}
+function renderSplitState(){const panels=document.getElementById('chat-panels');const btn=document.getElementById('split-btn');if(S.split){if(!document.getElementById('panel-2')){const p=document.createElement('div');p.className='chat-panel';p.id='panel-2';p.innerHTML='<div class="chat-panel-head"><span>Panel 2</span><button class="chat-panel-close" onclick="toggleSplit()">×</button></div><div class="chat-msgs" id="ch-msgs-2"><div class="empty-c">Ask in this panel for a parallel thread.</div></div>';p.addEventListener('click',()=>setActivePanel(2));panels.appendChild(p)}document.getElementById('panel-1').onclick=()=>setActivePanel(1);document.getElementById('panel-2').style.display='flex';btn.style.background='var(--ac-s)';btn.style.color='var(--ac)';setActivePanel(S.activePanel)}else{const p2=document.getElementById('panel-2');if(p2)p2.style.display='none';btn.style.background='';btn.style.color='';S.activePanel=1;document.querySelectorAll('.chat-panel').forEach(p=>p.classList.remove('active-panel'))}}
+function setActivePanel(n){S.activePanel=n;document.querySelectorAll('.chat-panel').forEach(p=>p.classList.remove('active-panel'));const active=document.getElementById('panel-'+n);if(active)active.classList.add('active-panel')}
 function send(){const inp=document.getElementById('inp');const t=inp.value.trim();if(!t)return;inp.value='';const panel=S.split?S.activePanel:1;if(!S.aWs){S.wc++;const w={id:'w'+S.wc,title:t.length>42?t.slice(0,42)+'...':t,meta:getSelLibNames().split(' + ')[0]||'General',msgs:[],t:new Date(),scope:[...activeIds]};S.ws.unshift(w);openWs(w.id)}const w=S.ws.find(x=>x.id===S.aWs);if(!w)return;const el=document.getElementById('ch-msgs-'+panel);if(el.querySelector('.empty-c'))el.innerHTML='';w.msgs.push({c:t,u:true,p:panel});aMsg(panel,t,true);showT(panel);
   if(boxConnected){
     // Resolve scoped hubs to file IDs
@@ -756,7 +761,17 @@ function send(){const inp=document.getElementById('inp');const t=inp.value.trim(
     setTimeout(()=>{hideT(panel);const r=genResponse(t);w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci)},800+Math.random()*800);
   }}
 function renderMsgs(panel,msgs){const el=document.getElementById('ch-msgs-'+panel);el.innerHTML='';msgs.filter(m=>!m.p||m.p===panel).forEach(m=>aMsg(panel,m.c,m.u,m.ci));if(!el.children.length)el.innerHTML='<div class="empty-c">Ask a question to begin.</div>'}
-function aMsg(panel,c,u,ci){const el=document.getElementById('ch-msgs-'+panel);const av=DEMOS[currentDemo].avatar;let ch='';if(ci?.length)ch=`<div class="msg-ci">${ci.map(x=>'📄 '+x).join(' · ')}</div>`;el.innerHTML+=`<div class="msg ${u?'msg-u':''}"><div class="msg-av ${u?'msg-av-u':'msg-av-ai'}">${u?av[0]:'B'}</div><div class="msg-b"><div class="msg-t">${c}</div>${ch}<div class="msg-tm">${fmtTime(new Date())}</div></div></div>`;el.scrollTop=el.scrollHeight}
+function aMsg(panel,c,u,ci){const el=document.getElementById('ch-msgs-'+panel);const av=DEMOS[currentDemo].avatar;let ch='';if(ci?.length){
+  const pills=ci.map(name=>{
+    // Try to find the file in LIBS to get its ID for viewing
+    let libId='',docIdx=-1;
+    for(const l of LIBS){const i=l.docs.findIndex(d=>d.n===name.replace(/\.[^.]+$/,'')||d.n===name||(d.fileId&&name.includes(d.n)));if(i>=0){libId=l.id;docIdx=i;break}}
+    const onclick=libId&&docIdx>=0?`onclick="openV('${libId}',${docIdx})"`:''
+    return`<span class="msg-ci-pill" ${onclick}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>${name}</span>`;
+  }).join('');
+  ch=`<div class="msg-ci">${pills}</div>`;
+}
+el.innerHTML+=`<div class="msg ${u?'msg-u':''}"><div class="msg-av ${u?'msg-av-u':'msg-av-ai'}">${u?av[0]:'B'}</div><div class="msg-b"><div class="msg-t">${c}</div>${ch}<div class="msg-tm">${fmtTime(new Date())}</div></div></div>`;el.scrollTop=el.scrollHeight}
 function showT(p){const el=document.getElementById('ch-msgs-'+p);el.innerHTML+='<div class="typing" id="typ-'+p+'"><div class="msg-av msg-av-ai">B</div><div class="td"><span></span><span></span><span></span></div></div>';el.scrollTop=el.scrollHeight}
 function hideT(p){document.getElementById('typ-'+p)?.remove()}
 
