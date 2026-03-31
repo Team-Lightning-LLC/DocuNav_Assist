@@ -61,6 +61,15 @@ button{font-family:var(--f);cursor:pointer}
 .demo-btn svg{width:11px;height:11px;opacity:.6}
 .demo-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;transition:background .4s}
 .demo-dd{display:none;position:absolute;top:34px;right:0;background:var(--card);border:1px solid var(--b1);border-radius:var(--rl);padding:6px;min-width:240px;z-index:60;box-shadow:0 8px 30px rgba(0,0,0,.15)}
+.role-sel{position:relative}.role-sel .demo-dd{min-width:180px}
+.role-opt{padding:6px 10px;border-radius:4px;cursor:pointer;font-size:var(--fs-meta);display:flex;align-items:center;gap:8px;color:var(--t2)}.role-opt:hover{background:var(--bg2)}.role-opt.active{color:var(--ac);font-weight:600}
+.role-opt-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dc-browse-btn{background:#f5f7fa;border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;color:#333;display:flex;align-items:center;gap:6px;margin-top:8px;width:100%}.dc-browse-btn:hover{border-color:#0061D5;color:#0061D5}
+.dc-folder-item{padding:8px 12px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;font-size:12px}.dc-folder-item:hover{background:#f5f7fa}
+.dc-folder-name{display:flex;align-items:center;gap:8px;color:#333;cursor:pointer;flex:1}.dc-folder-name svg{width:14px;height:14px;color:#0061D5;flex-shrink:0}
+.dc-make-hub{background:#0061D5;color:#fff;border:none;border-radius:4px;padding:3px 10px;font-size:11px;cursor:pointer;font-weight:600;flex-shrink:0}.dc-make-hub:hover{background:#004fb3}
+.dc-folder-back{padding:8px 12px;border-bottom:1px solid #ddd;font-size:11px;color:#0061D5;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:4px}.dc-folder-back:hover{background:#f0f5ff}
+.dc-folder-panel{border:1px solid #ddd;border-radius:6px;max-height:300px;overflow-y:auto;background:#fff;margin-top:8px}
 .demo-dd.open{display:block}
 .demo-dd-head{font-size:var(--fs-micro);font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t4);padding:4px 8px 6px}
 .demo-opt{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:5px;cursor:pointer;transition:background .1s}
@@ -380,7 +389,8 @@ button{font-family:var(--f);cursor:pointer}
 .dc-file:hover{border-color:#E4E4E4}
 .dc-file-icon{color:#909090;flex-shrink:0}
 .dc-file-icon svg{width:14px;height:14px}
-.dc-file-name{font-size:12px;font-weight:500;color:#222;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-file-name{font-size:12px;font-weight:500;color:#222;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.dc-file-name:hover{color:#0061D5}
 .dc-file-size{font-size:10px;color:#909090;flex-shrink:0}
 .dc-file-date{font-size:10px;color:#909090;flex-shrink:0;min-width:60px}
 .dc-file-del{background:none;border:none;color:#C4C4C4;cursor:pointer;font-size:14px;padding:0 4px;line-height:1}
@@ -409,6 +419,10 @@ button{font-family:var(--f);cursor:pointer}
   <div class="topbar-r">
     <button class="tr" id="btn-notepad" onclick="toggleOverlay('notepad')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Notepad</button>
     <button class="tr" id="btn-settings" onclick="toggleOverlay('settings')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Settings</button>
+    <div class="role-sel" id="role-sel" style="display:none">
+      <button class="tr" onclick="toggleRoleDD()" id="role-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span id="role-label">All</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:11px;height:11px;opacity:.6"><polyline points="6 9 12 15 18 9"/></svg></button>
+      <div class="demo-dd" id="role-dd"></div>
+    </div>
     <div class="topbar-sep"></div>
     <button class="tr active" id="btn-assist" onclick="showAssist()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Assistant</button>
     <button class="tr" id="btn-dev" onclick="showDev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Dev</button>
@@ -497,7 +511,7 @@ button{font-family:var(--f);cursor:pointer}
 <div class="dev-console" id="dev-console">
   <div class="dc-bar"><div class="dc-bar-left"><span class="dc-label">Hub Manager</span><span class="dc-sep">·</span><span class="dc-root" id="dc-root">Powered by Box</span></div><div class="dc-bar-right"><div class="dc-token-area" id="dc-token-area"><input type="text" class="dc-token-input" id="dc-token" placeholder="Box Developer Token" spellcheck="false"><button class="dc-btn dc-btn-ac" onclick="dcConnect()">Connect</button></div><span class="dc-status" id="dc-status" style="display:none"><span class="dc-dot dc-dot-on"></span>Connected</span><button class="dc-btn" id="dc-refresh-btn" onclick="dcRefresh()" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Refresh</button><button class="dc-btn" id="dc-disconnect-btn" onclick="dcDisconnect()" style="display:none">Disconnect</button></div></div>
   <div class="dc-banner" id="dc-banner" style="display:none"></div>
-  <div class="dc-body"><div class="dc-master"><div class="dc-master-head"><span class="dc-mh-label">Hubs</span><button class="dc-btn dc-btn-ac" onclick="dcNewHub()">+ New Hub</button></div><div class="dc-lib-list" id="dc-lib-list"></div><div class="dc-master-foot" id="dc-master-foot"></div></div><div class="dc-detail" id="dc-detail"><div class="dc-empty" id="dc-empty">Select a hub to manage its documents.</div><div class="dc-detail-inner" id="dc-detail-inner" style="display:none"><div class="dc-detail-head"><div class="dc-dh-name" id="dc-dh-name" contenteditable="false" onclick="dcStartRename(this)"></div><span class="dc-dh-count" id="dc-dh-count"></span><span class="dc-dh-id" id="dc-dh-id"></span></div><div class="dc-upload" id="dc-upload" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)"><div class="dc-upload-inner" onclick="document.getElementById('dc-file-input').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Drag files here or click to upload</span><span class="dc-upload-types">PDF, DOCX, TXT, XLSX, MD</span></div><input type="file" id="dc-file-input" multiple accept=".pdf,.docx,.txt,.xlsx,.md,.png,.jpg" style="display:none" onchange="dcHandleFiles(this.files)"></div><div class="dc-file-list" id="dc-file-list"></div><div class="dc-detail-foot"><button class="dc-btn dc-btn-danger" onclick="dcDeleteHub()">Delete Hub</button></div></div></div></div>
+  <div class="dc-body"><div class="dc-master"><div class="dc-master-head"><span class="dc-mh-label">Hubs</span><button class="dc-btn dc-btn-ac" onclick="dcNewHub()">+ New Hub</button></div><div style="padding:0 12px 8px"><button class="dc-browse-btn" onclick="dcSelLib=null;dcRender();dcToggleBrowser()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>Browse Box Folders</button></div><div class="dc-lib-list" id="dc-lib-list"></div><div class="dc-master-foot" id="dc-master-foot"></div></div><div class="dc-detail" id="dc-detail"><div class="dc-empty" id="dc-empty">Select a hub to manage its documents.</div><div class="dc-detail-inner" id="dc-detail-inner" style="display:none"><div class="dc-detail-head"><div class="dc-dh-name" id="dc-dh-name" contenteditable="false" onclick="dcStartRename(this)"></div><span class="dc-dh-count" id="dc-dh-count"></span><span class="dc-dh-id" id="dc-dh-id"></span></div><div class="dc-upload" id="dc-upload" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)"><div class="dc-upload-inner" onclick="document.getElementById('dc-file-input').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Drag files here or click to upload</span><span class="dc-upload-types">PDF, DOCX, TXT, XLSX, MD</span></div><input type="file" id="dc-file-input" multiple accept=".pdf,.docx,.txt,.xlsx,.md,.png,.jpg" style="display:none" onchange="dcHandleFiles(this.files)"></div><div class="dc-file-list" id="dc-file-list"></div><div class="dc-detail-foot"><button class="dc-btn dc-btn-danger" onclick="dcDeleteHub()">Delete Hub</button></div></div></div></div>
 </div>
 </div>
 
@@ -556,7 +570,7 @@ const DEMOS=[
   }
 },
 {
-  id:'fin',label:'Financial Services',brand:'Summit Financial Group',
+  id:'fin',label:'Financial Services',brand:'DocuNav Assist',
   dot:'#2d6a5a',topbar:'#2d6a5a',
   ac:'#2d6a5a',ac2:'#245849',
   font:"'Source Serif 4',serif",body:"'Outfit',sans-serif",
@@ -677,6 +691,24 @@ function renderDemoDD(){
 function toggleDemoDD(){document.getElementById('demo-dd').classList.toggle('open');renderDemoDD()}
 function closeDemoDD(){document.getElementById('demo-dd').classList.remove('open')}
 
+// ═══ ROLE GATING ═══
+const ROLES=[
+  {name:'All Hubs',hubs:null},
+  {name:'Phone Rep',hubs:['Onboarding','Change of Ownership','Investments','Retirement','Internal Policy','Fraud']},
+  {name:'Advisor',hubs:['Portfolio','Taxation','Contracting','Trading','Permissible']},
+  {name:'Senior Advisor',hubs:null},
+  {name:'Compliance',hubs:['Internal Policy','Trading','Contracting','Fraud']},
+];
+let activeRole=ROLES[0];
+function getVisibleLibs(){if(!activeRole.hubs)return LIBS;return LIBS.filter(l=>activeRole.hubs.some(h=>l.name.toLowerCase().includes(h.toLowerCase())))}
+function toggleRoleDD(){const dd=document.getElementById('role-dd');dd.style.display=dd.style.display==='block'?'none':'block';renderRoleDD()}
+function renderRoleDD(){document.getElementById('role-dd').innerHTML=ROLES.map((r,i)=>`<div class="role-opt ${r===activeRole?'active':''}" onclick="switchRole(${i})">${r.name}${!r.hubs?' (all)':' ('+r.hubs.length+')'}</div>`).join('')}
+function switchRole(i){activeRole=ROLES[i];document.getElementById('role-label').textContent=activeRole.name;document.getElementById('role-dd').style.display='none';
+  // Remove scoped hubs that are no longer visible
+  const vis=new Set(getVisibleLibs().map(l=>l.id));activeIds.forEach(id=>{if(!vis.has(id))activeIds.delete(id)});syncScope();scopeRender();renderRightLibs();updatePlaceholder()}
+function showRoleSel(){document.getElementById('role-sel').style.display='inline-flex'}
+function hideRoleSel(){document.getElementById('role-sel').style.display='none'}
+
 // ═══ CORE ENGINE (same architecture, parameterized) ═══
 const IC={save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>',trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>'};
 
@@ -780,7 +812,7 @@ function syncScope(){S.selLibs=[...activeIds];if(S.aWs){const w=S.ws.find(x=>x.i
 function scopeRender(){scopeRenderPresets();scopeRenderCards();scopeUpdateSummary();scopeUpdateFades();if(!S.aWs)document.getElementById('scope-preset-toggle').classList.toggle('on',scopePresetsVisible)}
 function scopeRenderPresets(){document.getElementById('scope-preset-list').innerHTML=scopePresets.map((p,i)=>`<div class="preset ${i===scopeActivePreset?'active':''}" onclick="scopeLoadPreset(${i})"><div class="preset-dot" style="background:${p.color}"></div><span class="preset-name">${p.name}</span><span class="preset-ct">${p.ids.length}</span><div class="preset-menu"><button class="preset-menu-btn" onclick="event.stopPropagation();scopeToggleMenu(${i})">⋯</button><div class="preset-dd ${scopeOpenMenu===i?'open':''}" id="spmenu-${i}"><button class="pdd-item" onclick="event.stopPropagation();scopeRenamePreset(${i})">Rename</button><button class="pdd-item danger" onclick="event.stopPropagation();scopeDeletePreset(${i})">Delete</button></div></div></div>`).join('')}
 function scopeRenderCards(){const track=document.getElementById('scope-cards-track');if(!activeIds.size){track.innerHTML='<div class="scope-empty">No hubs selected.</div>';return}track.innerHTML=[...activeIds].map(id=>{const f=LIBS.find(x=>x.id===id);if(!f)return'';const docs=f.docs||[];const show=docs.slice(0,4);const more=docs.length-4;return `<div class="lib-card"><div class="lc-top"><div class="lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><span class="lc-name">${f.name}</span><button class="lc-remove" onclick="scopeRemoveLib('${id}')">×</button></div><div class="lc-ct">${docs.length} docs</div><div class="lc-files">${show.map(d=>`<div class="lc-file">${d.n}</div>`).join('')}${more>0?`<div class="lc-more">+${more} more</div>`:''}</div></div>`}).join('')}
-function scopeRenderPicker(){const term=(document.getElementById('scope-pk-search')?.value||'').toLowerCase();const avail=LIBS.filter(f=>!activeIds.has(f.id)).map(f=>{const fm=fuzzyMatch(term,f.name);return{lib:f,match:fm.match||!term,score:fm.score,indices:fm.indices}}).filter(x=>x.match).sort((a,b)=>b.score-a.score);document.getElementById('scope-pk-list').innerHTML=avail.map(({lib:f,indices})=>`<div class="spk-item" onclick="event.stopPropagation();scopeAddLib('${f.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>${indices?.length?fuzzyHL(f.name,indices):f.name}<span class="spk-item-ct">${f.docs.length}</span></div>`).join('')||'<div style="padding:6px;font-size:var(--fs-micro);color:var(--t4)">No matches.</div>'}
+function scopeRenderPicker(){const term=(document.getElementById('scope-pk-search')?.value||'').toLowerCase();const avail=getVisibleLibs().filter(f=>!activeIds.has(f.id)).map(f=>{const fm=fuzzyMatch(term,f.name);return{lib:f,match:fm.match||!term,score:fm.score,indices:fm.indices}}).filter(x=>x.match).sort((a,b)=>b.score-a.score);document.getElementById('scope-pk-list').innerHTML=avail.map(({lib:f,indices})=>`<div class="spk-item" onclick="event.stopPropagation();scopeAddLib('${f.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>${indices?.length?fuzzyHL(f.name,indices):f.name}<span class="spk-item-ct">${f.docs.length}</span></div>`).join('')||'<div style="padding:6px;font-size:var(--fs-micro);color:var(--t4)">No matches.</div>'}
 function scopeUpdateSummary(){const total=[...activeIds].reduce((a,id)=>{const f=LIBS.find(x=>x.id===id);return a+(f?f.docs.length:0)},0);document.getElementById('scope-summary').textContent=activeIds.size?total+' docs · '+activeIds.size+' hubs':''}
 function scopeUpdateFades(){const t=document.querySelector('.cards-track'),w=document.getElementById('track-wrap');if(!t||!w)return;w.classList.toggle('fade-left',t.scrollLeft>4);w.classList.toggle('fade-right',t.scrollWidth-t.clientWidth>4&&t.scrollLeft<t.scrollWidth-t.clientWidth-4)}
 function scopeLoadPreset(i){scopeActivePreset=i;activeIds=new Set(scopePresets[i].ids);scopeClosePicker();scopeOpenMenu=null;scopeRender();syncScope()}
@@ -798,7 +830,7 @@ function updatePlaceholder(){const names=[...activeIds].map(id=>LIBS.find(x=>x.i
 function getSelLibNames(){return[...activeIds].map(id=>LIBS.find(x=>x.id===id)?.name).filter(Boolean).join(' + ')}
 
 // Right panel
-function renderRightLibs(){const term=rightSearch.toLowerCase();const scoped=LIBS.filter(l=>activeIds.has(l.id));const unscoped=LIBS.filter(l=>!activeIds.has(l.id));const totalDocs=scoped.reduce((a,l)=>a+l.docs.length,0);document.getElementById('rlib-count').textContent=totalDocs+' docs · '+scoped.length+' in scope';
+function renderRightLibs(){const term=rightSearch.toLowerCase();const vis=getVisibleLibs();const scoped=vis.filter(l=>activeIds.has(l.id));const unscoped=vis.filter(l=>!activeIds.has(l.id));const totalDocs=scoped.reduce((a,l)=>a+l.docs.length,0);document.getElementById('rlib-count').textContent=totalDocs+' docs · '+scoped.length+' in scope';
 function ms(lib){if(!term)return{folder:true,score:0,fi:[],dm:[]};const fm=fuzzyMatch(term,lib.name);const dm=lib.docs.map(d=>{const m=fuzzyMatch(term,d.n);return{doc:d,match:m.match,score:m.score,indices:m.indices}}).filter(x=>x.match);return{folder:fm.match||dm.length>0,score:Math.max(fm.score,...dm.map(d=>d.score),0),fi:fm.indices,dm}}
 const fs=scoped.map(l=>({lib:l,sr:ms(l)})).filter(x=>x.sr.folder).sort((a,b)=>b.sr.score-a.sr.score);
 const fu=unscoped.map(l=>({lib:l,sr:ms(l)})).filter(x=>x.sr.folder).sort((a,b)=>b.sr.score-a.sr.score);
@@ -816,22 +848,37 @@ function toggleExpand(id){document.getElementById(id)?.classList.toggle('open')}
 function openV(libId,i){const l=LIBS.find(x=>x.id===libId);if(!l||!l.docs[i])return;const d=l.docs[i];document.querySelector('.lib-scroll-wrap').style.display='none';document.querySelector('.lib-head').style.display='none';document.getElementById('rlib-action-bar').classList.remove('show');document.getElementById('lib-viewer').classList.add('active');document.getElementById('lv-t').textContent=d.n;document.getElementById('lv-d').textContent=d.d+' · '+l.name;document.getElementById('lv-frame').style.display='none';document.getElementById('lv-b').style.display='block';
   if(boxConnected&&d.fileId){
     document.getElementById('lv-b').textContent='Loading...';
-    // Try to get text representation
-    fetch(BOX+'/files/'+d.fileId+'/content',{headers:{'Authorization':'Bearer '+boxToken}})
-      .then(r=>{if(!r.ok)throw new Error(r.status);return r.text()})
-      .then(text=>{document.getElementById('lv-b').textContent=text.slice(0,5000)+(text.length>5000?'\n\n[Truncated — '+text.length+' chars total]':'')})
-      .catch(()=>{
-        // Fallback: show file info
-        boxGet('/files/'+d.fileId+'?fields=name,size,modified_at,description,extension').then(info=>{
-          document.getElementById('lv-b').textContent=
-            'File: '+info.name+'\n'+
-            'Size: '+(info.size>1048576?(info.size/1048576).toFixed(1)+' MB':(info.size/1024|0)+' KB')+'\n'+
-            'Modified: '+(info.modified_at?new Date(info.modified_at).toLocaleString():'')+'\n'+
-            'Type: '+(info.extension||'unknown').toUpperCase()+'\n\n'+
-            (info.description||'No description.')+'\n\n'+
-            'Preview not available for this file type. Use Box to view the full document.';
-        }).catch(()=>{document.getElementById('lv-b').textContent='Unable to load file content.'});
-      });
+    const realName=(d.fn||d.n||'').toLowerCase();
+    const realIsPdf=realName.endsWith('.pdf');
+    if(realIsPdf){
+      // Fetch as blob and render in iframe
+      fetch(BOX+'/files/'+d.fileId+'/content',{headers:{'Authorization':'Bearer '+boxToken}})
+        .then(r=>{if(!r.ok)throw new Error(r.status);return r.blob()})
+        .then(blob=>{
+          const url=URL.createObjectURL(new Blob([blob],{type:'application/pdf'}));
+          document.getElementById('lv-b').style.display='none';
+          const frame=document.getElementById('lv-frame');
+          frame.src=url;frame.style.display='block';
+        })
+        .catch(()=>{
+          document.getElementById('lv-b').textContent='PDF preview not available. The file may require direct Box access.';
+        });
+    } else {
+      // Text-based files
+      fetch(BOX+'/files/'+d.fileId+'/content',{headers:{'Authorization':'Bearer '+boxToken}})
+        .then(r=>{if(!r.ok)throw new Error(r.status);return r.text()})
+        .then(text=>{document.getElementById('lv-b').textContent=text.slice(0,8000)+(text.length>8000?'\n\n[Truncated — '+text.length+' chars total]':'')})
+        .catch(()=>{
+          boxGet('/files/'+d.fileId+'?fields=name,size,modified_at,description,extension').then(info=>{
+            document.getElementById('lv-b').textContent=
+              'File: '+info.name+'\n'+
+              'Size: '+(info.size>1048576?(info.size/1048576).toFixed(1)+' MB':(info.size/1024|0)+' KB')+'\n'+
+              'Modified: '+(info.modified_at?new Date(info.modified_at).toLocaleString():'')+'\n'+
+              'Type: '+(info.extension||'unknown').toUpperCase()+'\n\n'+
+              (info.description||'No description.');
+          }).catch(()=>{document.getElementById('lv-b').textContent='Unable to load file content.'});
+        });
+    }
   } else {
     document.getElementById('lv-b').textContent=d.c||'No preview available.';
   }}
@@ -862,6 +909,7 @@ async function dcConnect(){const t=document.getElementById('dc-token').value.tri
   const me=await boxGet('/users/me');
   boxConnected=true;dcUpdateUI();
   dcShowBanner('Connected as '+me.name,'info');
+  showRoleSel();
   // Try to load AI Studio agent config
   try{
     const agents=await boxGet('/ai_agents');
@@ -878,7 +926,7 @@ async function dcConnect(){const t=document.getElementById('dc-token').value.tri
   }catch(e){/* no agents or no access, use default */}
   await dcLoadLibs();
 }catch(e){boxConnected=false;dcUpdateUI();dcShowBanner('Failed: '+e.message,'error')}}
-function dcDisconnect(){boxToken=null;boxRootId=null;boxHubId=null;boxAgentConfig=null;boxConnected=false;dcLibs=[];dcSelLib=null;dcUpdateUI();dcRender();LIBS=[...DEMOS[currentDemo].libs];activeIds=new Set(DEMOS[currentDemo].defaultScope);renderAll()}
+function dcDisconnect(){boxToken=null;boxRootId=null;boxHubId=null;boxAgentConfig=null;boxConnected=false;dcLibs=[];dcSelLib=null;dcUpdateUI();dcRender();hideRoleSel();activeRole=ROLES[0];document.getElementById('role-label').textContent='All';LIBS=[...DEMOS[currentDemo].libs];activeIds=new Set(DEMOS[currentDemo].defaultScope);renderAll()}
 async function dcLoadLibs(){
   dcLibs=[];
   try{
@@ -899,7 +947,7 @@ async function dcLoadLibs(){
   }catch(e){dcShowBanner('Could not load hubs: '+e.message,'error')}
   dcRender();
   // Map hubs to LIBS format for the assistant view
-  LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f=>({n:f.name.replace(/\.[^.]+$/,''),d:f.date,fileId:f.id,c:''}))}));
+  LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f=>({n:f.name.replace(/\.[^.]+$/,''),d:f.date,fileId:f.id,fn:f.name,c:''}))}));
   if(LIBS.length){
     activeIds=new Set(LIBS.map(l=>l.id));
     scopePresets=[{name:'All Hubs',color:DEMOS[currentDemo].ac,ids:LIBS.map(l=>l.id)}];
@@ -909,19 +957,168 @@ async function dcLoadLibs(){
   S.ws=[];S.saved=[];S.wc=0;renderWs();renderSaved();
 }
 function dcRender(){const total=dcLibs.reduce((a,l)=>a+l.files.length,0);document.getElementById('dc-lib-list').innerHTML=dcLibs.length?dcLibs.map(l=>`<div class="dc-lib ${dcSelLib===l.id?'active':''}" onclick="dcSelLib='${l.id}';dcRender()"><div class="dc-lib-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="dc-lib-name">${l.name}</div><div class="dc-lib-count">${l.files.length}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-size:13px;color:#909090">'+(boxConnected?'No hubs yet. Create one to get started.':'Connect to Box to manage hubs.')+'</div>';document.getElementById('dc-master-foot').textContent=boxConnected?`${total} files · ${dcLibs.length} hubs`:'Disconnected';
-const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib){document.getElementById('dc-empty').style.display='flex';document.getElementById('dc-detail-inner').style.display='none';return}document.getElementById('dc-empty').style.display='none';document.getElementById('dc-detail-inner').style.display='flex';document.getElementById('dc-dh-name').textContent=lib.name;document.getElementById('dc-dh-count').textContent=lib.files.length+' docs';document.getElementById('dc-dh-id').textContent='hub: '+lib.id;document.getElementById('dc-file-list').innerHTML=lib.files.map(f=>`<div class="dc-file"><div class="dc-file-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="dc-file-name">${f.name}</div><div class="dc-file-size">${f.size}</div><div class="dc-file-date">${f.date}</div><button class="dc-file-del" onclick="dcDelFile('${lib.id}','${f.id}')">×</button></div>`).join('')||'<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Drop files here or click upload to add documents to this hub.</div>'}
-async function dcNewHub(){const n=prompt('Hub name:');if(!n)return;if(boxConnected){
+const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib){document.getElementById('dc-empty').style.display='flex';document.getElementById('dc-detail-inner').style.display='none';return}document.getElementById('dc-empty').style.display='none';document.getElementById('dc-detail-inner').style.display='flex';document.getElementById('dc-dh-name').textContent=lib.name;document.getElementById('dc-dh-count').textContent=lib.files.length+' docs';document.getElementById('dc-dh-id').textContent='hub: '+lib.id;document.getElementById('dc-file-list').innerHTML=lib.files.map(f=>`<div class="dc-file"><div class="dc-file-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="dc-file-name" onclick="dcPreviewFile('${f.id}','${f.name.replace(/'/g,"\\'")}')">${f.name}</div><div class="dc-file-size">${f.size}</div><div class="dc-file-date">${f.date}</div><button class="dc-file-del" onclick="dcDelFile('${lib.id}','${f.id}')">×</button></div>`).join('')||'<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Drop files here or click upload to add documents to this hub.</div>'}
+let dcModalFolder='0',dcModalPath=[{id:'0',name:'All Files'}],dcModalSelected=new Map();
+function dcNewHub(){
+  dcModalFolder='0';dcModalPath=[{id:'0',name:'All Files'}];dcModalSelected=new Map();
+  let m=document.getElementById('dc-modal');if(m)m.remove();
+  m=document.createElement('div');m.id='dc-modal';
+  m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;display:flex;align-items:center;justify-content:center';
+  m.innerHTML=`<div style="background:#fff;border-radius:12px;width:520px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.25);overflow:hidden">
+    <div style="padding:20px 24px 0;flex-shrink:0">
+      <div style="font-size:16px;font-weight:700;color:#222;margin-bottom:16px">Create Hub</div>
+      <input id="dc-m-name" placeholder="Hub name" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box;outline:none;margin-bottom:8px">
+      <input id="dc-m-desc" placeholder="Description (optional)" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box;outline:none;color:#666">
+    </div>
+    <div style="padding:12px 24px 4px;font-size:11px;font-weight:600;color:#666;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <span>Add content from Box</span><span id="dc-m-sel-count" style="color:#0061D5"></span>
+    </div>
+    <div id="dc-m-crumbs" style="padding:0 24px 6px;font-size:11px;flex-shrink:0"></div>
+    <div id="dc-m-browser" style="flex:1;overflow-y:auto;border-top:1px solid #eee;border-bottom:1px solid #eee;min-height:180px;max-height:300px"></div>
+    <div id="dc-m-chips" style="padding:6px 24px;max-height:52px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0"></div>
+    <div style="padding:12px 24px 16px;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0">
+      <button onclick="document.getElementById('dc-modal').remove()" style="padding:8px 18px;border:1px solid #ddd;border-radius:6px;background:#fff;font-size:12px;cursor:pointer;color:#666">Cancel</button>
+      <button onclick="dcCreateHub()" id="dc-m-create" style="padding:8px 18px;border:none;border-radius:6px;background:#0061D5;color:#fff;font-size:12px;cursor:pointer;font-weight:600">Create Hub</button>
+    </div>
+  </div>`;
+  document.body.appendChild(m);
+  m.onclick=e=>{if(e.target===m)m.remove()};
+  setTimeout(()=>document.getElementById('dc-m-name')?.focus(),50);
+  if(boxConnected)dcModalLoadFolder('0');
+  else document.getElementById('dc-m-browser').innerHTML='<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Connect to Box to browse files</div>';
+}
+async function dcModalLoadFolder(fid){
+  dcModalFolder=fid;
+  const browser=document.getElementById('dc-m-browser');
+  browser.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:#909090">Loading...</div>';
+  document.getElementById('dc-m-crumbs').innerHTML=dcModalPath.map((p,i)=>`<span style="cursor:pointer;${i===dcModalPath.length-1?'font-weight:600;color:#222':'color:#0061D5'}" onclick="dcModalNav(${i})">${p.name}</span>`).join(' <span style="color:#ccc">/</span> ');
   try{
-    const hub=await boxPost('/hubs',{title:n,description:'',is_ai_enabled:true},HV);
-    dcLibs.push({id:hub.id,name:hub.title,desc:'',files:[]});dcSelLib=hub.id;
-    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,c:''}))}));
-    syncScope();scopeRender();
+    const res=await boxGet('/folders/'+fid+'/items?fields=name,type,size,modified_at&limit=200');
+    const items=(res.entries||[]).sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name):(a.type==='folder'?-1:1)));
+    let h='';
+    items.forEach(it=>{
+      const checked=dcModalSelected.has(it.id);
+      const icon=it.type==='folder'
+        ?'<svg viewBox="0 0 24 24" fill="none" stroke="#0061D5" stroke-width="1.5" width="15" height="15"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>'
+        :'<svg viewBox="0 0 24 24" fill="none" stroke="#909090" stroke-width="1.5" width="15" height="15"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+      const size=it.type==='file'&&it.size?(it.size>1048576?((it.size/1048576).toFixed(1)+'MB'):((it.size/1024|0)+'KB')):'';
+      h+=`<div style="padding:6px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f5f5f5;font-size:12px;${checked?'background:#f0f6ff':''}">
+        <input type="checkbox" ${checked?'checked':''} onchange="dcModalToggle('${it.id}','${it.name.replace(/'/g,"\\'")}','${it.type}',this.checked)" style="accent-color:#0061D5;flex-shrink:0;cursor:pointer">
+        <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0;${it.type==='folder'?'cursor:pointer':''}" ${it.type==='folder'?`onclick="dcModalEnter('${it.id}','${it.name.replace(/'/g,"\\'")}')"`:''}>
+          ${icon}<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#333">${it.name}</span>
+        </div>
+        <span style="font-size:11px;color:#bbb;flex-shrink:0">${size}</span>
+      </div>`;
+    });
+    if(!items.length)h='<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Empty folder</div>';
+    browser.innerHTML=h;
+  }catch(e){browser.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:red">'+e.message+'</div>'}
+}
+function dcModalToggle(id,name,type,checked){if(checked)dcModalSelected.set(id,{name,type});else dcModalSelected.delete(id);dcModalUpdateChips()}
+function dcModalEnter(id,name){dcModalPath.push({id,name});dcModalLoadFolder(id)}
+function dcModalNav(idx){dcModalPath=dcModalPath.slice(0,idx+1);dcModalLoadFolder(dcModalPath[idx].id)}
+function dcModalUpdateChips(){
+  document.getElementById('dc-m-sel-count').textContent=dcModalSelected.size?dcModalSelected.size+' selected':'';
+  document.getElementById('dc-m-chips').innerHTML=[...dcModalSelected.entries()].map(([id,v])=>`<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:#f0f6ff;border:1px solid #cce0ff;border-radius:12px;font-size:11px;color:#0061D5">${v.type==='folder'?'📁':'📄'} ${v.name}<span onclick="dcModalSelected.delete('${id}');dcModalUpdateChips();dcModalLoadFolder(dcModalFolder)" style="cursor:pointer;opacity:.5;margin-left:2px">×</span></span>`).join('');
+}
+async function dcCreateHub(){
+  const name=(document.getElementById('dc-m-name')?.value||'').trim();
+  if(!name){document.getElementById('dc-m-name').style.borderColor='#ED4956';document.getElementById('dc-m-name').focus();return}
+  const desc=(document.getElementById('dc-m-desc')?.value||'').trim();
+  document.getElementById('dc-modal')?.remove();
+  if(boxConnected){
+  try{
+    dcShowBanner('Creating hub "'+name+'"...','info');
+    const hub=await boxPost('/hubs',{title:name,description:desc,is_ai_enabled:true},HV);
+    // Resolve selected folders to files, collect all file items
+    const fileItems=[];
+    for(const [id,v] of dcModalSelected){
+      if(v.type==='file'){fileItems.push({id,name:v.name})}
+      else if(v.type==='folder'){
+        try{const fRes=await boxGet('/folders/'+id+'/items?fields=name,type,size,modified_at&limit=200');
+        (fRes.entries||[]).filter(e=>e.type==='file').forEach(f=>fileItems.push({id:f.id,name:f.name,size:f.size,date:f.modified_at}))}catch(e){}
+      }
+    }
+    // Add files to hub
+    if(fileItems.length){
+      try{await boxPost('/hub_items',{hub_id:hub.id,items:fileItems.map(f=>({type:'file',id:f.id}))},HV)}catch(e){dcShowBanner('Hub created but some files failed to add','error')}
+    }
+    dcLibs.push({id:hub.id,name:hub.title,desc:desc,files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+'KB'):'',date:f.date?new Date(f.date).toLocaleDateString():''}))});
+    dcSelLib=hub.id;
+    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));
+    syncScope();scopeRender();dcUpdateUI();
+    dcShowBanner('Hub "'+name+'" created with '+fileItems.length+' files','info');
   }catch(e){dcShowBanner('Create hub failed: '+e.message,'error')}
-}else{dcLibs.push({id:'h'+Date.now(),name:n,desc:'',files:[]});dcSelLib=dcLibs[dcLibs.length-1].id}dcRender()}
-async function dcDeleteHub(){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!confirm('Delete hub "'+lib.name+'"?'))return;if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken,...HV}})}catch(e){dcShowBanner('Delete failed: '+e.message,'error');return}}dcLibs=dcLibs.filter(l=>l.id!==dcSelLib);dcSelLib=null;LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,c:''}))}));syncScope();scopeRender();dcRender()}
-async function dcDelFile(hubId,fid){const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;if(boxConnected){try{await boxDel('/files/'+fid)}catch(e){}}lib.files=lib.files.filter(f=>f.id!==fid);dcRender();LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,c:''}))}));syncScope();scopeRender()}
+}else{dcLibs.push({id:'h'+Date.now(),name:name,desc:desc,files:[]});dcSelLib=dcLibs[dcLibs.length-1].id}dcRender()}
+async function dcDeleteHub(){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!confirm('Delete hub "'+lib.name+'"?'))return;if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken,...HV}})}catch(e){dcShowBanner('Delete failed: '+e.message,'error');return}}dcLibs=dcLibs.filter(l=>l.id!==dcSelLib);dcSelLib=null;LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));syncScope();scopeRender();dcRender()}
+async function dcDelFile(hubId,fid){const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;if(boxConnected){try{await boxDel('/files/'+fid)}catch(e){}}lib.files=lib.files.filter(f=>f.id!==fid);dcRender();LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));syncScope();scopeRender()}
 function dcStartRename(el){el.contentEditable='true';el.focus();el.onblur=async()=>{el.contentEditable='false';const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib)return;const newName=el.textContent.trim();lib.name=newName;if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'PUT',headers:{'Authorization':'Bearer '+boxToken,'Content-Type':'application/json',...HV},body:JSON.stringify({title:newName})})}catch(e){}}dcRender()};el.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();el.blur()}}}
+
+// ═══ FOLDER BROWSER ═══
+let dcBrowsing=false,dcFolderStack=[{id:'0',name:'All Files'}];
+function dcToggleBrowser(){dcBrowsing=!dcBrowsing;if(dcBrowsing){dcFolderStack=[{id:'0',name:'All Files'}];dcLoadFolder('0')}else{document.getElementById('dc-empty').innerHTML='<span style="font-size:13px;color:#909090">Select a hub to manage its documents.</span>'}}
+async function dcLoadFolder(fid){
+  if(!boxConnected)return;
+  const el=document.getElementById('dc-empty');
+  el.innerHTML='<span style="font-size:12px;color:#909090">Loading...</span>';
+  try{
+    const res=await boxGet('/folders/'+fid+'/items?fields=name,type,size,modified_at&limit=200');
+    const items=(res.entries||[]).sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name):(a.type==='folder'?-1:1)));
+    const crumbs=dcFolderStack.map((f,i)=>`<span style="cursor:pointer;${i===dcFolderStack.length-1?'font-weight:600':'color:#0061D5'}" onclick="dcNavFolder(${i})">${f.name}</span>`).join(' <span style="color:#ccc">/</span> ');
+    let h=`<div style="width:100%;max-width:100%;padding:0"><div style="padding:10px 16px;font-size:11px;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between">${crumbs}<button onclick="dcToggleBrowser()" style="background:none;border:none;color:#909090;cursor:pointer;font-size:16px">×</button></div><div class="dc-folder-panel" style="border:none;border-radius:0;max-height:none;flex:1;overflow-y:auto">`;
+    items.forEach(it=>{
+      if(it.type==='folder'){
+        h+=`<div class="dc-folder-item"><div class="dc-folder-name" onclick="dcEnterFolder('${it.id}','${it.name.replace(/'/g,"\\'")}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>${it.name}</div><button class="dc-make-hub" onclick="dcMakeHub('${it.id}','${it.name.replace(/'/g,"\\'")}')">Make Hub</button></div>`;
+      } else {
+        h+=`<div class="dc-folder-item"><div class="dc-folder-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#909090"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span style="color:#666">${it.name}</span></div></div>`;
+      }
+    });
+    if(!items.length)h+='<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Empty folder</div>';
+    h+='</div></div>';
+    el.style.display='flex';el.style.flexDirection='column';el.style.alignItems='stretch';
+    el.innerHTML=h;
+  }catch(e){el.innerHTML='<span style="font-size:12px;color:red">Error: '+e.message+'</span>'}
+}
+function dcEnterFolder(id,name){dcFolderStack.push({id,name});dcLoadFolder(id)}
+function dcNavFolder(idx){dcFolderStack=dcFolderStack.slice(0,idx+1);dcLoadFolder(dcFolderStack[idx].id)}
+async function dcMakeHub(folderId,folderName){
+  dcShowBanner('Creating hub from "'+folderName+'"...','info');
+  try{
+    const hub=await boxPost('/hubs',{title:folderName,description:'Created from folder',is_ai_enabled:true},HV);
+    const files=await boxGet('/folders/'+folderId+'/items?fields=name,type,size,modified_at&limit=200');
+    const fileItems=(files.entries||[]).filter(f=>f.type==='file');
+    if(fileItems.length){
+      await boxPost('/hub_items',{hub_id:hub.id,items:fileItems.map(f=>({type:'file',id:f.id}))},HV);
+    }
+    dcLibs.push({id:hub.id,name:hub.title,desc:'',files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+'KB'):'',date:f.modified_at?new Date(f.modified_at).toLocaleDateString():''}))});
+    dcSelLib=hub.id;
+    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));
+    syncScope();scopeRender();dcUpdateUI();
+    dcBrowsing=false;dcRender();
+    dcShowBanner('Hub "'+folderName+'" created with '+fileItems.length+' files','info');
+  }catch(e){dcShowBanner('Failed: '+e.message,'error')}
+}
 function dcHandleDrop(e){dcHandleFiles(e.dataTransfer.files)}
+async function dcPreviewFile(fileId,fileName){
+  if(!boxConnected)return;
+  let ov=document.getElementById('dc-preview-overlay');
+  if(!ov){ov=document.createElement('div');ov.id='dc-preview-overlay';ov.style.cssText='position:absolute;inset:0;background:#fff;z-index:50;display:flex;flex-direction:column';document.getElementById('dc-detail').appendChild(ov)}
+  ov.innerHTML=`<div style="padding:10px 16px;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;justify-content:space-between;flex-shrink:0"><div style="font-size:13px;font-weight:600;color:#222">${fileName}</div><button onclick="document.getElementById('dc-preview-overlay').remove()" style="background:none;border:none;font-size:18px;cursor:pointer;color:#909090;padding:0 4px">×</button></div><div style="flex:1;overflow:auto;padding:0;min-height:0" id="dc-preview-body"><div style="padding:24px;text-align:center;font-size:12px;color:#909090">Loading...</div></div>`;
+  ov.style.display='flex';
+  const isPdf=fileName.toLowerCase().endsWith('.pdf');
+  try{
+    const r=await fetch(BOX+'/files/'+fileId+'/content',{headers:{'Authorization':'Bearer '+boxToken}});
+    if(!r.ok)throw new Error(r.status);
+    if(isPdf){
+      const blob=await r.blob();
+      const url=URL.createObjectURL(new Blob([blob],{type:'application/pdf'}));
+      document.getElementById('dc-preview-body').innerHTML='<iframe src="'+url+'" style="width:100%;height:100%;border:none"></iframe>';
+    }else{
+      const text=await r.text();
+      document.getElementById('dc-preview-body').innerHTML='<pre style="padding:16px;font-size:12px;font-family:Consolas,monospace;white-space:pre-wrap;color:#333;margin:0">'+text.slice(0,10000).replace(/</g,'&lt;')+(text.length>10000?'\n\n[Truncated]':'')+'</pre>';
+    }
+  }catch(e){document.getElementById('dc-preview-body').innerHTML='<div style="padding:24px;text-align:center;font-size:12px;color:red">'+e.message+'</div>'}
+}
 async function dcHandleFiles(fl){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!fl.length)return;
   if(boxConnected){
     for(const f of Array.from(fl)){
@@ -940,7 +1137,7 @@ async function dcHandleFiles(fl){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!l
       }catch(e){dcShowBanner('Upload failed: '+e.message,'error')}
     }
     dcRender();
-    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,c:''}))}));
+    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));
     syncScope();scopeRender();
   } else {
     for(const f of Array.from(fl))lib.files.push({id:'f'+Date.now()+Math.random(),name:f.name,size:(f.size/1024|0)+' KB',date:'Just now'});
