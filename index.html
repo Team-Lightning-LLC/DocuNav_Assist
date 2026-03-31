@@ -1134,7 +1134,7 @@ function hmStartRename(el){
   el.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();el.blur()}};
 }
 
-function hmBrowseForHub(){hmNav('browse')}
+function hmBrowseForHub(){dcSelLib=null;hmNav('browse')}
 
 // Browse panel
 async function hmLoadFolder(fid){
@@ -1426,7 +1426,7 @@ async function dcPreviewFile(fileId,fileName){
 init();hmRender();
 document.querySelector('.cards-track')?.addEventListener('wheel',function(e){if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();this.scrollLeft+=e.deltaY}},{passive:false});
 document.querySelector('.cards-track')?.addEventListener('scroll',scopeUpdateFades);
-document.addEventListener('click',e=>{if(!e.target.closest('.avatar'))document.getElementById('av-menu').classList.remove('open');if(scopePickerOpen&&!e.target.closest('#scope-add-btn'))scopeClosePicker();if(!e.target.closest('.demo-sel'))closeDemoDD();if(scopeOpenMenu!==null&&!e.target.closest('.preset-menu')){scopeOpenMenu=null;scopeRenderPresets()}});
+document.addEventListener('click',e=>{if(!e.target.closest('.avatar'))document.getElementById('av-menu')?.classList.remove('open');if(scopePickerOpen&&!e.target.closest('#scope-add-btn'))scopeClosePicker();if(!e.target.closest('.demo-sel'))closeDemoDD();if(scopeOpenMenu!==null&&!e.target.closest('.preset-menu')){scopeOpenMenu=null;scopeRenderPresets()}});
 </script>
 </body>
 </html>
