@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Black Box Manufacturing</title>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -28,13 +28,11 @@ button{font-family:var(--f);cursor:pointer}
 ::-webkit-scrollbar-thumb{background:var(--b3);border-radius:4px}
 ::-webkit-scrollbar-track{background:transparent}
 
-/* ═══ TRANSITION LAYER ═══ */
 .shell{display:flex;flex-direction:column;height:100vh}
 .shell *{transition:color .4s,background-color .4s,border-color .4s,box-shadow .4s}
 .shell.switching .main-body,.shell.switching .scope-area,.shell.switching .input-area{opacity:0;transition:opacity .25s}
 .shell:not(.switching) .main-body,.shell:not(.switching) .scope-area,.shell:not(.switching) .input-area{opacity:1;transition:opacity .35s .15s}
 
-/* ═══ TOPBAR ═══ */
 .topbar{height:48px;background:var(--topbar-bg);border-bottom:none;display:flex;align-items:center;padding:0 var(--sp-panel);flex-shrink:0;transition:background .5s}
 .topbar-brand{display:flex;align-items:center;gap:9px;padding-right:var(--sp-panel);border-right:1px solid var(--topbar-border);margin-right:12px}
 .logo-mark{width:24px;height:24px;flex-shrink:0}
@@ -54,7 +52,6 @@ button{font-family:var(--f);cursor:pointer}
 .av-item.danger{color:#dc2626}
 .topbar-sep{width:1px;height:20px;background:var(--topbar-border);margin:0 4px}
 
-/* ═══ DEMO SELECTOR ═══ */
 .demo-sel{position:relative}
 .demo-btn{padding:5px 12px;font-size:var(--fs-meta);font-weight:600;border:1px solid rgba(255,255,255,0.2);border-radius:var(--r);background:rgba(255,255,255,0.06);color:#fff;display:flex;align-items:center;gap:6px;cursor:pointer;transition:all .15s}
 .demo-btn:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.3)}
@@ -64,12 +61,6 @@ button{font-family:var(--f);cursor:pointer}
 .role-sel{position:relative}.role-sel .demo-dd{min-width:180px}
 .role-opt{padding:6px 10px;border-radius:4px;cursor:pointer;font-size:var(--fs-meta);display:flex;align-items:center;gap:8px;color:var(--t2)}.role-opt:hover{background:var(--bg2)}.role-opt.active{color:var(--ac);font-weight:600}
 .role-opt-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.dc-browse-btn{background:#f5f7fa;border:1px solid #ddd;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;color:#333;display:flex;align-items:center;gap:6px;margin-top:8px;width:100%}.dc-browse-btn:hover{border-color:#0061D5;color:#0061D5}
-.dc-folder-item{padding:8px 12px;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;font-size:12px}.dc-folder-item:hover{background:#f5f7fa}
-.dc-folder-name{display:flex;align-items:center;gap:8px;color:#333;cursor:pointer;flex:1}.dc-folder-name svg{width:14px;height:14px;color:#0061D5;flex-shrink:0}
-.dc-make-hub{background:#0061D5;color:#fff;border:none;border-radius:4px;padding:3px 10px;font-size:11px;cursor:pointer;font-weight:600;flex-shrink:0}.dc-make-hub:hover{background:#004fb3}
-.dc-folder-back{padding:8px 12px;border-bottom:1px solid #ddd;font-size:11px;color:#0061D5;cursor:pointer;font-weight:600;display:flex;align-items:center;gap:4px}.dc-folder-back:hover{background:#f0f5ff}
-.dc-folder-panel{border:1px solid #ddd;border-radius:6px;max-height:300px;overflow-y:auto;background:#fff;margin-top:8px}
 .demo-dd.open{display:block}
 .demo-dd-head{font-size:var(--fs-micro);font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--t4);padding:4px 8px 6px}
 .demo-opt{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:5px;cursor:pointer;transition:background .1s}
@@ -82,11 +73,9 @@ button{font-family:var(--f);cursor:pointer}
 .demo-opt-check{font-size:var(--fs-label);color:var(--ac);opacity:0}
 .demo-opt.active .demo-opt-check{opacity:1}
 
-/* ═══ BODY ═══ */
 .main-body{flex:1;display:flex;min-height:0;overflow:hidden}
 .accent-bar{height:2px;background:linear-gradient(90deg,transparent 0%,var(--ac) 30%,var(--ac2) 70%,transparent 100%);flex-shrink:0;opacity:.5}
 
-/* ═══ LEFT ═══ */
 .left{display:flex;flex-direction:column;min-height:0;overflow:hidden;flex:1}
 .ws-view{display:flex;flex-direction:column;flex:1;min-height:0;overflow:hidden}
 .ws-view.hidden{display:none}
@@ -118,7 +107,6 @@ button{font-family:var(--f);cursor:pointer}
 .sc-q{font-size:var(--fs-label);font-weight:600;color:var(--t1);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;line-height:1.3}
 .sc-a{font-size:var(--fs-meta);color:var(--t3);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:2px}
 
-/* ═══ CHAT VIEW ═══ */
 .chat-view{display:none;flex-direction:column;flex:1;min-height:0}
 .chat-view.active{display:flex}
 .chat-top{padding:var(--sp-section) var(--sp-panel);border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:10px;flex-shrink:0;background:var(--card)}
@@ -161,7 +149,6 @@ button{font-family:var(--f);cursor:pointer}
 .td span:nth-child(3){animation-delay:.4s}
 .empty-c{text-align:center;padding:32px;color:var(--t4);font-size:var(--fs-label)}
 
-/* ═══ INPUT ═══ */
 .input-area{border-top:1px solid var(--b1);background:var(--card);padding:var(--sp-card) var(--sp-panel);flex-shrink:0}
 .input-row{display:flex;gap:8px}
 .input-f{flex:1;padding:10px 16px;background:var(--bg);border:1px solid var(--b1);border-radius:var(--rl);font-family:var(--f);font-size:var(--fs-content);color:var(--t1);outline:none;transition:border-color .15s,box-shadow .15s}
@@ -170,7 +157,6 @@ button{font-family:var(--f);cursor:pointer}
 .send-btn{padding:10px 20px;background:var(--ac);color:#fff;border:none;border-radius:var(--rl);font-size:var(--fs-content);font-weight:600;transition:background .15s,box-shadow .15s}
 .send-btn:hover{background:var(--ac2);box-shadow:var(--glow)}
 
-/* ═══ SCOPE BUILDER ═══ */
 .scope-area{display:flex;height:170px;flex-shrink:0;border-top:2px solid var(--b1);background:var(--card)}
 .presets-col{width:170px;flex-shrink:0;background:var(--bg2);border-right:1px solid var(--b1);display:flex;flex-direction:column;transition:width .2s;overflow:hidden}
 .presets-col.collapsed{width:0;min-width:0;border-right:none}
@@ -237,12 +223,10 @@ button{font-family:var(--f);cursor:pointer}
 .spk-item-ct{font-size:var(--fs-micro);color:var(--t4);margin-left:auto}
 .spk-item svg{width:10px;height:10px;color:var(--t3);flex-shrink:0}
 
-/* ═══ RESIZE ═══ */
 .resize-handle{width:5px;background:transparent;cursor:col-resize;flex-shrink:0;position:relative;z-index:5}
 .resize-handle::after{content:'';position:absolute;left:2px;top:0;bottom:0;width:1px;background:var(--b1)}
 .resize-handle:hover::after,.resize-handle:active::after{width:3px;left:1px;background:var(--ac);border-radius:2px;opacity:.5}
 
-/* ═══ RIGHT — LIBRARY ═══ */
 .right{width:480px;min-width:320px;max-width:700px;display:flex;flex-direction:column;min-height:0;overflow:hidden;background:var(--card);border-left:1px solid var(--b1)}
 .lib-head{padding:var(--sp-card) var(--sp-panel) 0;flex-shrink:0}
 .lib-head-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
@@ -312,7 +296,6 @@ button{font-family:var(--f);cursor:pointer}
 .lv-body{flex:1;overflow-y:auto;padding:20px 24px;font-family:var(--mono);font-size:var(--fs-label);line-height:2;color:var(--t2);white-space:pre-wrap;letter-spacing:-.01em}
 .lv-frame{flex:1;width:100%;min-height:0;border:none}
 
-/* ═══ OVERLAYS ═══ */
 .overlay{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.3);display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
 .overlay.open{display:flex}
 .overlay-panel{background:var(--card);border-radius:var(--rl);border:1px solid var(--b1);width:420px;max-height:70vh;display:flex;flex-direction:column;box-shadow:0 8px 30px rgba(0,0,0,.12)}
@@ -337,74 +320,167 @@ button{font-family:var(--f);cursor:pointer}
 .setting-toggle::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .15s}
 .setting-toggle.on::after{transform:translateX(16px)}
 
-/* ═══ HUB MANAGER (Box aesthetic) ═══ */
-.dev-console{display:none;flex-direction:column;flex:1;min-height:0;overflow:hidden;background:#F5F7FA}
+/* ═══ HUB MANAGER — Atlas Design System ═══ */
+.dev-console{display:none;flex-direction:column;flex:1;min-height:0;overflow:hidden}
 .dev-console.active{display:flex}
-.dev-console *{transition:none!important}
-.dc-bar{height:48px;background:#fff;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;padding:0 20px;flex-shrink:0}
-.dc-bar-left{display:flex;align-items:center;gap:10px}
-.dc-label{font-family:'Lato',sans-serif;font-size:14px;font-weight:700;color:#222}
-.dc-sep{color:#E4E4E4}
-.dc-root{font-size:11px;color:#909090}
-.dc-bar-right{display:flex;align-items:center;gap:8px;margin-left:auto}
-.dc-status{font-size:11px;font-weight:700;color:#26C281;display:flex;align-items:center;gap:5px}
-.dc-dot{width:6px;height:6px;border-radius:50%;background:#C4C4C4}
-.dc-dot-on{background:#26C281}
-.dc-btn{padding:5px 12px;font-family:'Lato',sans-serif;font-size:11px;font-weight:700;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#4A4A4A;display:flex;align-items:center;gap:4px;cursor:pointer}
-.dc-btn:hover{background:#F5F7FA;border-color:#0061D5;color:#0061D5}
-.dc-btn-ac{background:#0061D5;color:#fff;border-color:#0061D5}
-.dc-btn-ac:hover{background:#004EAA}
-.dc-btn-danger{color:#ED4956;border-color:#E4E4E4}
-.dc-btn-danger:hover{background:#FDE8EA;border-color:#ED4956}
-.dc-body{flex:1;display:flex;min-height:0;overflow:hidden}
-.dc-master{width:260px;min-width:260px;border-right:1px solid #E4E4E4;display:flex;flex-direction:column;min-height:0;background:#fff}
-.dc-master-head{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E4E4}
-.dc-mh-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#909090}
-.dc-lib-list{flex:1;overflow-y:auto;padding:6px 8px}
-.dc-lib{padding:9px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:9px;margin-bottom:2px;color:#4A4A4A;font-size:13px}
-.dc-lib:hover{background:#F5F7FA}
-.dc-lib.active{background:#E8F1FD;color:#0061D5;font-weight:700}
-.dc-lib-icon{color:#909090;flex-shrink:0}
-.dc-lib-icon svg{width:14px;height:14px}
-.dc-lib.active .dc-lib-icon{color:#0061D5}
-.dc-lib-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dc-lib-count{font-size:10px;color:#909090;flex-shrink:0;font-weight:700}
-.dc-master-foot{padding:10px 14px;border-top:1px solid #E4E4E4;font-size:11px;color:#909090}
-.dc-detail{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;background:#F5F7FA}
-.dc-empty{display:flex;align-items:center;justify-content:center;height:100%;font-size:13px;color:#909090}
-.dc-detail-inner{display:flex;flex-direction:column;flex:1;min-height:0}
-.dc-detail-head{padding:14px 24px;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;gap:10px;background:#fff}
-.dc-dh-name{font-size:16px;font-weight:700;color:#222;outline:none;padding:2px 6px;border-radius:4px;border:1px solid transparent}
-.dc-dh-name:focus{border-color:#0061D5;background:#F5F7FA}
-.dc-dh-count{font-size:12px;color:#909090}
-.dc-dh-id{font-size:10px;color:#C4C4C4;margin-left:auto;font-family:monospace}
-.dc-upload{margin:16px 24px;border:2px dashed #E4E4E4;border-radius:8px;flex-shrink:0;background:#fff}
-.dc-upload.drag{border-color:#0061D5;background:rgba(0,97,213,0.04)}
-.dc-upload-inner{padding:24px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;color:#909090}
-.dc-upload-inner span{font-size:12px}
-.dc-upload-types{font-size:10px!important;color:#C4C4C4}
-.dc-upload-inner:hover{color:#0061D5}
-.dc-file-list{flex:1;overflow-y:auto;padding:0 24px}
-.dc-file{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;background:#fff;border:1px solid #F0F0F0;margin-bottom:4px}
-.dc-file:hover{border-color:#E4E4E4}
-.dc-file-icon{color:#909090;flex-shrink:0}
-.dc-file-icon svg{width:14px;height:14px}
-.dc-file-name{font-size:12px;font-weight:500;color:#222;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
-.dc-file-name:hover{color:#0061D5}
-.dc-file-size{font-size:10px;color:#909090;flex-shrink:0}
-.dc-file-date{font-size:10px;color:#909090;flex-shrink:0;min-width:60px}
-.dc-file-del{background:none;border:none;color:#C4C4C4;cursor:pointer;font-size:14px;padding:0 4px;line-height:1}
-.dc-file-del:hover{color:#ED4956}
-.dc-detail-foot{padding:14px 24px;border-top:1px solid #E4E4E4;margin-top:auto;background:#fff}
-.dc-token-area{display:flex;align-items:center;gap:8px}
-.dc-token-input{padding:7px 12px;font-family:monospace;font-size:12px;background:#F5F7FA;border:1px solid #E4E4E4;border-radius:6px;color:#222;width:280px;outline:none}
-.dc-token-input:focus{border-color:#0061D5;box-shadow:0 0 0 3px rgba(0,97,213,0.06)}
-.dc-token-input::placeholder{color:#C4C4C4}
-.dc-banner{padding:10px 20px;font-size:12px;font-weight:500;flex-shrink:0}
-.dc-banner.error{background:#FDE8EA;color:#ED4956;border-bottom:1px solid #ED4956}
-.dc-banner.info{background:#E8F1FD;color:#0061D5;border-bottom:1px solid #0061D5}
+.dev-console,.dev-console *{transition:none!important;font-family:'Lato',sans-serif}
+.dev-console ::-webkit-scrollbar{width:5px}
+.dev-console ::-webkit-scrollbar-thumb{background:#C4C4C4;border-radius:4px}
+
+.hm-shell{display:grid;grid-template-columns:220px 1fr;height:100%;overflow:hidden}
+
+/* Sidebar */
+.hm-side{background:#fff;border-right:1px solid #E4E4E4;display:flex;flex-direction:column}
+.hm-side-head{padding:18px 16px 14px;border-bottom:1px solid #F0F0F0}
+.hm-side-brand{display:flex;align-items:center;gap:10px}
+.hm-side-logo{width:30px;height:30px;border-radius:6px;background:#0061D5;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hm-side-logo svg{width:16px;height:16px;color:#fff}
+.hm-side-title{font-size:16px;font-weight:900;color:#222;letter-spacing:-.02em}
+.hm-side-sub{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#0061D5}
+.hm-side-nav{flex:1;padding:10px 8px;overflow-y:auto}
+.hm-nav{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:6px;cursor:pointer;font-size:13px;color:#4A4A4A;border:none;background:none;width:100%;text-align:left;margin-bottom:1px}
+.hm-nav:hover{background:#F5F7FA;color:#222}
+.hm-nav.active{background:#E8F1FD;color:#0061D5;font-weight:700}
+.hm-nav svg{width:16px;height:16px;flex-shrink:0;opacity:.45}
+.hm-nav.active svg{opacity:1;color:#0061D5}
+.hm-nav-ct{margin-left:auto;font-size:10px;font-weight:700;padding:1px 7px;border-radius:10px;background:#E8F1FD;color:#0061D5}
+.hm-side-foot{padding:12px 16px;border-top:1px solid #F0F0F0;font-size:11px;color:#909090}
+.hm-side-stats{margin-bottom:8px}
+.hm-back-btn{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:6px;cursor:pointer;font-size:13px;color:#909090;width:100%;border:none;background:none;text-align:left}
+.hm-back-btn:hover{background:rgba(0,97,213,.06);color:#0061D5}
+.hm-back-btn svg{width:14px;height:14px}
+
+/* Main area */
+.hm-main{display:flex;flex-direction:column;overflow:hidden;background:#F5F7FA}
+.hm-topbar{height:56px;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;padding:0 28px;flex-shrink:0;background:#fff;gap:12px}
+.hm-tb-title{font-size:15px;font-weight:700;color:#222}
+.hm-tb-desc{font-size:12px;color:#909090}
+.hm-tb-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+.hm-pill{padding:5px 12px;font-size:11px;font-weight:700;border-radius:20px;display:flex;align-items:center;gap:5px}
+.hm-pill.ok{background:#E9F9F1;color:#26C281}
+.hm-pill .dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.hm-token{display:flex;align-items:center;gap:8px}
+.hm-token input{padding:7px 12px;font-family:monospace;font-size:12px;background:#F5F7FA;border:1px solid #E4E4E4;border-radius:6px;color:#222;width:260px;outline:none}
+.hm-token input:focus{border-color:#0061D5;box-shadow:0 0 0 3px rgba(0,97,213,.06)}
+.hm-token input::placeholder{color:#C4C4C4}
+.hm-btn{padding:7px 16px;font-size:12px;font-weight:700;border-radius:6px;cursor:pointer;border:1px solid #E4E4E4;background:#fff;color:#4A4A4A;display:inline-flex;align-items:center;gap:5px}
+.hm-btn:hover{border-color:#0061D5;color:#0061D5;background:#F5F7FA}
+.hm-btn.primary{background:#0061D5;color:#fff;border-color:#0061D5}
+.hm-btn.primary:hover{background:#004EAA}
+.hm-btn.danger{color:#ED4956}
+.hm-btn.danger:hover{background:#FDE8EA;border-color:#ED4956}
+.hm-btn svg{width:14px;height:14px}
+
+/* Banner */
+.hm-banner{padding:10px 28px;font-size:12px;font-weight:500;flex-shrink:0;display:none}
+.hm-banner.show{display:block}
+.hm-banner.error{background:#FDE8EA;color:#ED4956;border-bottom:1px solid rgba(237,73,86,.2)}
+.hm-banner.info{background:#E8F1FD;color:#0061D5;border-bottom:1px solid rgba(0,97,213,.15)}
+
+/* Content panels */
+.hm-content{flex:1;overflow-y:auto;padding:24px 28px}
+.hm-panel{display:none}.hm-panel.active{display:block}
+
+/* Section heads */
+.hm-sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.hm-sec-title{font-size:18px;font-weight:900;color:#222;letter-spacing:-.01em}
+.hm-sec-desc{font-size:12px;color:#909090;margin-top:2px}
+.hm-sec-btn{padding:8px 18px;background:#0061D5;color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px}
+.hm-sec-btn:hover{background:#004EAA}
+.hm-sec-btn svg{width:14px;height:14px}
+
+/* Hub Grid */
+.hm-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px}
+@media(min-width:1200px){.hm-grid{grid-template-columns:1fr 1fr 1fr}}
+.hm-hcard{background:#fff;border:1px solid #E4E4E4;border-radius:8px;padding:16px;cursor:pointer;position:relative}
+.hm-hcard:hover{border-color:#0061D5;box-shadow:0 2px 8px rgba(0,97,213,.08)}
+.hm-hcard-top{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.hm-hcard-icon{width:28px;height:28px;border-radius:6px;background:#E8F1FD;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hm-hcard-icon svg{width:14px;height:14px;color:#0061D5}
+.hm-hcard-name{font-size:14px;font-weight:700;color:#222;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hm-hcard-menu{width:24px;height:24px;border:none;background:transparent;border-radius:4px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#C4C4C4;opacity:0}
+.hm-hcard:hover .hm-hcard-menu{opacity:1}
+.hm-hcard-menu:hover{background:#F5F7FA;color:#222}
+.hm-hcard-desc{font-size:11px;color:#909090;line-height:1.5;margin-bottom:10px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:33px}
+.hm-hcard-stats{display:flex;gap:14px;font-size:11px;color:#909090}
+.hm-hcard-stats strong{color:#4A4A4A;font-weight:700}
+.hm-hcard-add{background:#fff;border:2px dashed #E4E4E4;border-radius:8px;display:flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-size:13px;font-weight:700;color:#909090;min-height:130px}
+.hm-hcard-add:hover{border-color:#0061D5;color:#0061D5;background:rgba(0,97,213,.03)}
+.hm-hcard-add svg{width:14px;height:14px}
+.hm-hub-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px;text-align:center}
+.hm-hub-empty-icon{width:56px;height:56px;border-radius:14px;background:#F5F7FA;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.hm-hub-empty-icon svg{width:24px;height:24px;color:#C4C4C4}
+.hm-hub-empty h3{font-size:15px;font-weight:700;color:#4A4A4A;margin-bottom:4px}
+.hm-hub-empty p{font-size:12px;color:#909090;max-width:280px}
+
+/* Hub Detail */
+.hm-detail-bar{padding:14px 28px;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;gap:12px;background:#fff;flex-shrink:0}
+.hm-detail-back{background:none;border:none;color:#909090;cursor:pointer;padding:4px;border-radius:4px;display:flex;align-items:center;justify-content:center}
+.hm-detail-back:hover{color:#0061D5;background:#F5F7FA}
+.hm-detail-back svg{width:18px;height:18px}
+.hm-detail-name{font-size:16px;font-weight:700;color:#222;flex:1;outline:none;padding:2px 6px;border-radius:4px;border:1px solid transparent;min-width:0}
+.hm-detail-name:focus{border-color:#0061D5;background:#F5F7FA}
+.hm-detail-ct{font-size:12px;color:#909090;font-weight:700}
+.hm-detail-id{font-size:10px;color:#C4C4C4;font-family:monospace}
+
+/* Upload zone */
+.hm-upload{border:2px dashed #E4E4E4;border-radius:8px;padding:28px;text-align:center;cursor:pointer;background:#fff;margin-bottom:20px}
+.hm-upload:hover,.hm-upload.drag{border-color:#0061D5;background:rgba(0,97,213,.03)}
+.hm-upload-icon{width:44px;height:44px;border-radius:10px;background:#E8F1FD;display:flex;align-items:center;justify-content:center;margin:0 auto 10px}
+.hm-upload-icon svg{width:22px;height:22px;color:#0061D5}
+.hm-upload h3{font-size:14px;font-weight:700;margin-bottom:3px;color:#222}
+.hm-upload p{font-size:12px;color:#909090}
+
+/* Add from Box button */
+.hm-addbox-btn{display:flex;align-items:center;gap:8px;padding:10px 16px;background:#fff;border:1px solid #E4E4E4;border-radius:8px;cursor:pointer;font-size:13px;color:#4A4A4A;width:100%;margin-bottom:20px;font-weight:500}
+.hm-addbox-btn:hover{border-color:#0061D5;color:#0061D5;background:#F5F7FA}
+.hm-addbox-btn svg{width:16px;height:16px;color:#0061D5;flex-shrink:0}
+
+/* File list */
+.hm-file-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.hm-file-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:#E8F1FD;color:#0061D5}
+.hm-file{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:6px;background:#fff;border:1px solid #F0F0F0;margin-bottom:4px}
+.hm-file:hover{border-color:#E4E4E4;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.hm-file-ico{flex-shrink:0;color:#909090}
+.hm-file-ico svg{width:16px;height:16px}
+.hm-file-ico.pdf{color:#ED4956}
+.hm-file-ico.doc{color:#0061D5}
+.hm-file-ico.xls{color:#26C281}
+.hm-file-name{font-size:13px;font-weight:500;color:#222;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.hm-file-name:hover{color:#0061D5}
+.hm-file-size{font-size:11px;color:#909090;flex-shrink:0}
+.hm-file-date{font-size:11px;color:#909090;flex-shrink:0;min-width:70px}
+.hm-file-del{background:none;border:none;color:#C4C4C4;cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;border-radius:4px}
+.hm-file-del:hover{color:#ED4956;background:#FDE8EA}
+
+/* Browse panel */
+.hm-browse-crumbs{display:flex;align-items:center;gap:6px;margin-bottom:16px;flex-wrap:wrap;font-size:12px}
+.hm-crumb{cursor:pointer;color:#0061D5;font-weight:700}
+.hm-crumb.current{color:#222;cursor:default}
+.hm-crumb-sep{color:#C4C4C4}
+.hm-folder-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#fff;border:1px solid #F0F0F0;border-radius:6px;margin-bottom:4px}
+.hm-folder-item:hover{border-color:#E4E4E4;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.hm-folder-ico{flex-shrink:0}
+.hm-folder-ico svg{width:16px;height:16px}
+.hm-folder-ico.dir{color:#0061D5}
+.hm-folder-ico.file{color:#909090}
+.hm-folder-name{font-size:13px;font-weight:500;color:#222;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.hm-folder-name:hover{color:#0061D5}
+.hm-folder-size{font-size:11px;color:#C4C4C4;flex-shrink:0}
+.hm-folder-make{padding:5px 14px;background:#0061D5;color:#fff;border:none;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0}
+.hm-folder-make:hover{background:#004EAA}
+
+/* Preview overlay */
+.hm-preview{position:absolute;inset:0;background:#fff;z-index:50;display:flex;flex-direction:column}
+.hm-preview-head{padding:10px 16px;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;gap:8px;flex-shrink:0}
+.hm-preview-title{font-size:13px;font-weight:700;color:#222;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hm-preview-close{background:none;border:none;font-size:18px;cursor:pointer;color:#909090;padding:0 4px}
+.hm-preview-close:hover{color:#222}
+.hm-preview-body{flex:1;overflow:auto;min-height:0}
 
 @keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.3}30%{transform:translateY(-3px);opacity:1}}
+@keyframes hmFadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hm-hcard,.hm-file,.hm-folder-item{animation:hmFadeUp .2s ease-out both}
 </style>
 </head>
 <body>
@@ -425,7 +501,7 @@ button{font-family:var(--f);cursor:pointer}
     </div>
     <div class="topbar-sep"></div>
     <button class="tr active" id="btn-assist" onclick="showAssist()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>Assistant</button>
-    <button class="tr" id="btn-dev" onclick="showDev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Dev</button>
+    <button class="tr" id="btn-dev" onclick="showDev()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Hub Manager</button>
     <div class="topbar-sep"></div>
     <div class="demo-sel" id="demo-sel">
       <button class="demo-btn" onclick="toggleDemoDD()"><span class="demo-dot" id="demo-dot"></span><span id="demo-btn-label">Manufacturing</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
@@ -507,11 +583,50 @@ button{font-family:var(--f);cursor:pointer}
 </div>
 </div>
 
-<!-- DEV CONSOLE -->
+<!-- HUB MANAGER -->
 <div class="dev-console" id="dev-console">
-  <div class="dc-bar"><div class="dc-bar-left"><span class="dc-label">Hub Manager</span><span class="dc-sep">·</span><span class="dc-root" id="dc-root">Powered by Box</span></div><div class="dc-bar-right"><div class="dc-token-area" id="dc-token-area"><input type="text" class="dc-token-input" id="dc-token" placeholder="Box Developer Token" spellcheck="false"><button class="dc-btn dc-btn-ac" onclick="dcConnect()">Connect</button></div><span class="dc-status" id="dc-status" style="display:none"><span class="dc-dot dc-dot-on"></span>Connected</span><button class="dc-btn" id="dc-refresh-btn" onclick="dcRefresh()" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Refresh</button><button class="dc-btn" id="dc-disconnect-btn" onclick="dcDisconnect()" style="display:none">Disconnect</button></div></div>
-  <div class="dc-banner" id="dc-banner" style="display:none"></div>
-  <div class="dc-body"><div class="dc-master"><div class="dc-master-head"><span class="dc-mh-label">Hubs</span><button class="dc-btn dc-btn-ac" onclick="dcNewHub()">+ New Hub</button></div><div style="padding:0 12px 8px"><button class="dc-browse-btn" onclick="dcSelLib=null;dcRender();dcToggleBrowser()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="14" height="14"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>Browse Box Folders</button></div><div class="dc-lib-list" id="dc-lib-list"></div><div class="dc-master-foot" id="dc-master-foot"></div></div><div class="dc-detail" id="dc-detail"><div class="dc-empty" id="dc-empty">Select a hub to manage its documents.</div><div class="dc-detail-inner" id="dc-detail-inner" style="display:none"><div class="dc-detail-head"><div class="dc-dh-name" id="dc-dh-name" contenteditable="false" onclick="dcStartRename(this)"></div><span class="dc-dh-count" id="dc-dh-count"></span><span class="dc-dh-id" id="dc-dh-id"></span></div><div class="dc-upload" id="dc-upload" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)"><div class="dc-upload-inner" onclick="document.getElementById('dc-file-input').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Drag files here or click to upload</span><span class="dc-upload-types">PDF, DOCX, TXT, XLSX, MD</span></div><input type="file" id="dc-file-input" multiple accept=".pdf,.docx,.txt,.xlsx,.md,.png,.jpg" style="display:none" onchange="dcHandleFiles(this.files)"></div><div class="dc-file-list" id="dc-file-list"></div><div class="dc-detail-foot"><button class="dc-btn dc-btn-danger" onclick="dcDeleteHub()">Delete Hub</button></div></div></div></div>
+  <div class="hm-shell">
+    <div class="hm-side">
+      <div class="hm-side-head">
+        <div class="hm-side-brand">
+          <div class="hm-side-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div><div class="hm-side-title">Hub Manager</div><div class="hm-side-sub">Powered by Box</div></div>
+        </div>
+      </div>
+      <div class="hm-side-nav">
+        <button class="hm-nav active" id="hm-nav-hubs" onclick="hmNav('hubs')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>Hubs<span class="hm-nav-ct" id="hm-hub-ct">0</span></button>
+        <button class="hm-nav" id="hm-nav-browse" onclick="hmNav('browse')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>Browse Box</button>
+      </div>
+      <div class="hm-side-foot">
+        <div class="hm-side-stats" id="hm-side-stats"></div>
+        <button class="hm-back-btn" onclick="showAssist()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>Back to Assistant</button>
+      </div>
+    </div>
+    <div class="hm-main">
+      <div class="hm-topbar">
+        <div class="hm-tb-title" id="hm-tb-title">Hubs</div>
+        <div class="hm-tb-desc" id="hm-tb-desc">Manage your document hubs</div>
+        <div class="hm-tb-right" id="hm-tb-right"></div>
+      </div>
+      <div class="hm-banner" id="hm-banner"></div>
+      <div id="hm-panels">
+        <!-- Hubs Grid -->
+        <div class="hm-content hm-panel active" id="hm-p-hubs">
+          <div id="hm-hub-grid-wrap"></div>
+        </div>
+        <!-- Hub Detail -->
+        <div class="hm-panel" id="hm-p-detail" style="display:none;flex-direction:column;flex:1;overflow:hidden;position:relative">
+          <div class="hm-detail-bar" id="hm-detail-bar"></div>
+          <div style="flex:1;overflow-y:auto;padding:20px 28px" id="hm-detail-body"></div>
+        </div>
+        <!-- Browse -->
+        <div class="hm-content hm-panel" id="hm-p-browse">
+          <div id="hm-browse-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <input type="file" id="dc-file-input" multiple accept=".pdf,.docx,.txt,.xlsx,.md,.png,.jpg" style="display:none" onchange="dcHandleFiles(this.files)">
 </div>
 </div>
 
@@ -704,12 +819,11 @@ function getVisibleLibs(){if(!activeRole.hubs)return LIBS;return LIBS.filter(l=>
 function toggleRoleDD(){const dd=document.getElementById('role-dd');dd.style.display=dd.style.display==='block'?'none':'block';renderRoleDD()}
 function renderRoleDD(){document.getElementById('role-dd').innerHTML=ROLES.map((r,i)=>`<div class="role-opt ${r===activeRole?'active':''}" onclick="switchRole(${i})">${r.name}${!r.hubs?' (all)':' ('+r.hubs.length+')'}</div>`).join('')}
 function switchRole(i){activeRole=ROLES[i];document.getElementById('role-label').textContent=activeRole.name;document.getElementById('role-dd').style.display='none';
-  // Remove scoped hubs that are no longer visible
   const vis=new Set(getVisibleLibs().map(l=>l.id));activeIds.forEach(id=>{if(!vis.has(id))activeIds.delete(id)});syncScope();scopeRender();renderRightLibs();updatePlaceholder()}
 function showRoleSel(){document.getElementById('role-sel').style.display='inline-flex'}
 function hideRoleSel(){document.getElementById('role-sel').style.display='none'}
 
-// ═══ CORE ENGINE (same architecture, parameterized) ═══
+// ═══ CORE ENGINE ═══
 const IC={save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>',trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>'};
 
 const BOX='https://api.box.com/2.0';const BOX_UPLOAD='https://upload.box.com/api/2.0';
@@ -718,7 +832,7 @@ async function boxGet(p,hdr={}){const r=await fetch(BOX+p,{headers:{'Authorizati
 async function boxPost(p,b,hdr={}){const r=await fetch(BOX+p,{method:'POST',headers:{'Authorization':'Bearer '+boxToken,'Content-Type':'application/json',...hdr},body:JSON.stringify(b)});if(!r.ok)throw new Error(r.status+' '+await r.text().catch(()=>''));return r.json()}
 async function boxDel(p){await fetch(BOX+p,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken}})}
 const HV={'box-version':'2025.0'};
-let boxAgentConfig=null; // cached from GET /ai_agents on connect
+let boxAgentConfig=null;
 async function boxAiAskFiles(fileIds,prompt){
   const items=fileIds.map(id=>({id,type:'file'}));
   const body={mode:items.length===1?'single_item_qa':'multiple_item_qa',prompt,items,include_citations:true};
@@ -773,7 +887,6 @@ function renderSplitState(){const panels=document.getElementById('chat-panels');
 function setActivePanel(n){S.activePanel=n;document.querySelectorAll('.chat-panel').forEach(p=>p.classList.remove('active-panel'));const active=document.getElementById('panel-'+n);if(active)active.classList.add('active-panel')}
 function send(){const inp=document.getElementById('inp');const t=inp.value.trim();if(!t)return;inp.value='';const panel=S.split?S.activePanel:1;if(!S.aWs){S.wc++;const w={id:'w'+S.wc,title:t.length>42?t.slice(0,42)+'...':t,meta:getSelLibNames().split(' + ')[0]||'General',msgs:[],t:new Date(),scope:[...activeIds]};S.ws.unshift(w);openWs(w.id)}const w=S.ws.find(x=>x.id===S.aWs);if(!w)return;const el=document.getElementById('ch-msgs-'+panel);if(el.querySelector('.empty-c'))el.innerHTML='';w.msgs.push({c:t,u:true,p:panel});aMsg(panel,t,true);showT(panel);
   if(boxConnected){
-    // Resolve scoped hubs to file IDs
     const scopedLibs=LIBS.filter(l=>activeIds.has(l.id));
     const fileIds=scopedLibs.flatMap(l=>l.docs.filter(d=>d.fileId).map(d=>d.fileId));
     if(!fileIds.length){hideT(panel);const r={t:'<p>No files in the current scope. Add documents to your hubs first.</p>',ci:[]};w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);return}
@@ -795,7 +908,6 @@ function send(){const inp=document.getElementById('inp');const t=inp.value.trim(
 function renderMsgs(panel,msgs){const el=document.getElementById('ch-msgs-'+panel);el.innerHTML='';msgs.filter(m=>!m.p||m.p===panel).forEach(m=>aMsg(panel,m.c,m.u,m.ci));if(!el.children.length)el.innerHTML='<div class="empty-c">Ask a question to begin.</div>'}
 function aMsg(panel,c,u,ci){const el=document.getElementById('ch-msgs-'+panel);const av=DEMOS[currentDemo].avatar;let ch='';if(ci?.length){
   const pills=ci.map(name=>{
-    // Try to find the file in LIBS to get its ID for viewing
     let libId='',docIdx=-1;
     for(const l of LIBS){const i=l.docs.findIndex(d=>d.n===name.replace(/\.[^.]+$/,'')||d.n===name||(d.fileId&&name.includes(d.n)));if(i>=0){libId=l.id;docIdx=i;break}}
     const onclick=libId&&docIdx>=0?`onclick="openV('${libId}',${docIdx})"`:''
@@ -851,7 +963,6 @@ function openV(libId,i){const l=LIBS.find(x=>x.id===libId);if(!l||!l.docs[i])ret
     const realName=(d.fn||d.n||'').toLowerCase();
     const realIsPdf=realName.endsWith('.pdf');
     if(realIsPdf){
-      // Fetch as blob and render in iframe
       fetch(BOX+'/files/'+d.fileId+'/content',{headers:{'Authorization':'Bearer '+boxToken}})
         .then(r=>{if(!r.ok)throw new Error(r.status);return r.blob()})
         .then(blob=>{
@@ -861,21 +972,15 @@ function openV(libId,i){const l=LIBS.find(x=>x.id===libId);if(!l||!l.docs[i])ret
           frame.src=url;frame.style.display='block';
         })
         .catch(()=>{
-          document.getElementById('lv-b').textContent='PDF preview not available. The file may require direct Box access.';
+          document.getElementById('lv-b').textContent='PDF preview not available.';
         });
     } else {
-      // Text-based files
       fetch(BOX+'/files/'+d.fileId+'/content',{headers:{'Authorization':'Bearer '+boxToken}})
         .then(r=>{if(!r.ok)throw new Error(r.status);return r.text()})
-        .then(text=>{document.getElementById('lv-b').textContent=text.slice(0,8000)+(text.length>8000?'\n\n[Truncated — '+text.length+' chars total]':'')})
+        .then(text=>{document.getElementById('lv-b').textContent=text.slice(0,8000)+(text.length>8000?'\n\n[Truncated]':'')})
         .catch(()=>{
           boxGet('/files/'+d.fileId+'?fields=name,size,modified_at,description,extension').then(info=>{
-            document.getElementById('lv-b').textContent=
-              'File: '+info.name+'\n'+
-              'Size: '+(info.size>1048576?(info.size/1048576).toFixed(1)+' MB':(info.size/1024|0)+' KB')+'\n'+
-              'Modified: '+(info.modified_at?new Date(info.modified_at).toLocaleString():'')+'\n'+
-              'Type: '+(info.extension||'unknown').toUpperCase()+'\n\n'+
-              (info.description||'No description.');
+            document.getElementById('lv-b').textContent='File: '+info.name+'\nSize: '+(info.size>1048576?(info.size/1048576).toFixed(1)+' MB':(info.size/1024|0)+' KB')+'\nModified: '+(info.modified_at?new Date(info.modified_at).toLocaleString():'')+'\nType: '+(info.extension||'unknown').toUpperCase();
           }).catch(()=>{document.getElementById('lv-b').textContent='Unable to load file content.'});
         });
     }
@@ -898,41 +1003,227 @@ function fmtTime(d){return d.toLocaleTimeString([],{hour:'2-digit',minute:'2-dig
 function expiryLabel(d,n){const left=Math.max(0,n-Math.floor((Date.now()-d.getTime())/86400000));return left<=1?{text:'Expiring',cls:'soon'}:{text:left+'d left',cls:''}}
 
 // View switching
-function showDev(){document.getElementById('main-app').style.display='none';document.getElementById('dev-console').classList.add('active');document.getElementById('btn-dev').classList.add('active');document.getElementById('btn-assist').classList.remove('active');dcRender()}
+function showDev(){document.getElementById('main-app').style.display='none';document.getElementById('dev-console').classList.add('active');document.getElementById('btn-dev').classList.add('active');document.getElementById('btn-assist').classList.remove('active');hmRender()}
 function showAssist(){document.getElementById('main-app').style.display='flex';document.getElementById('dev-console').classList.remove('active');document.getElementById('btn-dev').classList.remove('active');document.getElementById('btn-assist').classList.add('active')}
 
-// Dev console (simplified for brevity — same Box wiring)
-let dcLibs=[],dcSelLib=null;
-function dcUpdateUI(){const ta=document.getElementById('dc-token-area'),st=document.getElementById('dc-status');if(boxConnected){ta.style.display='none';st.style.display='flex';document.getElementById('dc-refresh-btn').style.display='flex';document.getElementById('dc-disconnect-btn').style.display='flex';document.getElementById('dc-root').textContent=dcLibs.length+' hubs'+(boxAgentConfig?' · Agent loaded':'')}else{ta.style.display='flex';st.style.display='none';document.getElementById('dc-refresh-btn').style.display='none';document.getElementById('dc-disconnect-btn').style.display='none';document.getElementById('dc-root').textContent='Powered by Box'}}
-function dcShowBanner(m,t){const b=document.getElementById('dc-banner');b.textContent=m;b.className='dc-banner '+t;b.style.display='block';if(t==='info')setTimeout(()=>b.style.display='none',3000)}
-async function dcConnect(){const t=document.getElementById('dc-token').value.trim();if(!t)return;boxToken=t;try{
-  const me=await boxGet('/users/me');
-  boxConnected=true;dcUpdateUI();
-  dcShowBanner('Connected as '+me.name,'info');
-  showRoleSel();
-  // Try to load AI Studio agent config
+// ═══════════════════════════════════════════
+// HUB MANAGER — Atlas Design System
+// ═══════════════════════════════════════════
+let dcLibs=[],dcSelLib=null,hmView='hubs';
+let dcFolderStack=[{id:'0',name:'All Files'}];
+const SVG_HUB='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>';
+const SVG_FILE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
+const SVG_FOLDER='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>';
+const SVG_UPLOAD='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>';
+
+function hmNav(view){
+  hmView=view;
+  if(view==='hubs')dcSelLib=null;
+  if(view==='browse'){dcFolderStack=[{id:'0',name:'All Files'}];if(boxConnected)hmLoadFolder('0')}
+  hmRender();
+}
+
+function hmShowBanner(msg,type){
+  const b=document.getElementById('hm-banner');
+  b.textContent=msg;b.className='hm-banner show '+type;
+  if(type==='info')setTimeout(()=>{b.className='hm-banner'},3000);
+}
+
+function hmRender(){
+  const total=dcLibs.reduce((a,l)=>a+l.files.length,0);
+  // Sidebar
+  document.getElementById('hm-hub-ct').textContent=dcLibs.length||'0';
+  document.getElementById('hm-side-stats').textContent=boxConnected?total+' files · '+dcLibs.length+' hubs':'Not connected';
+  document.querySelectorAll('.hm-nav').forEach(n=>n.classList.remove('active'));
+  const navId=dcSelLib?'hm-nav-hubs':('hm-nav-'+hmView);
+  document.getElementById(navId)?.classList.add('active');
+  // Topbar
+  hmRenderTopbar();
+  // Panels
+  document.querySelectorAll('.hm-panel').forEach(p=>{p.classList.remove('active');p.style.display='none'});
+  if(dcSelLib){
+    const p=document.getElementById('hm-p-detail');
+    p.style.display='flex';p.classList.add('active');
+    hmRenderDetail();
+  } else if(hmView==='hubs'){
+    const p=document.getElementById('hm-p-hubs');
+    p.style.display='';p.classList.add('active');
+    hmRenderGrid();
+  } else if(hmView==='browse'){
+    const p=document.getElementById('hm-p-browse');
+    p.style.display='';p.classList.add('active');
+  }
+}
+
+function hmRenderTopbar(){
+  const tbr=document.getElementById('hm-tb-right');
+  const titles={hubs:['Hubs','Manage your document hubs'],browse:['Browse Box','Select folders and files from Box']};
+  if(dcSelLib){
+    const lib=dcLibs.find(l=>l.id===dcSelLib);
+    document.getElementById('hm-tb-title').textContent=lib?lib.name:'Hub Detail';
+    document.getElementById('hm-tb-desc').textContent=lib?lib.files.length+' documents':'';
+  } else {
+    const t=titles[hmView]||titles.hubs;
+    document.getElementById('hm-tb-title').textContent=t[0];
+    document.getElementById('hm-tb-desc').textContent=t[1];
+  }
+  if(boxConnected){
+    tbr.innerHTML=`<div class="hm-pill ok"><span class="dot"></span>Connected</div><button class="hm-btn" onclick="hmRefresh()">${SVG_UPLOAD.replace('stroke-width="1.5"','stroke-width="2" width="13" height="13"')} Refresh</button><button class="hm-btn" onclick="dcDisconnect()">Disconnect</button>`;
+  } else {
+    tbr.innerHTML=`<div class="hm-token"><input type="text" id="dc-token" placeholder="Box Developer Token" spellcheck="false"><button class="hm-btn primary" onclick="dcConnect()">Connect</button></div>`;
+  }
+}
+
+function hmRenderGrid(){
+  const wrap=document.getElementById('hm-hub-grid-wrap');
+  if(!dcLibs.length&&!boxConnected){
+    wrap.innerHTML=`<div class="hm-hub-empty"><div class="hm-hub-empty-icon">${SVG_HUB}</div><h3>No hubs yet</h3><p>Connect to Box to load your hubs, or browse folders to create new ones.</p></div>`;
+    return;
+  }
+  if(!dcLibs.length&&boxConnected){
+    wrap.innerHTML=`<div class="hm-sec-head"><div><div class="hm-sec-title">Hubs</div><div class="hm-sec-desc">${dcLibs.length} hubs</div></div><button class="hm-sec-btn" onclick="dcNewHub()">${SVG_HUB.replace('stroke-width="2"','stroke-width="2" width="14" height="14"')} New Hub</button></div><div class="hm-hub-empty"><div class="hm-hub-empty-icon">${SVG_HUB}</div><h3>No hubs found</h3><p>Create a hub or browse Box folders to make one.</p></div>`;
+    return;
+  }
+  let cards=dcLibs.map((l,i)=>{
+    const desc=l.desc||l.files.slice(0,3).map(f=>f.name).join(', ')||'No description';
+    return`<div class="hm-hcard" onclick="dcSelLib='${l.id}';hmRender()" style="animation-delay:${i*40}ms"><div class="hm-hcard-top"><div class="hm-hcard-icon">${SVG_HUB}</div><div class="hm-hcard-name">${l.name}</div><button class="hm-hcard-menu" onclick="event.stopPropagation()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button></div><div class="hm-hcard-desc">${desc}</div><div class="hm-hcard-stats"><strong>${l.files.length}</strong> files</div></div>`;
+  }).join('');
+  cards+=`<div class="hm-hcard-add" onclick="dcNewHub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 5v14M5 12h14"/></svg>New Hub</div>`;
+  wrap.innerHTML=`<div class="hm-sec-head"><div><div class="hm-sec-title">Hubs</div><div class="hm-sec-desc">${dcLibs.length} hubs · ${dcLibs.reduce((a,l)=>a+l.files.length,0)} files</div></div><button class="hm-sec-btn" onclick="dcNewHub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><path d="M12 5v14M5 12h14"/></svg> New Hub</button></div><div class="hm-grid">${cards}</div>`;
+}
+
+function hmRenderDetail(){
+  const lib=dcLibs.find(l=>l.id===dcSelLib);
+  if(!lib)return;
+  // Header bar
+  document.getElementById('hm-detail-bar').innerHTML=`
+    <button class="hm-detail-back" onclick="dcSelLib=null;hmRender()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg></button>
+    <div class="hm-detail-name" id="hm-dn" contenteditable="false" onclick="hmStartRename(this)">${lib.name}</div>
+    <div class="hm-detail-ct">${lib.files.length} docs</div>
+    <div class="hm-detail-id">hub: ${lib.id}</div>
+    <button class="hm-btn danger" onclick="dcDeleteHub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Delete</button>`;
+  // Body
+  const body=document.getElementById('hm-detail-body');
+  let h=`<div class="hm-upload" id="hm-upload-zone" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)" onclick="document.getElementById('dc-file-input').click()"><div class="hm-upload-icon">${SVG_UPLOAD}</div><h3>Drop files here or click to upload</h3><p>PDF, DOCX, TXT, XLSX, MD</p></div>`;
+  if(boxConnected){
+    h+=`<div class="hm-addbox-btn" onclick="hmBrowseForHub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>Add files from Box</div>`;
+  }
+  if(lib.files.length){
+    h+=`<div class="hm-file-label">Documents <span class="hm-file-badge">${lib.files.length}</span></div>`;
+    lib.files.forEach((f,i)=>{
+      const ext=(f.name||'').split('.').pop().toLowerCase();
+      const icoClass=ext==='pdf'?'pdf':['doc','docx'].includes(ext)?'doc':['xls','xlsx','csv'].includes(ext)?'xls':'';
+      h+=`<div class="hm-file" style="animation-delay:${i*30}ms"><div class="hm-file-ico ${icoClass}">${SVG_FILE}</div><div class="hm-file-name" onclick="dcPreviewFile('${f.id}','${(f.name||'').replace(/'/g,"\\'")}')"><span>${f.name}</span></div><div class="hm-file-size">${f.size||''}</div><div class="hm-file-date">${f.date||''}</div><button class="hm-file-del" onclick="dcDelFile('${lib.id}','${f.id}')">×</button></div>`;
+    });
+  } else {
+    h+=`<div style="padding:32px;text-align:center;font-size:13px;color:#909090;background:#fff;border:1px solid #F0F0F0;border-radius:8px">No documents yet. Upload files or add from Box.</div>`;
+  }
+  body.innerHTML=h;
+}
+
+function hmStartRename(el){
+  el.contentEditable='true';el.focus();
+  el.onblur=async()=>{
+    el.contentEditable='false';
+    const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib)return;
+    const newName=el.textContent.trim();if(!newName)return;
+    lib.name=newName;
+    if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'PUT',headers:{'Authorization':'Bearer '+boxToken,'Content-Type':'application/json',...HV},body:JSON.stringify({title:newName})})}catch(e){}}
+    hmSyncToLibs();hmRender();
+  };
+  el.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();el.blur()}};
+}
+
+function hmBrowseForHub(){hmNav('browse')}
+
+// Browse panel
+async function hmLoadFolder(fid){
+  if(!boxConnected)return;
+  const body=document.getElementById('hm-browse-body');
+  // Breadcrumbs
+  let crumbs=dcFolderStack.map((f,i)=>{
+    const cls=i===dcFolderStack.length-1?'hm-crumb current':'hm-crumb';
+    return`<span class="${cls}" onclick="hmNavFolder(${i})">${f.name}</span>`;
+  }).join('<span class="hm-crumb-sep">/</span>');
+  body.innerHTML=`<div class="hm-browse-crumbs">${crumbs}</div><div id="hm-folder-list" style="font-size:13px;color:#909090;padding:24px;text-align:center">Loading...</div>`;
   try{
-    const agents=await boxGet('/ai_agents');
-    if(agents.entries&&agents.entries.length>0){
-      const agent=agents.entries.find(a=>a.name==='ENTERPRISE RAG');
-      if(agent){
-        const full=await boxGet('/ai_agents/'+agent.id+'?fields=ask');
-        if(full.ask)boxAgentConfig=full.ask;
-        dcShowBanner('Connected as '+me.name+' · Agent: ENTERPRISE RAG','info');
+    const res=await boxGet('/folders/'+fid+'/items?fields=name,type,size,modified_at&limit=200');
+    const items=(res.entries||[]).sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name):(a.type==='folder'?-1:1)));
+    let h='';
+    items.forEach((it,i)=>{
+      if(it.type==='folder'){
+        h+=`<div class="hm-folder-item" style="animation-delay:${i*25}ms"><div class="hm-folder-ico dir">${SVG_FOLDER}</div><div class="hm-folder-name" onclick="hmEnterFolder('${it.id}','${it.name.replace(/'/g,"\\'")}')"><span>${it.name}</span></div><button class="hm-folder-make" onclick="event.stopPropagation();dcMakeHub('${it.id}','${it.name.replace(/'/g,"\\'")}')">Make Hub</button></div>`;
       } else {
-        dcShowBanner('Connected as '+me.name+' · ENTERPRISE RAG agent not found','error');
+        const sz=it.size?(it.size>1048576?((it.size/1048576).toFixed(1)+' MB'):((it.size/1024|0)+' KB')):'';
+        h+=`<div class="hm-folder-item" style="animation-delay:${i*25}ms"><div class="hm-folder-ico file">${SVG_FILE}</div><div class="hm-folder-name" style="cursor:default;color:#666">${it.name}</div><div class="hm-folder-size">${sz}</div></div>`;
       }
-    }
-  }catch(e){/* no agents or no access, use default */}
-  await dcLoadLibs();
-}catch(e){boxConnected=false;dcUpdateUI();dcShowBanner('Failed: '+e.message,'error')}}
-function dcDisconnect(){boxToken=null;boxRootId=null;boxHubId=null;boxAgentConfig=null;boxConnected=false;dcLibs=[];dcSelLib=null;dcUpdateUI();dcRender();hideRoleSel();activeRole=ROLES[0];document.getElementById('role-label').textContent='All';LIBS=[...DEMOS[currentDemo].libs];activeIds=new Set(DEMOS[currentDemo].defaultScope);renderAll()}
+    });
+    if(!items.length)h='<div style="padding:40px;text-align:center;font-size:13px;color:#909090">Empty folder</div>';
+    document.getElementById('hm-folder-list').innerHTML=h;
+  }catch(e){
+    document.getElementById('hm-folder-list').innerHTML='<div style="padding:24px;text-align:center;font-size:13px;color:#ED4956">'+e.message+'</div>';
+  }
+}
+
+function hmEnterFolder(id,name){dcFolderStack.push({id,name});hmLoadFolder(id);hmRenderBrowseCrumbs()}
+function hmNavFolder(idx){dcFolderStack=dcFolderStack.slice(0,idx+1);hmLoadFolder(dcFolderStack[idx].id);hmRenderBrowseCrumbs()}
+function hmRenderBrowseCrumbs(){
+  const el=document.querySelector('.hm-browse-crumbs');
+  if(!el)return;
+  el.innerHTML=dcFolderStack.map((f,i)=>{
+    const cls=i===dcFolderStack.length-1?'hm-crumb current':'hm-crumb';
+    return`<span class="${cls}" onclick="hmNavFolder(${i})">${f.name}</span>`;
+  }).join('<span class="hm-crumb-sep">/</span>');
+}
+
+// Sync hub manager state to LIBS (assistant view)
+function hmSyncToLibs(){
+  LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f=>({n:(f.name||'').replace(/\.[^.]+$/,''),d:f.date||'',fileId:f.id,fn:f.name||'',c:''}))}));
+  syncScope();scopeRender();
+}
+
+// Connection
+async function dcConnect(){
+  const t=document.getElementById('dc-token')?.value?.trim();
+  if(!t)return;
+  boxToken=t;
+  try{
+    const me=await boxGet('/users/me');
+    boxConnected=true;
+    hmShowBanner('Connected as '+me.name,'info');
+    showRoleSel();
+    try{
+      const agents=await boxGet('/ai_agents');
+      if(agents.entries?.length){
+        const agent=agents.entries.find(a=>a.name==='ENTERPRISE RAG');
+        if(agent){
+          const full=await boxGet('/ai_agents/'+agent.id+'?fields=ask');
+          if(full.ask)boxAgentConfig=full.ask;
+          hmShowBanner('Connected as '+me.name+' · Agent: ENTERPRISE RAG','info');
+        } else {
+          hmShowBanner('Connected — ENTERPRISE RAG agent not found','error');
+        }
+      }
+    }catch(e){}
+    await dcLoadLibs();
+  }catch(e){
+    boxConnected=false;hmShowBanner('Connection failed: '+e.message,'error');hmRender();
+  }
+}
+
+function dcDisconnect(){
+  boxToken=null;boxRootId=null;boxHubId=null;boxAgentConfig=null;boxConnected=false;
+  dcLibs=[];dcSelLib=null;hmView='hubs';
+  hideRoleSel();activeRole=ROLES[0];document.getElementById('role-label').textContent='All';
+  LIBS=[...DEMOS[currentDemo].libs];activeIds=new Set(DEMOS[currentDemo].defaultScope);
+  renderAll();hmRender();
+}
+
 async function dcLoadLibs(){
   dcLibs=[];
   try{
     const hubs=await boxGet('/hubs',HV);
     for(const hub of (hubs.entries||[])){
-      // Get files inside each hub
       let files=[];
       try{
         const items=await boxGet('/hub_items?hub_id='+hub.id,HV);
@@ -944,10 +1235,8 @@ async function dcLoadLibs(){
       }catch(e){}
       dcLibs.push({id:hub.id,name:hub.title||hub.name||'Untitled',desc:hub.description||'',files});
     }
-  }catch(e){dcShowBanner('Could not load hubs: '+e.message,'error')}
-  dcRender();
-  // Map hubs to LIBS format for the assistant view
-  LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f=>({n:f.name.replace(/\.[^.]+$/,''),d:f.date,fileId:f.id,fn:f.name,c:''}))}));
+  }catch(e){hmShowBanner('Could not load hubs: '+e.message,'error')}
+  hmSyncToLibs();
   if(LIBS.length){
     activeIds=new Set(LIBS.map(l=>l.id));
     scopePresets=[{name:'All Hubs',color:DEMOS[currentDemo].ac,ids:LIBS.map(l=>l.id)}];
@@ -955,30 +1244,33 @@ async function dcLoadLibs(){
   }
   syncScope();scopeRender();
   S.ws=[];S.saved=[];S.wc=0;renderWs();renderSaved();
+  hmRender();
 }
-function dcRender(){const total=dcLibs.reduce((a,l)=>a+l.files.length,0);document.getElementById('dc-lib-list').innerHTML=dcLibs.length?dcLibs.map(l=>`<div class="dc-lib ${dcSelLib===l.id?'active':''}" onclick="dcSelLib='${l.id}';dcRender()"><div class="dc-lib-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="dc-lib-name">${l.name}</div><div class="dc-lib-count">${l.files.length}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-size:13px;color:#909090">'+(boxConnected?'No hubs yet. Create one to get started.':'Connect to Box to manage hubs.')+'</div>';document.getElementById('dc-master-foot').textContent=boxConnected?`${total} files · ${dcLibs.length} hubs`:'Disconnected';
-const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib){document.getElementById('dc-empty').style.display='flex';document.getElementById('dc-detail-inner').style.display='none';return}document.getElementById('dc-empty').style.display='none';document.getElementById('dc-detail-inner').style.display='flex';document.getElementById('dc-dh-name').textContent=lib.name;document.getElementById('dc-dh-count').textContent=lib.files.length+' docs';document.getElementById('dc-dh-id').textContent='hub: '+lib.id;document.getElementById('dc-file-list').innerHTML=lib.files.map(f=>`<div class="dc-file"><div class="dc-file-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="dc-file-name" onclick="dcPreviewFile('${f.id}','${f.name.replace(/'/g,"\\'")}')">${f.name}</div><div class="dc-file-size">${f.size}</div><div class="dc-file-date">${f.date}</div><button class="dc-file-del" onclick="dcDelFile('${lib.id}','${f.id}')">×</button></div>`).join('')||'<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Drop files here or click upload to add documents to this hub.</div>'}
+
+async function hmRefresh(){if(boxConnected){await dcLoadLibs();hmShowBanner('Refreshed','info')}}
+
+// New Hub modal
 let dcModalFolder='0',dcModalPath=[{id:'0',name:'All Files'}],dcModalSelected=new Map();
 function dcNewHub(){
   dcModalFolder='0';dcModalPath=[{id:'0',name:'All Files'}];dcModalSelected=new Map();
   let m=document.getElementById('dc-modal');if(m)m.remove();
   m=document.createElement('div');m.id='dc-modal';
-  m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;display:flex;align-items:center;justify-content:center';
-  m.innerHTML=`<div style="background:#fff;border-radius:12px;width:520px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.25);overflow:hidden">
+  m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+  m.innerHTML=`<div style="background:#fff;border-radius:12px;width:520px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.2);font-family:'Lato',sans-serif;overflow:hidden">
     <div style="padding:20px 24px 0;flex-shrink:0">
-      <div style="font-size:16px;font-weight:700;color:#222;margin-bottom:16px">Create Hub</div>
-      <input id="dc-m-name" placeholder="Hub name" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box;outline:none;margin-bottom:8px">
-      <input id="dc-m-desc" placeholder="Description (optional)" style="width:100%;padding:8px 12px;border:1px solid #ddd;border-radius:6px;font-size:13px;box-sizing:border-box;outline:none;color:#666">
+      <div style="font-size:16px;font-weight:900;color:#222;margin-bottom:16px">Create Hub</div>
+      <input id="dc-m-name" placeholder="Hub name" style="width:100%;padding:10px 14px;border:1px solid #E4E4E4;border-radius:6px;font-size:13px;box-sizing:border-box;outline:none;margin-bottom:8px;font-family:'Lato',sans-serif">
+      <input id="dc-m-desc" placeholder="Description (optional)" style="width:100%;padding:10px 14px;border:1px solid #E4E4E4;border-radius:6px;font-size:13px;box-sizing:border-box;outline:none;color:#666;font-family:'Lato',sans-serif">
     </div>
-    <div style="padding:12px 24px 4px;font-size:11px;font-weight:600;color:#666;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+    <div style="padding:14px 24px 6px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#909090;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
       <span>Add content from Box</span><span id="dc-m-sel-count" style="color:#0061D5"></span>
     </div>
-    <div id="dc-m-crumbs" style="padding:0 24px 6px;font-size:11px;flex-shrink:0"></div>
-    <div id="dc-m-browser" style="flex:1;overflow-y:auto;border-top:1px solid #eee;border-bottom:1px solid #eee;min-height:180px;max-height:300px"></div>
-    <div id="dc-m-chips" style="padding:6px 24px;max-height:52px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0"></div>
-    <div style="padding:12px 24px 16px;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0">
-      <button onclick="document.getElementById('dc-modal').remove()" style="padding:8px 18px;border:1px solid #ddd;border-radius:6px;background:#fff;font-size:12px;cursor:pointer;color:#666">Cancel</button>
-      <button onclick="dcCreateHub()" id="dc-m-create" style="padding:8px 18px;border:none;border-radius:6px;background:#0061D5;color:#fff;font-size:12px;cursor:pointer;font-weight:600">Create Hub</button>
+    <div id="dc-m-crumbs" style="padding:0 24px 6px;font-size:12px;flex-shrink:0"></div>
+    <div id="dc-m-browser" style="flex:1;overflow-y:auto;border-top:1px solid #F0F0F0;border-bottom:1px solid #F0F0F0;min-height:180px;max-height:300px"></div>
+    <div id="dc-m-chips" style="padding:8px 24px;max-height:52px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0"></div>
+    <div style="padding:14px 24px 18px;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;border-top:1px solid #F0F0F0">
+      <button onclick="document.getElementById('dc-modal').remove()" style="padding:9px 20px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;font-size:12px;cursor:pointer;color:#666;font-family:'Lato',sans-serif;font-weight:700">Cancel</button>
+      <button onclick="dcCreateHub()" style="padding:9px 20px;border:none;border-radius:6px;background:#0061D5;color:#fff;font-size:12px;cursor:pointer;font-family:'Lato',sans-serif;font-weight:700">Create Hub</button>
     </div>
   </div>`;
   document.body.appendChild(m);
@@ -987,102 +1279,89 @@ function dcNewHub(){
   if(boxConnected)dcModalLoadFolder('0');
   else document.getElementById('dc-m-browser').innerHTML='<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Connect to Box to browse files</div>';
 }
+
 async function dcModalLoadFolder(fid){
   dcModalFolder=fid;
   const browser=document.getElementById('dc-m-browser');
   browser.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:#909090">Loading...</div>';
-  document.getElementById('dc-m-crumbs').innerHTML=dcModalPath.map((p,i)=>`<span style="cursor:pointer;${i===dcModalPath.length-1?'font-weight:600;color:#222':'color:#0061D5'}" onclick="dcModalNav(${i})">${p.name}</span>`).join(' <span style="color:#ccc">/</span> ');
+  document.getElementById('dc-m-crumbs').innerHTML=dcModalPath.map((p,i)=>`<span style="cursor:pointer;${i===dcModalPath.length-1?'font-weight:700;color:#222':'color:#0061D5'}" onclick="dcModalNav(${i})">${p.name}</span>`).join(' <span style="color:#C4C4C4">/</span> ');
   try{
     const res=await boxGet('/folders/'+fid+'/items?fields=name,type,size,modified_at&limit=200');
     const items=(res.entries||[]).sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name):(a.type==='folder'?-1:1)));
     let h='';
     items.forEach(it=>{
       const checked=dcModalSelected.has(it.id);
-      const icon=it.type==='folder'
-        ?'<svg viewBox="0 0 24 24" fill="none" stroke="#0061D5" stroke-width="1.5" width="15" height="15"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>'
-        :'<svg viewBox="0 0 24 24" fill="none" stroke="#909090" stroke-width="1.5" width="15" height="15"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>';
-      const size=it.type==='file'&&it.size?(it.size>1048576?((it.size/1048576).toFixed(1)+'MB'):((it.size/1024|0)+'KB')):'';
-      h+=`<div style="padding:6px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #f5f5f5;font-size:12px;${checked?'background:#f0f6ff':''}">
-        <input type="checkbox" ${checked?'checked':''} onchange="dcModalToggle('${it.id}','${it.name.replace(/'/g,"\\'")}','${it.type}',this.checked)" style="accent-color:#0061D5;flex-shrink:0;cursor:pointer">
-        <div style="display:flex;align-items:center;gap:6px;flex:1;min-width:0;${it.type==='folder'?'cursor:pointer':''}" ${it.type==='folder'?`onclick="dcModalEnter('${it.id}','${it.name.replace(/'/g,"\\'")}')"`:''}>
-          ${icon}<span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#333">${it.name}</span>
+      const icon=it.type==='folder'?SVG_FOLDER.replace('stroke="currentColor"','stroke="#0061D5"'):SVG_FILE.replace('stroke="currentColor"','stroke="#909090"');
+      const size=it.type==='file'&&it.size?(it.size>1048576?((it.size/1048576).toFixed(1)+' MB'):((it.size/1024|0)+' KB')):'';
+      h+=`<div style="padding:8px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #F5F5F5;font-size:12px;${checked?'background:#F0F6FF':''}">
+        <input type="checkbox" ${checked?'checked':''} onchange="dcModalToggle('${it.id}','${it.name.replace(/'/g,"\\'")}','${it.type}',this.checked)" style="accent-color:#0061D5;flex-shrink:0;cursor:pointer;width:15px;height:15px">
+        <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;${it.type==='folder'?'cursor:pointer':''}" ${it.type==='folder'?`onclick="dcModalEnter('${it.id}','${it.name.replace(/'/g,"\\'")}')"`:''}>
+          <span style="flex-shrink:0;width:16px;height:16px;display:flex;align-items:center">${icon}</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#333">${it.name}</span>
         </div>
-        <span style="font-size:11px;color:#bbb;flex-shrink:0">${size}</span>
+        <span style="font-size:11px;color:#C4C4C4;flex-shrink:0">${size}</span>
       </div>`;
     });
     if(!items.length)h='<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Empty folder</div>';
     browser.innerHTML=h;
-  }catch(e){browser.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:red">'+e.message+'</div>'}
+  }catch(e){browser.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:#ED4956">'+e.message+'</div>'}
 }
 function dcModalToggle(id,name,type,checked){if(checked)dcModalSelected.set(id,{name,type});else dcModalSelected.delete(id);dcModalUpdateChips()}
 function dcModalEnter(id,name){dcModalPath.push({id,name});dcModalLoadFolder(id)}
 function dcModalNav(idx){dcModalPath=dcModalPath.slice(0,idx+1);dcModalLoadFolder(dcModalPath[idx].id)}
 function dcModalUpdateChips(){
   document.getElementById('dc-m-sel-count').textContent=dcModalSelected.size?dcModalSelected.size+' selected':'';
-  document.getElementById('dc-m-chips').innerHTML=[...dcModalSelected.entries()].map(([id,v])=>`<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:#f0f6ff;border:1px solid #cce0ff;border-radius:12px;font-size:11px;color:#0061D5">${v.type==='folder'?'📁':'📄'} ${v.name}<span onclick="dcModalSelected.delete('${id}');dcModalUpdateChips();dcModalLoadFolder(dcModalFolder)" style="cursor:pointer;opacity:.5;margin-left:2px">×</span></span>`).join('');
+  document.getElementById('dc-m-chips').innerHTML=[...dcModalSelected.entries()].map(([id,v])=>`<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#E8F1FD;border:1px solid #cce0ff;border-radius:14px;font-size:11px;color:#0061D5;font-weight:700">${v.type==='folder'?'📁':'📄'} ${v.name}<span onclick="dcModalSelected.delete('${id}');dcModalUpdateChips();dcModalLoadFolder(dcModalFolder)" style="cursor:pointer;opacity:.5;margin-left:2px">×</span></span>`).join('');
 }
+
 async function dcCreateHub(){
   const name=(document.getElementById('dc-m-name')?.value||'').trim();
   if(!name){document.getElementById('dc-m-name').style.borderColor='#ED4956';document.getElementById('dc-m-name').focus();return}
   const desc=(document.getElementById('dc-m-desc')?.value||'').trim();
   document.getElementById('dc-modal')?.remove();
   if(boxConnected){
-  try{
-    dcShowBanner('Creating hub "'+name+'"...','info');
-    const hub=await boxPost('/hubs',{title:name,description:desc,is_ai_enabled:true},HV);
-    // Resolve selected folders to files, collect all file items
-    const fileItems=[];
-    for(const [id,v] of dcModalSelected){
-      if(v.type==='file'){fileItems.push({id,name:v.name})}
-      else if(v.type==='folder'){
-        try{const fRes=await boxGet('/folders/'+id+'/items?fields=name,type,size,modified_at&limit=200');
-        (fRes.entries||[]).filter(e=>e.type==='file').forEach(f=>fileItems.push({id:f.id,name:f.name,size:f.size,date:f.modified_at}))}catch(e){}
+    try{
+      hmShowBanner('Creating hub "'+name+'"...','info');
+      const hub=await boxPost('/hubs',{title:name,description:desc,is_ai_enabled:true},HV);
+      const fileItems=[];
+      for(const [id,v] of dcModalSelected){
+        if(v.type==='file'){fileItems.push({id,name:v.name})}
+        else if(v.type==='folder'){
+          try{const fRes=await boxGet('/folders/'+id+'/items?fields=name,type,size,modified_at&limit=200');
+          (fRes.entries||[]).filter(e=>e.type==='file').forEach(f=>fileItems.push({id:f.id,name:f.name,size:f.size,date:f.modified_at}))}catch(e){}
+        }
       }
-    }
-    // Add files to hub
-    if(fileItems.length){
-      try{await boxPost('/hub_items',{hub_id:hub.id,items:fileItems.map(f=>({type:'file',id:f.id}))},HV)}catch(e){dcShowBanner('Hub created but some files failed to add','error')}
-    }
-    dcLibs.push({id:hub.id,name:hub.title,desc:desc,files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+'KB'):'',date:f.date?new Date(f.date).toLocaleDateString():''}))});
-    dcSelLib=hub.id;
-    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));
-    syncScope();scopeRender();dcUpdateUI();
-    dcShowBanner('Hub "'+name+'" created with '+fileItems.length+' files','info');
-  }catch(e){dcShowBanner('Create hub failed: '+e.message,'error')}
-}else{dcLibs.push({id:'h'+Date.now(),name:name,desc:desc,files:[]});dcSelLib=dcLibs[dcLibs.length-1].id}dcRender()}
-async function dcDeleteHub(){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!confirm('Delete hub "'+lib.name+'"?'))return;if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken,...HV}})}catch(e){dcShowBanner('Delete failed: '+e.message,'error');return}}dcLibs=dcLibs.filter(l=>l.id!==dcSelLib);dcSelLib=null;LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));syncScope();scopeRender();dcRender()}
-async function dcDelFile(hubId,fid){const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;if(boxConnected){try{await boxDel('/files/'+fid)}catch(e){}}lib.files=lib.files.filter(f=>f.id!==fid);dcRender();LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));syncScope();scopeRender()}
-function dcStartRename(el){el.contentEditable='true';el.focus();el.onblur=async()=>{el.contentEditable='false';const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib)return;const newName=el.textContent.trim();lib.name=newName;if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'PUT',headers:{'Authorization':'Bearer '+boxToken,'Content-Type':'application/json',...HV},body:JSON.stringify({title:newName})})}catch(e){}}dcRender()};el.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();el.blur()}}}
-
-// ═══ FOLDER BROWSER ═══
-let dcBrowsing=false,dcFolderStack=[{id:'0',name:'All Files'}];
-function dcToggleBrowser(){dcBrowsing=!dcBrowsing;if(dcBrowsing){dcFolderStack=[{id:'0',name:'All Files'}];dcLoadFolder('0')}else{document.getElementById('dc-empty').innerHTML='<span style="font-size:13px;color:#909090">Select a hub to manage its documents.</span>'}}
-async function dcLoadFolder(fid){
-  if(!boxConnected)return;
-  const el=document.getElementById('dc-empty');
-  el.innerHTML='<span style="font-size:12px;color:#909090">Loading...</span>';
-  try{
-    const res=await boxGet('/folders/'+fid+'/items?fields=name,type,size,modified_at&limit=200');
-    const items=(res.entries||[]).sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name):(a.type==='folder'?-1:1)));
-    const crumbs=dcFolderStack.map((f,i)=>`<span style="cursor:pointer;${i===dcFolderStack.length-1?'font-weight:600':'color:#0061D5'}" onclick="dcNavFolder(${i})">${f.name}</span>`).join(' <span style="color:#ccc">/</span> ');
-    let h=`<div style="width:100%;max-width:100%;padding:0"><div style="padding:10px 16px;font-size:11px;border-bottom:1px solid #ddd;display:flex;align-items:center;justify-content:space-between">${crumbs}<button onclick="dcToggleBrowser()" style="background:none;border:none;color:#909090;cursor:pointer;font-size:16px">×</button></div><div class="dc-folder-panel" style="border:none;border-radius:0;max-height:none;flex:1;overflow-y:auto">`;
-    items.forEach(it=>{
-      if(it.type==='folder'){
-        h+=`<div class="dc-folder-item"><div class="dc-folder-name" onclick="dcEnterFolder('${it.id}','${it.name.replace(/'/g,"\\'")}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>${it.name}</div><button class="dc-make-hub" onclick="dcMakeHub('${it.id}','${it.name.replace(/'/g,"\\'")}')">Make Hub</button></div>`;
-      } else {
-        h+=`<div class="dc-folder-item"><div class="dc-folder-name"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#909090"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span style="color:#666">${it.name}</span></div></div>`;
+      if(fileItems.length){
+        try{await boxPost('/hub_items',{hub_id:hub.id,items:fileItems.map(f=>({type:'file',id:f.id}))},HV)}catch(e){hmShowBanner('Hub created but some files failed to add','error')}
       }
-    });
-    if(!items.length)h+='<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Empty folder</div>';
-    h+='</div></div>';
-    el.style.display='flex';el.style.flexDirection='column';el.style.alignItems='stretch';
-    el.innerHTML=h;
-  }catch(e){el.innerHTML='<span style="font-size:12px;color:red">Error: '+e.message+'</span>'}
+      dcLibs.push({id:hub.id,name:hub.title,desc:desc,files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.date?new Date(f.date).toLocaleDateString():''}))});
+      dcSelLib=hub.id;
+      hmSyncToLibs();hmRender();
+      hmShowBanner('Hub "'+name+'" created with '+fileItems.length+' files','info');
+    }catch(e){hmShowBanner('Create hub failed: '+e.message,'error')}
+  } else {
+    dcLibs.push({id:'h'+Date.now(),name:name,desc:desc,files:[]});
+    dcSelLib=dcLibs[dcLibs.length-1].id;
+    hmRender();
+  }
 }
-function dcEnterFolder(id,name){dcFolderStack.push({id,name});dcLoadFolder(id)}
-function dcNavFolder(idx){dcFolderStack=dcFolderStack.slice(0,idx+1);dcLoadFolder(dcFolderStack[idx].id)}
+
+async function dcDeleteHub(){
+  const lib=dcLibs.find(l=>l.id===dcSelLib);
+  if(!lib||!confirm('Delete hub "'+lib.name+'"?'))return;
+  if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken,...HV}})}catch(e){hmShowBanner('Delete failed: '+e.message,'error');return}}
+  dcLibs=dcLibs.filter(l=>l.id!==dcSelLib);dcSelLib=null;
+  hmSyncToLibs();hmRender();
+}
+
+async function dcDelFile(hubId,fid){
+  const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;
+  if(boxConnected){try{await boxDel('/files/'+fid)}catch(e){}}
+  lib.files=lib.files.filter(f=>f.id!==fid);
+  hmSyncToLibs();hmRender();
+}
+
 async function dcMakeHub(folderId,folderName){
-  dcShowBanner('Creating hub from "'+folderName+'"...','info');
+  hmShowBanner('Creating hub from "'+folderName+'"...','info');
   try{
     const hub=await boxPost('/hubs',{title:folderName,description:'Created from folder',is_ai_enabled:true},HV);
     const files=await boxGet('/folders/'+folderId+'/items?fields=name,type,size,modified_at&limit=200');
@@ -1090,21 +1369,44 @@ async function dcMakeHub(folderId,folderName){
     if(fileItems.length){
       await boxPost('/hub_items',{hub_id:hub.id,items:fileItems.map(f=>({type:'file',id:f.id}))},HV);
     }
-    dcLibs.push({id:hub.id,name:hub.title,desc:'',files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+'KB'):'',date:f.modified_at?new Date(f.modified_at).toLocaleDateString():''}))});
+    dcLibs.push({id:hub.id,name:hub.title,desc:'',files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.modified_at?new Date(f.modified_at).toLocaleDateString():''}))});
     dcSelLib=hub.id;
-    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));
-    syncScope();scopeRender();dcUpdateUI();
-    dcBrowsing=false;dcRender();
-    dcShowBanner('Hub "'+folderName+'" created with '+fileItems.length+' files','info');
-  }catch(e){dcShowBanner('Failed: '+e.message,'error')}
+    hmSyncToLibs();hmRender();
+    hmShowBanner('Hub "'+folderName+'" created with '+fileItems.length+' files','info');
+  }catch(e){hmShowBanner('Failed: '+e.message,'error')}
 }
+
 function dcHandleDrop(e){dcHandleFiles(e.dataTransfer.files)}
+async function dcHandleFiles(fl){
+  const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!fl.length)return;
+  if(boxConnected){
+    for(const f of Array.from(fl)){
+      try{
+        const form=new FormData();
+        form.append('attributes',JSON.stringify({name:f.name,parent:{id:'0'}}));
+        form.append('file',f);
+        const r=await fetch(BOX_UPLOAD+'/files/content',{method:'POST',headers:{'Authorization':'Bearer '+boxToken},body:form});
+        if(!r.ok)throw new Error(r.status);
+        const data=await r.json();const uploaded=data.entries[0];
+        try{await boxPost('/hub_items',{hub_id:lib.id,items:[{type:'file',id:uploaded.id}]},HV)}catch(e){hmShowBanner('Upload ok but hub add failed: '+e.message,'error')}
+        lib.files.push({id:uploaded.id,name:uploaded.name,size:f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024|0)+' KB',date:'Just now'});
+      }catch(e){hmShowBanner('Upload failed: '+e.message,'error')}
+    }
+  } else {
+    for(const f of Array.from(fl))lib.files.push({id:'f'+Date.now()+Math.random(),name:f.name,size:(f.size/1024|0)+' KB',date:'Just now'});
+  }
+  hmSyncToLibs();hmRender();
+  document.getElementById('dc-file-input').value='';
+}
+
 async function dcPreviewFile(fileId,fileName){
   if(!boxConnected)return;
-  let ov=document.getElementById('dc-preview-overlay');
-  if(!ov){ov=document.createElement('div');ov.id='dc-preview-overlay';ov.style.cssText='position:absolute;inset:0;background:#fff;z-index:50;display:flex;flex-direction:column';document.getElementById('dc-detail').appendChild(ov)}
-  ov.innerHTML=`<div style="padding:10px 16px;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;justify-content:space-between;flex-shrink:0"><div style="font-size:13px;font-weight:600;color:#222">${fileName}</div><button onclick="document.getElementById('dc-preview-overlay').remove()" style="background:none;border:none;font-size:18px;cursor:pointer;color:#909090;padding:0 4px">×</button></div><div style="flex:1;overflow:auto;padding:0;min-height:0" id="dc-preview-body"><div style="padding:24px;text-align:center;font-size:12px;color:#909090">Loading...</div></div>`;
-  ov.style.display='flex';
+  const panel=document.getElementById('hm-p-detail');
+  let ov=document.getElementById('hm-preview-ov');
+  if(ov)ov.remove();
+  ov=document.createElement('div');ov.id='hm-preview-ov';ov.className='hm-preview';
+  ov.innerHTML=`<div class="hm-preview-head"><div class="hm-preview-title">${fileName}</div><button class="hm-preview-close" onclick="document.getElementById('hm-preview-ov').remove()">×</button></div><div class="hm-preview-body" id="hm-preview-body"><div style="padding:24px;text-align:center;font-size:12px;color:#909090">Loading...</div></div>`;
+  panel.appendChild(ov);
   const isPdf=fileName.toLowerCase().endsWith('.pdf');
   try{
     const r=await fetch(BOX+'/files/'+fileId+'/content',{headers:{'Authorization':'Bearer '+boxToken}});
@@ -1112,41 +1414,16 @@ async function dcPreviewFile(fileId,fileName){
     if(isPdf){
       const blob=await r.blob();
       const url=URL.createObjectURL(new Blob([blob],{type:'application/pdf'}));
-      document.getElementById('dc-preview-body').innerHTML='<iframe src="'+url+'" style="width:100%;height:100%;border:none"></iframe>';
+      document.getElementById('hm-preview-body').innerHTML='<iframe src="'+url+'" style="width:100%;height:100%;border:none"></iframe>';
     }else{
       const text=await r.text();
-      document.getElementById('dc-preview-body').innerHTML='<pre style="padding:16px;font-size:12px;font-family:Consolas,monospace;white-space:pre-wrap;color:#333;margin:0">'+text.slice(0,10000).replace(/</g,'&lt;')+(text.length>10000?'\n\n[Truncated]':'')+'</pre>';
+      document.getElementById('hm-preview-body').innerHTML='<pre style="padding:20px;font-size:12px;font-family:Consolas,monospace;white-space:pre-wrap;color:#333;margin:0">'+text.slice(0,10000).replace(/</g,'&lt;')+(text.length>10000?'\n\n[Truncated]':'')+'</pre>';
     }
-  }catch(e){document.getElementById('dc-preview-body').innerHTML='<div style="padding:24px;text-align:center;font-size:12px;color:red">'+e.message+'</div>'}
+  }catch(e){document.getElementById('hm-preview-body').innerHTML='<div style="padding:24px;text-align:center;font-size:12px;color:#ED4956">'+e.message+'</div>'}
 }
-async function dcHandleFiles(fl){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!fl.length)return;
-  if(boxConnected){
-    for(const f of Array.from(fl)){
-      try{
-        // Upload file to Box root, then add to hub
-        const form=new FormData();
-        form.append('attributes',JSON.stringify({name:f.name,parent:{id:'0'}}));
-        form.append('file',f);
-        const r=await fetch(BOX_UPLOAD+'/files/content',{method:'POST',headers:{'Authorization':'Bearer '+boxToken},body:form});
-        if(!r.ok)throw new Error(r.status);
-        const data=await r.json();
-        const uploaded=data.entries[0];
-        // Add file to this hub
-        try{await boxPost('/hub_items',{hub_id:lib.id,items:[{type:'file',id:uploaded.id}]},HV)}catch(e){dcShowBanner('Upload ok but hub add failed: '+e.message,'error')}
-        lib.files.push({id:uploaded.id,name:uploaded.name,size:f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024|0)+' KB',date:'Just now'});
-      }catch(e){dcShowBanner('Upload failed: '+e.message,'error')}
-    }
-    dcRender();
-    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,fn:f2.name,c:''}))}));
-    syncScope();scopeRender();
-  } else {
-    for(const f of Array.from(fl))lib.files.push({id:'f'+Date.now()+Math.random(),name:f.name,size:(f.size/1024|0)+' KB',date:'Just now'});
-    dcRender();
-  }
-  document.getElementById('dc-file-input').value=''}
-async function dcRefresh(){if(boxConnected){await dcLoadLibs();dcShowBanner('Refreshed','info')}}
 
-init();dcUpdateUI();
+// Init
+init();hmRender();
 document.querySelector('.cards-track')?.addEventListener('wheel',function(e){if(Math.abs(e.deltaY)>Math.abs(e.deltaX)){e.preventDefault();this.scrollLeft+=e.deltaY}},{passive:false});
 document.querySelector('.cards-track')?.addEventListener('scroll',scopeUpdateFades);
 document.addEventListener('click',e=>{if(!e.target.closest('.avatar'))document.getElementById('av-menu').classList.remove('open');if(scopePickerOpen&&!e.target.closest('#scope-add-btn'))scopeClosePicker();if(!e.target.closest('.demo-sel'))closeDemoDD();if(scopeOpenMenu!==null&&!e.target.closest('.preset-menu')){scopeOpenMenu=null;scopeRenderPresets()}});
