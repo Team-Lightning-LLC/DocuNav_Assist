@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Black Box Manufacturing</title>
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -324,70 +324,71 @@ button{font-family:var(--f);cursor:pointer}
 .setting-toggle::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:transform .15s}
 .setting-toggle.on::after{transform:translateX(16px)}
 
-/* ═══ DEV CONSOLE (stays dark) ═══ */
-.dev-console{display:none;flex-direction:column;flex:1;min-height:0;overflow:hidden;background:#0a090e}
+/* ═══ HUB MANAGER (Box aesthetic) ═══ */
+.dev-console{display:none;flex-direction:column;flex:1;min-height:0;overflow:hidden;background:#F5F7FA}
 .dev-console.active{display:flex}
 .dev-console *{transition:none!important}
-.dc-bar{height:38px;background:#111019;border-bottom:1px solid #1e1c2e;display:flex;align-items:center;padding:0 16px;flex-shrink:0}
-.dc-bar-left{display:flex;align-items:center;gap:8px}
-.dc-label{font-family:var(--mono);font-size:12px;font-weight:600;color:#a9a7b8}
-.dc-sep{color:#2e2d40}
-.dc-root{font-family:var(--mono);font-size:10px;color:#6e6c82}
+.dc-bar{height:48px;background:#fff;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;padding:0 20px;flex-shrink:0}
+.dc-bar-left{display:flex;align-items:center;gap:10px}
+.dc-label{font-family:'Lato',sans-serif;font-size:14px;font-weight:700;color:#222}
+.dc-sep{color:#E4E4E4}
+.dc-root{font-size:11px;color:#909090}
 .dc-bar-right{display:flex;align-items:center;gap:8px;margin-left:auto}
-.dc-status{font-family:var(--mono);font-size:10px;color:#6e6c82;display:flex;align-items:center;gap:5px}
-.dc-dot{width:6px;height:6px;border-radius:50%;background:#3d3b54}
-.dc-dot-on{background:#a78bfa}
-.dc-btn{padding:4px 10px;font-family:var(--mono);font-size:10px;font-weight:500;border:1px solid #232232;border-radius:4px;background:#111019;color:#6e6c82;display:flex;align-items:center;gap:4px;cursor:pointer}
-.dc-btn:hover{background:#1a1924;color:#a9a7b8;border-color:#2e2d40}
-.dc-btn-ac{background:#7c3aed;color:#fff;border-color:#7c3aed}
-.dc-btn-ac:hover{background:#6d28d9}
-.dc-btn-danger{color:#ef4444;border-color:#7f1d1d}
-.dc-btn-danger:hover{background:#7f1d1d22;color:#fca5a5}
+.dc-status{font-size:11px;font-weight:700;color:#26C281;display:flex;align-items:center;gap:5px}
+.dc-dot{width:6px;height:6px;border-radius:50%;background:#C4C4C4}
+.dc-dot-on{background:#26C281}
+.dc-btn{padding:5px 12px;font-family:'Lato',sans-serif;font-size:11px;font-weight:700;border:1px solid #E4E4E4;border-radius:6px;background:#fff;color:#4A4A4A;display:flex;align-items:center;gap:4px;cursor:pointer}
+.dc-btn:hover{background:#F5F7FA;border-color:#0061D5;color:#0061D5}
+.dc-btn-ac{background:#0061D5;color:#fff;border-color:#0061D5}
+.dc-btn-ac:hover{background:#004EAA}
+.dc-btn-danger{color:#ED4956;border-color:#E4E4E4}
+.dc-btn-danger:hover{background:#FDE8EA;border-color:#ED4956}
 .dc-body{flex:1;display:flex;min-height:0;overflow:hidden}
-.dc-master{width:260px;min-width:260px;border-right:1px solid #1e1c2e;display:flex;flex-direction:column;min-height:0}
-.dc-master-head{padding:10px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1e1c2e}
-.dc-mh-label{font-family:var(--mono);font-size:11px;font-weight:600;color:#6e6c82}
-.dc-lib-list{flex:1;overflow-y:auto;padding:4px 6px}
-.dc-lib{padding:8px 10px;border-radius:4px;cursor:pointer;display:flex;align-items:center;gap:8px;margin-bottom:1px;color:#a9a7b8}
-.dc-lib:hover{background:#111019}
-.dc-lib.active{background:rgba(124,58,237,0.08);border:1px solid rgba(124,58,237,0.15)}
-.dc-lib-icon{color:#4a4860;flex-shrink:0}
+.dc-master{width:260px;min-width:260px;border-right:1px solid #E4E4E4;display:flex;flex-direction:column;min-height:0;background:#fff}
+.dc-master-head{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E4E4E4}
+.dc-mh-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#909090}
+.dc-lib-list{flex:1;overflow-y:auto;padding:6px 8px}
+.dc-lib{padding:9px 12px;border-radius:6px;cursor:pointer;display:flex;align-items:center;gap:9px;margin-bottom:2px;color:#4A4A4A;font-size:13px}
+.dc-lib:hover{background:#F5F7FA}
+.dc-lib.active{background:#E8F1FD;color:#0061D5;font-weight:700}
+.dc-lib-icon{color:#909090;flex-shrink:0}
 .dc-lib-icon svg{width:14px;height:14px}
-.dc-lib-name{font-family:var(--mono);font-size:12px;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dc-lib-count{font-family:var(--mono);font-size:10px;color:#4a4860;flex-shrink:0}
-.dc-master-foot{padding:10px 12px;border-top:1px solid #1e1c2e;font-family:var(--mono);font-size:10px;color:#4a4860}
-.dc-detail{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden}
-.dc-empty{display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--mono);font-size:12px;color:#4a4860}
+.dc-lib.active .dc-lib-icon{color:#0061D5}
+.dc-lib-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-lib-count{font-size:10px;color:#909090;flex-shrink:0;font-weight:700}
+.dc-master-foot{padding:10px 14px;border-top:1px solid #E4E4E4;font-size:11px;color:#909090}
+.dc-detail{flex:1;display:flex;flex-direction:column;min-height:0;overflow:hidden;background:#F5F7FA}
+.dc-empty{display:flex;align-items:center;justify-content:center;height:100%;font-size:13px;color:#909090}
 .dc-detail-inner{display:flex;flex-direction:column;flex:1;min-height:0}
-.dc-detail-head{padding:12px 20px;border-bottom:1px solid #1e1c2e;display:flex;align-items:center;gap:10px}
-.dc-dh-name{font-family:var(--mono);font-size:14px;font-weight:600;color:#a9a7b8;outline:none;padding:2px 4px;border-radius:3px;border:1px solid transparent}
-.dc-dh-name:focus{border-color:#7c3aed;background:#111019}
-.dc-dh-count{font-family:var(--mono);font-size:11px;color:#6e6c82}
-.dc-dh-id{font-family:var(--mono);font-size:9px;color:#2e2d40;margin-left:auto}
-.dc-upload{margin:12px 20px;border:1.5px dashed #2e2d40;border-radius:6px;flex-shrink:0}
-.dc-upload.drag{border-color:#7c3aed;background:rgba(124,58,237,0.05)}
-.dc-upload-inner{padding:20px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;color:#4a4860}
-.dc-upload-inner span{font-family:var(--mono);font-size:11px}
-.dc-upload-types{font-size:9px!important;color:#3d3b54}
-.dc-upload-inner:hover{color:#6e6c82}
-.dc-file-list{flex:1;overflow-y:auto;padding:0 20px}
-.dc-file{display:flex;align-items:center;gap:10px;padding:7px 10px;border-radius:4px}
-.dc-file:hover{background:#111019}
-.dc-file-icon{color:#4a4860;flex-shrink:0}
-.dc-file-icon svg{width:13px;height:13px}
-.dc-file-name{font-family:var(--mono);font-size:11px;color:#a9a7b8;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.dc-file-size{font-family:var(--mono);font-size:9px;color:#3d3b54;flex-shrink:0}
-.dc-file-date{font-family:var(--mono);font-size:9px;color:#3d3b54;flex-shrink:0;min-width:60px}
-.dc-file-del{background:none;border:none;color:#4a4860;cursor:pointer;font-size:14px;padding:0 4px;line-height:1}
-.dc-file-del:hover{color:#ef4444}
-.dc-detail-foot{padding:12px 20px;border-top:1px solid #1e1c2e;margin-top:auto}
-.dc-token-area{display:flex;align-items:center;gap:6px}
-.dc-token-input{padding:4px 10px;font-family:var(--mono);font-size:10px;background:#0a090e;border:1px solid #1e1c2e;border-radius:4px;color:#a9a7b8;width:260px;outline:none}
-.dc-token-input:focus{border-color:#7c3aed}
-.dc-token-input::placeholder{color:#4a4860}
-.dc-banner{padding:8px 16px;font-family:var(--mono);font-size:11px;flex-shrink:0}
-.dc-banner.error{background:#7f1d1d33;color:#fca5a5;border-bottom:1px solid #7f1d1d}
-.dc-banner.info{background:rgba(124,58,237,0.08);color:#c4b5fd;border-bottom:1px solid rgba(124,58,237,0.15)}
+.dc-detail-head{padding:14px 24px;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;gap:10px;background:#fff}
+.dc-dh-name{font-size:16px;font-weight:700;color:#222;outline:none;padding:2px 6px;border-radius:4px;border:1px solid transparent}
+.dc-dh-name:focus{border-color:#0061D5;background:#F5F7FA}
+.dc-dh-count{font-size:12px;color:#909090}
+.dc-dh-id{font-size:10px;color:#C4C4C4;margin-left:auto;font-family:monospace}
+.dc-upload{margin:16px 24px;border:2px dashed #E4E4E4;border-radius:8px;flex-shrink:0;background:#fff}
+.dc-upload.drag{border-color:#0061D5;background:rgba(0,97,213,0.04)}
+.dc-upload-inner{padding:24px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;color:#909090}
+.dc-upload-inner span{font-size:12px}
+.dc-upload-types{font-size:10px!important;color:#C4C4C4}
+.dc-upload-inner:hover{color:#0061D5}
+.dc-file-list{flex:1;overflow-y:auto;padding:0 24px}
+.dc-file{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;background:#fff;border:1px solid #F0F0F0;margin-bottom:4px}
+.dc-file:hover{border-color:#E4E4E4}
+.dc-file-icon{color:#909090;flex-shrink:0}
+.dc-file-icon svg{width:14px;height:14px}
+.dc-file-name{font-size:12px;font-weight:500;color:#222;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dc-file-size{font-size:10px;color:#909090;flex-shrink:0}
+.dc-file-date{font-size:10px;color:#909090;flex-shrink:0;min-width:60px}
+.dc-file-del{background:none;border:none;color:#C4C4C4;cursor:pointer;font-size:14px;padding:0 4px;line-height:1}
+.dc-file-del:hover{color:#ED4956}
+.dc-detail-foot{padding:14px 24px;border-top:1px solid #E4E4E4;margin-top:auto;background:#fff}
+.dc-token-area{display:flex;align-items:center;gap:8px}
+.dc-token-input{padding:7px 12px;font-family:monospace;font-size:12px;background:#F5F7FA;border:1px solid #E4E4E4;border-radius:6px;color:#222;width:280px;outline:none}
+.dc-token-input:focus{border-color:#0061D5;box-shadow:0 0 0 3px rgba(0,97,213,0.06)}
+.dc-token-input::placeholder{color:#C4C4C4}
+.dc-banner{padding:10px 20px;font-size:12px;font-weight:500;flex-shrink:0}
+.dc-banner.error{background:#FDE8EA;color:#ED4956;border-bottom:1px solid #ED4956}
+.dc-banner.info{background:#E8F1FD;color:#0061D5;border-bottom:1px solid #0061D5}
 
 @keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.3}30%{transform:translateY(-3px);opacity:1}}
 </style>
@@ -460,7 +461,7 @@ button{font-family:var(--f);cursor:pointer}
           <button class="ch-btn toggle" id="scope-preset-toggle" onclick="scopeTogglePresets()">Presets</button>
           <button class="ch-btn" onclick="scopeSavePreset()">Save preset</button>
           <button class="ch-btn" onclick="scopeClear()">Clear</button>
-          <div style="position:relative"><button class="ch-btn primary" id="scope-add-btn" onclick="scopeTogglePicker(event)">+ Add library<div class="scope-picker" id="scope-picker" onclick="event.stopPropagation()"><input class="scope-picker-search" id="scope-pk-search" placeholder="Search libraries..." oninput="scopeRenderPicker()"><div class="scope-picker-list" id="scope-pk-list"></div></div></button></div>
+          <div style="position:relative"><button class="ch-btn primary" id="scope-add-btn" onclick="scopeTogglePicker(event)">+ Add hub<div class="scope-picker" id="scope-picker" onclick="event.stopPropagation()"><input class="scope-picker-search" id="scope-pk-search" placeholder="Search hubs..." oninput="scopeRenderPicker()"><div class="scope-picker-list" id="scope-pk-list"></div></div></button></div>
         </div>
       </div>
       <div class="track-wrap" id="track-wrap"><div class="cards-track" id="scope-cards-track"></div></div>
@@ -476,8 +477,8 @@ button{font-family:var(--f);cursor:pointer}
 <div class="resize-handle" id="resize-handle"></div>
 <div class="right" id="right-panel">
   <div class="lib-head">
-    <div class="lib-head-row"><div class="lib-head-label">Document Libraries</div><div class="lib-head-count" id="rlib-count"></div></div>
-    <input class="lib-search" id="lib-search" placeholder="Search folders and documents..." oninput="rightSearch=this.value;renderRightLibs()">
+    <div class="lib-head-row"><div class="lib-head-label">Hubs</div><div class="lib-head-count" id="rlib-count"></div></div>
+    <input class="lib-search" id="lib-search" placeholder="Search hubs and documents..." oninput="rightSearch=this.value;renderRightLibs()">
   </div>
   <div class="lib-scroll-wrap"><div class="lib-scroll" id="lib-scroll"><div id="lib-cards"></div></div></div>
   <div class="rlib-action-bar" id="rlib-action-bar"><div class="rlib-ab-text" id="rlib-ab-text"></div><button class="rlib-ab-btn rlib-ab-cancel" onclick="rightChecked.clear();renderRightLibs()">Cancel</button><button class="rlib-ab-btn rlib-ab-add" onclick="commitRightAdd()">Add to scope</button></div>
@@ -490,9 +491,9 @@ button{font-family:var(--f);cursor:pointer}
 
 <!-- DEV CONSOLE -->
 <div class="dev-console" id="dev-console">
-  <div class="dc-bar"><div class="dc-bar-left"><span class="dc-label">Library Manager</span><span class="dc-sep">·</span><span class="dc-root" id="dc-root"></span></div><div class="dc-bar-right"><div class="dc-token-area" id="dc-token-area"><input type="text" class="dc-token-input" id="dc-token" placeholder="Box Developer Token" spellcheck="false"><button class="dc-btn dc-btn-ac" onclick="dcConnect()">Connect</button></div><span class="dc-status" id="dc-status" style="display:none"><span class="dc-dot dc-dot-on"></span>Connected</span><button class="dc-btn" id="dc-refresh-btn" onclick="dcRefresh()" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Refresh</button><button class="dc-btn" id="dc-disconnect-btn" onclick="dcDisconnect()" style="display:none">Disconnect</button></div></div>
+  <div class="dc-bar"><div class="dc-bar-left"><span class="dc-label">Hub Manager</span><span class="dc-sep">·</span><span class="dc-root" id="dc-root">Powered by Box</span></div><div class="dc-bar-right"><div class="dc-token-area" id="dc-token-area"><input type="text" class="dc-token-input" id="dc-token" placeholder="Box Developer Token" spellcheck="false"><button class="dc-btn dc-btn-ac" onclick="dcConnect()">Connect</button></div><span class="dc-status" id="dc-status" style="display:none"><span class="dc-dot dc-dot-on"></span>Connected</span><button class="dc-btn" id="dc-refresh-btn" onclick="dcRefresh()" style="display:none"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>Refresh</button><button class="dc-btn" id="dc-disconnect-btn" onclick="dcDisconnect()" style="display:none">Disconnect</button></div></div>
   <div class="dc-banner" id="dc-banner" style="display:none"></div>
-  <div class="dc-body"><div class="dc-master"><div class="dc-master-head"><span class="dc-mh-label">Libraries</span><button class="dc-btn dc-btn-ac" onclick="dcNewLib()">+ New Library</button></div><div class="dc-lib-list" id="dc-lib-list"></div><div class="dc-master-foot" id="dc-master-foot"></div></div><div class="dc-detail" id="dc-detail"><div class="dc-empty" id="dc-empty">Select a library to view its contents.</div><div class="dc-detail-inner" id="dc-detail-inner" style="display:none"><div class="dc-detail-head"><div class="dc-dh-name" id="dc-dh-name" contenteditable="false" onclick="dcStartRename(this)"></div><span class="dc-dh-count" id="dc-dh-count"></span><span class="dc-dh-id" id="dc-dh-id"></span></div><div class="dc-upload" id="dc-upload" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)"><div class="dc-upload-inner" onclick="document.getElementById('dc-file-input').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Drag files here or click to upload</span><span class="dc-upload-types">PDF, DOCX, TXT, XLSX, MD</span></div><input type="file" id="dc-file-input" multiple accept=".pdf,.docx,.txt,.xlsx,.md,.png,.jpg" style="display:none" onchange="dcHandleFiles(this.files)"></div><div class="dc-file-list" id="dc-file-list"></div><div class="dc-detail-foot"><button class="dc-btn dc-btn-danger" onclick="dcDeleteLib()">Delete Library</button></div></div></div></div>
+  <div class="dc-body"><div class="dc-master"><div class="dc-master-head"><span class="dc-mh-label">Hubs</span><button class="dc-btn dc-btn-ac" onclick="dcNewHub()">+ New Hub</button></div><div class="dc-lib-list" id="dc-lib-list"></div><div class="dc-master-foot" id="dc-master-foot"></div></div><div class="dc-detail" id="dc-detail"><div class="dc-empty" id="dc-empty">Select a hub to manage its documents.</div><div class="dc-detail-inner" id="dc-detail-inner" style="display:none"><div class="dc-detail-head"><div class="dc-dh-name" id="dc-dh-name" contenteditable="false" onclick="dcStartRename(this)"></div><span class="dc-dh-count" id="dc-dh-count"></span><span class="dc-dh-id" id="dc-dh-id"></span></div><div class="dc-upload" id="dc-upload" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)"><div class="dc-upload-inner" onclick="document.getElementById('dc-file-input').click()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg><span>Drag files here or click to upload</span><span class="dc-upload-types">PDF, DOCX, TXT, XLSX, MD</span></div><input type="file" id="dc-file-input" multiple accept=".pdf,.docx,.txt,.xlsx,.md,.png,.jpg" style="display:none" onchange="dcHandleFiles(this.files)"></div><div class="dc-file-list" id="dc-file-list"></div><div class="dc-detail-foot"><button class="dc-btn dc-btn-danger" onclick="dcDeleteHub()">Delete Hub</button></div></div></div></div>
 </div>
 </div>
 
@@ -623,63 +624,6 @@ const DEMOS=[
     return{t:'<p>I can answer questions about DHRs, CAPA, validation, complaints, audits, and design controls for medical device quality systems.</p>',ci:[]};
   }
 },
-{
-  id:'hc',label:'Healthcare',brand:'Meridian Health',
-  dot:'#be185d',topbar:'#4a1942',
-  ac:'#be185d',ac2:'#9f1239',
-  font:"'Literata',serif",body:"'DM Sans',sans-serif",
-  avatar:'RP',
-  logo:`<svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="gh" x1="4" y1="4" x2="24" y2="24"><stop offset="0%" stop-color="#f472b6"/><stop offset="100%" stop-color="#be185d"/></linearGradient></defs><circle cx="14" cy="14" r="10" stroke="url(#gh)" stroke-width="1.3" fill="url(#gh)" opacity=".15"/><path d="M14 8V20M8 14H20" stroke="url(#gh)" stroke-width="2.2" stroke-linecap="round"/><path d="M9.5 9.5L14 14L18.5 9.5" stroke="url(#gh)" stroke-width="1" stroke-linecap="round" opacity=".4"/><path d="M9.5 18.5L14 14L18.5 18.5" stroke="url(#gh)" stroke-width="1" stroke-linecap="round" opacity=".4"/></svg>`,
-  libs:[
-    {id:'clinical',name:'Clinical Protocols',docs:[{n:'Sepsis Bundle (SEP-1)',d:'Mar 2026',c:'3-hour bundle: lactate, blood cultures before abx, broad-spectrum abx within 1hr\n6-hour bundle: repeat lactate if initial >2, 30mL/kg crystalloid for hypotension, vasopressors if MAP <65'},{n:'Stroke Response (Code Stroke)',d:'Feb 2026',c:'Door-to-CT: <25 min | Door-to-needle (tPA): <60 min\nNIH Stroke Scale required | Last known well time critical'},{n:'Chest Pain ACS Protocol',d:'Jan 2026',c:'12-lead ECG within 10 min of arrival\nTroponin at 0, 3, 6 hours'},{n:'Rapid Response Team Activation',d:'Mar 2026',c:'Criteria: HR >140 or <40, RR >28 or <8, SpO2 <90%, acute mental status change'},{n:'Medication Reconciliation SOP',d:'Feb 2026',c:''}]},
-    {id:'hipaa',name:'HIPAA & Privacy',docs:[{n:'Privacy Policy Manual',d:'Jan 2026',c:'Minimum Necessary Standard applies to all PHI access\nBreach notification: 60 days to individuals, HHS, media if >500'},{n:'Breach Response Procedure',d:'Jan 2026',c:'Discovery → Risk Assessment → Notification → Mitigation → Documentation\n4-factor test: nature of PHI, unauthorized person, acquired/viewed, mitigation'},{n:'Business Associate Agreements',d:'Feb 2026',c:''},{n:'Patient Rights & Access',d:'Jan 2026',c:'30 days to fulfill records request (one 30-day extension allowed)'},{n:'Minimum Necessary Checklist',d:'Mar 2026',c:''}]},
-    {id:'pharmacy',name:'Pharmacy & Formulary',docs:[{n:'Formulary — Current Quarter',d:'Mar 2026',c:'Therapeutic interchange protocols active\nHigh-alert medications: insulin, heparin, opioids, neuromuscular blockers'},{n:'High-Alert Medication Policy',d:'Feb 2026',c:'Independent double-check required for: insulin drips, heparin drips, chemotherapy, PCA pumps\nTall-man lettering for look-alike/sound-alike'},{n:'Antibiotic Stewardship Guidelines',d:'Jan 2026',c:'72-hour auto-stop for empiric therapy\nID consult required for restricted agents'},{n:'Controlled Substance Procedures',d:'Jan 2026',c:''}]},
-    {id:'nursing',name:'Nursing Procedures',docs:[{n:'Fall Prevention Protocol',d:'Mar 2026',c:'Morse Fall Scale on admission and q-shift\nScore ≥45 = high risk → bed alarm, yellow wristband, non-slip socks, hourly rounding'},{n:'Pressure Injury Prevention',d:'Feb 2026',c:'Braden Scale on admission and q-shift\nScore ≤18 = at risk → repositioning q2h, specialty mattress'},{n:'Central Line Maintenance Bundle',d:'Jan 2026',c:'Hand hygiene, chlorhexidine scrub, daily necessity review, optimal catheter site, sterile barrier'},{n:'Blood Transfusion Procedure',d:'Feb 2026',c:'Two-nurse verification at bedside\nVitals: baseline, 15 min, 30 min, q1h, completion'},{n:'Pain Assessment Standards',d:'Jan 2026',c:''}]},
-    {id:'emergency',name:'Emergency Preparedness',docs:[{n:'Code Blue Protocol',d:'Mar 2026',c:'Announce overhead, crash cart, designated roles: team leader, airway, compressor, recorder, medication nurse'},{n:'Mass Casualty Plan (MCI)',d:'Feb 2026',c:'START Triage: RPM (Respirations, Perfusion, Mental status)\nGreen/Yellow/Red/Black tagging'},{n:'Active Threat Response (Code Silver)',d:'Jan 2026',c:'Run → Hide → Fight\nLockdown procedures, safe rooms, communication cascade'},{n:'Severe Weather Shelter Plan',d:'Jan 2026',c:''}]},
-    {id:'credentialing',name:'Credentialing & Privileges',docs:[{n:'Medical Staff Bylaws',d:'Mar 2026',c:''},{n:'Privilege Delineation Forms',d:'Feb 2026',c:''},{n:'OPPE/FPPE Requirements',d:'Jan 2026',c:'Ongoing: q6-month review of 6 competencies\nFocused: all new appointees, privilege concerns, new procedures'},{n:'Telemedicine Credentialing',d:'Feb 2026',c:''}]},
-    {id:'quality-hc',name:'Quality & Patient Safety',docs:[{n:'Sentinel Event Policy',d:'Mar 2026',c:'Root Cause Analysis within 45 days\nAction plan with measurable outcomes\nTJC reporting requirements'},{n:'Core Measures Dashboard',d:'Mar 2026',c:'SEP-1, ED-2, VTE, readmission rates, HCAHPS'},{n:'Incident Reporting SOP',d:'Feb 2026',c:'Report within 24 hours | No punitive action for good-faith reports'},{n:'Hand Hygiene Compliance',d:'Mar 2026',c:'Target: ≥95% compliance | Secret observer methodology'}]},
-    {id:'infection',name:'Infection Prevention',docs:[{n:'Isolation Precautions Guide',d:'Mar 2026',c:'Standard, Contact, Droplet, Airborne\nN95 fit testing annual for airborne'},{n:'SSI Prevention Bundle',d:'Feb 2026',c:'Pre-op abx within 60 min, normothermia, glucose control, hair clipping not shaving'},{n:'C. diff Prevention Protocol',d:'Jan 2026',c:'Contact precautions, bleach-based disinfection, antimicrobial stewardship'},{n:'Exposure Control Plan (BBP)',d:'Jan 2026',c:''}]},
-  ],
-  defaultScope:['clinical','hipaa','pharmacy','nursing'],
-  presets:[
-    {name:'Clinical Core',color:'#be185d',ids:['clinical','pharmacy','nursing']},
-    {name:'Compliance & Privacy',color:'#7c3aed',ids:['hipaa','credentialing','quality-hc']},
-    {name:'Emergency Readiness',color:'#dc2626',ids:['emergency','clinical','infection']},
-    {name:'Nursing Focus',color:'#0891b2',ids:['nursing','infection','pharmacy']},
-  ],
-  ws:[
-    {id:'w1',title:'Sepsis bundle — 3-hour requirements',meta:'Clinical Protocols',t:-86400000,scope:['clinical','pharmacy'],msgs:[
-      {c:'What\'s required in the 3-hour sepsis bundle?',u:true,p:1},
-      {c:'<p>SEP-1 3-hour bundle: <strong>1)</strong> Measure lactate, <strong>2)</strong> Obtain blood cultures before antibiotics, <strong>3)</strong> Administer broad-spectrum antibiotics within 1 hour of recognition. Clock starts at time of sepsis recognition, not ED arrival.</p>',u:false,ci:['Sepsis Bundle (SEP-1)'],p:1},
-      {c:'And the 6-hour bundle?',u:true,p:1},
-      {c:'<p>6-hour bundle: repeat lactate if initial was &gt;2 mmol/L, administer <strong>30 mL/kg crystalloid</strong> for hypotension or lactate ≥4, initiate vasopressors if MAP remains &lt;65 after fluid resuscitation.</p>',u:false,ci:['Sepsis Bundle (SEP-1)'],p:1}]},
-    {id:'w2',title:'HIPAA breach notification timeline',meta:'HIPAA & Privacy',t:-172800000,scope:['hipaa'],msgs:[
-      {c:'What are the breach notification requirements?',u:true,p:1},
-      {c:'<p>Notification within <strong>60 days</strong> of discovery to affected individuals, HHS, and media (if &gt;500 individuals). Use the 4-factor risk assessment: nature of PHI, who accessed it, whether it was acquired or viewed, and extent of mitigation.</p>',u:false,ci:['Breach Response Procedure'],p:1}]},
-    {id:'w3',title:'High-alert medication double-check policy',meta:'Pharmacy',t:-345600000,scope:['pharmacy'],msgs:[
-      {c:'Which meds require independent double-check?',u:true,p:1},
-      {c:'<p>Independent double-check required for: <strong>insulin drips, heparin drips, chemotherapy, and PCA pumps</strong>. Both nurses must independently verify drug, dose, rate, route, and patient identity. Tall-man lettering required for look-alike/sound-alike medications.</p>',u:false,ci:['High-Alert Medication Policy'],p:1}]},
-    {id:'w4',title:'Fall risk — Morse Scale thresholds',meta:'Nursing',t:-3600000,scope:['nursing'],msgs:[
-      {c:'What score triggers high fall risk interventions?',u:true,p:1},
-      {c:'<p>Morse Fall Scale <strong>≥45 = high risk</strong>. Interventions: bed alarm activated, yellow wristband, non-slip socks, hourly rounding, fall risk signage. Reassess every shift and with any status change.</p>',u:false,ci:['Fall Prevention Protocol'],p:1}]},
-  ],
-  saved:[
-    {q:'Sepsis 3-hour bundle?',a:'Lactate, blood cultures before abx, broad-spectrum abx within 1hr...',time:'12m',wsId:'w1'},
-    {q:'Breach notification timeline?',a:'60 days to individuals, HHS, media if >500...',time:'1h',wsId:'w2'},
-  ],
-  genFn(q){
-    const ql=q.toLowerCase();
-    if(ql.includes('sepsis')||ql.includes('sep-1'))return{t:'<p>SEP-1: <strong>3-hour</strong> — lactate, blood cultures, broad-spectrum abx within 1hr. <strong>6-hour</strong> — repeat lactate, 30mL/kg crystalloid, vasopressors if MAP &lt;65.</p>',ci:['Sepsis Bundle']};
-    if(ql.includes('hipaa')||ql.includes('breach')||ql.includes('privacy'))return{t:'<p>Breach notification: <strong>60 days</strong> to individuals and HHS. Media notification if &gt;500 affected. 4-factor risk assessment required.</p>',ci:['Breach Response Procedure']};
-    if(ql.includes('fall')||ql.includes('morse'))return{t:'<p>Morse Fall Scale ≥45 = high risk. Interventions: bed alarm, yellow wristband, non-slip socks, hourly rounding. Reassess q-shift.</p>',ci:['Fall Prevention Protocol']};
-    if(ql.includes('medication')||ql.includes('high-alert')||ql.includes('double'))return{t:'<p>Independent double-check for: insulin drips, heparin drips, chemo, PCA pumps. Two nurses verify drug, dose, rate, route, patient.</p>',ci:['High-Alert Medication Policy']};
-    if(ql.includes('code blue')||ql.includes('rapid response'))return{t:'<p>Rapid Response criteria: HR &gt;140 or &lt;40, RR &gt;28 or &lt;8, SpO2 &lt;90%, acute mental status change. Code Blue: designated roles — team leader, airway, compressor, recorder, med nurse.</p>',ci:['Rapid Response','Code Blue Protocol']};
-    if(ql.includes('isolation')||ql.includes('infection'))return{t:'<p>Precaution types: Standard, Contact, Droplet, Airborne. N95 fit testing annual. C. diff requires contact precautions + bleach-based disinfection.</p>',ci:['Isolation Precautions']};
-    if(ql.includes('stroke'))return{t:'<p>Code Stroke: Door-to-CT <strong>&lt;25 min</strong>, door-to-needle (tPA) <strong>&lt;60 min</strong>. NIH Stroke Scale required. Last known well time is critical for treatment window.</p>',ci:['Stroke Response']};
-    if(ql.includes('pressure')||ql.includes('braden'))return{t:'<p>Braden Scale ≤18 = at risk. Reposition q2h, specialty mattress, skin assessment q-shift, moisture management.</p>',ci:['Pressure Injury Prevention']};
-    return{t:'<p>I can answer questions about clinical protocols, HIPAA compliance, pharmacy policies, nursing procedures, emergency preparedness, and infection prevention.</p>',ci:[]};
-  }
-},
 ];
 
 let currentDemo=0;
@@ -724,7 +668,7 @@ function switchDemo(idx){
 function renderDemoDD(){
   document.getElementById('demo-dd').innerHTML=
     '<div class="demo-dd-head">Switch Demo</div>'+
-    DEMOS.map((d,i)=>`<div class="demo-opt ${i===currentDemo?'active':''}" onclick="event.stopPropagation();switchDemo(${i});closeDemoDD()"><div class="demo-opt-dot" style="background:${d.dot}"></div><div class="demo-opt-info"><div class="demo-opt-name">${d.brand}</div><div class="demo-opt-desc">${d.libs.length} libraries · ${d.libs.reduce((a,l)=>a+l.docs.length,0)} docs</div></div><span class="demo-opt-check">✓</span></div>`).join('');
+    DEMOS.map((d,i)=>`<div class="demo-opt ${i===currentDemo?'active':''}" onclick="event.stopPropagation();switchDemo(${i});closeDemoDD()"><div class="demo-opt-dot" style="background:${d.dot}"></div><div class="demo-opt-info"><div class="demo-opt-name">${d.brand}</div><div class="demo-opt-desc">${d.libs.length} hubs · ${d.libs.reduce((a,l)=>a+l.docs.length,0)} docs</div></div><span class="demo-opt-check">✓</span></div>`).join('');
 }
 function toggleDemoDD(){document.getElementById('demo-dd').classList.toggle('open');renderDemoDD()}
 function closeDemoDD(){document.getElementById('demo-dd').classList.remove('open')}
@@ -733,10 +677,18 @@ function closeDemoDD(){document.getElementById('demo-dd').classList.remove('open
 const IC={save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>',trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>'};
 
 const BOX='https://api.box.com/2.0';const BOX_UPLOAD='https://upload.box.com/api/2.0';
-let boxToken=null,boxRootId=null,boxConnected=false;
-async function boxGet(p){const r=await fetch(BOX+p,{headers:{'Authorization':'Bearer '+boxToken}});if(!r.ok)throw new Error(r.status);return r.json()}
-async function boxPost(p,b){const r=await fetch(BOX+p,{method:'POST',headers:{'Authorization':'Bearer '+boxToken,'Content-Type':'application/json'},body:JSON.stringify(b)});if(!r.ok)throw new Error(r.status);return r.json()}
+let boxToken=null,boxRootId=null,boxHubId=null,boxConnected=false;
+async function boxGet(p,hdr={}){const r=await fetch(BOX+p,{headers:{'Authorization':'Bearer '+boxToken,...hdr}});if(!r.ok)throw new Error(r.status+' '+await r.text().catch(()=>''));return r.json()}
+async function boxPost(p,b,hdr={}){const r=await fetch(BOX+p,{method:'POST',headers:{'Authorization':'Bearer '+boxToken,'Content-Type':'application/json',...hdr},body:JSON.stringify(b)});if(!r.ok)throw new Error(r.status+' '+await r.text().catch(()=>''));return r.json()}
 async function boxDel(p){await fetch(BOX+p,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken}})}
+const HV={'box-version':'2025.0'};
+async function boxAiAskHub(hubId,prompt){
+  return boxPost('/ai/ask',{mode:'single_item_qa',prompt,items:[{id:hubId,type:'hubs'}]});
+}
+async function boxAiAskFiles(fileIds,prompt){
+  const items=fileIds.map(id=>({id,type:'file'}));
+  return boxPost('/ai/ask',{mode:items.length===1?'single_item_qa':'multiple_item_qa',prompt,items});
+}
 
 let LIBS=[...DEMOS[0].libs];
 let genResponse=DEMOS[0].genFn;
@@ -769,7 +721,28 @@ function delWs(id){if(!confirm('Delete?'))return;S.ws=S.ws.filter(x=>x.id!==id);
 function renderSaved(){document.getElementById('saved-head').textContent='Saved · '+S.saved.length;document.getElementById('saved-row').innerHTML=S.saved.map(s=>`<div class="sc" ${s.wsId?`onclick="openWs('${s.wsId}')"`:''} ><div class="sc-top"><span class="sc-time">${s.time}</span></div><div class="sc-q">${s.q}</div><div class="sc-a">${s.a}</div></div>`).join('')}
 function toggleSplit(){S.split=!S.split;renderSplitState()}
 function renderSplitState(){const panels=document.getElementById('chat-panels');const btn=document.getElementById('split-btn');if(S.split){if(!document.getElementById('panel-2')){const p=document.createElement('div');p.className='chat-panel';p.id='panel-2';p.innerHTML='<div class="chat-panel-head"><span>Panel 2</span><button class="chat-panel-close" onclick="toggleSplit()">×</button></div><div class="chat-msgs" id="ch-msgs-2"><div class="empty-c">Ask in this panel for a parallel thread.</div></div>';panels.appendChild(p)}document.getElementById('panel-2').style.display='flex';btn.style.background='var(--ac-s)';btn.style.color='var(--ac)'}else{const p2=document.getElementById('panel-2');if(p2)p2.style.display='none';btn.style.background='';btn.style.color='';S.activePanel=1}}
-function send(){const inp=document.getElementById('inp');const t=inp.value.trim();if(!t)return;inp.value='';const panel=S.split?S.activePanel:1;if(!S.aWs){S.wc++;const w={id:'w'+S.wc,title:t.length>42?t.slice(0,42)+'...':t,meta:getSelLibNames().split(' + ')[0]||'General',msgs:[],t:new Date(),scope:[...activeIds]};S.ws.unshift(w);openWs(w.id)}const w=S.ws.find(x=>x.id===S.aWs);if(!w)return;const el=document.getElementById('ch-msgs-'+panel);if(el.querySelector('.empty-c'))el.innerHTML='';w.msgs.push({c:t,u:true,p:panel});aMsg(panel,t,true);showT(panel);setTimeout(()=>{hideT(panel);const r=genResponse(t);w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci)},800+Math.random()*800)}
+function send(){const inp=document.getElementById('inp');const t=inp.value.trim();if(!t)return;inp.value='';const panel=S.split?S.activePanel:1;if(!S.aWs){S.wc++;const w={id:'w'+S.wc,title:t.length>42?t.slice(0,42)+'...':t,meta:getSelLibNames().split(' + ')[0]||'General',msgs:[],t:new Date(),scope:[...activeIds]};S.ws.unshift(w);openWs(w.id)}const w=S.ws.find(x=>x.id===S.aWs);if(!w)return;const el=document.getElementById('ch-msgs-'+panel);if(el.querySelector('.empty-c'))el.innerHTML='';w.msgs.push({c:t,u:true,p:panel});aMsg(panel,t,true);showT(panel);
+  if(boxConnected){
+    // Query each scoped hub and merge answers
+    const scopedLibs=LIBS.filter(l=>activeIds.has(l.id));
+    const hubIds=scopedLibs.map(l=>l.id).filter(id=>id!=='_loose');
+    if(!hubIds.length){hideT(panel);const r={t:'<p>No hubs in the current scope. Add hubs to ask questions.</p>',ci:[]};w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);return}
+    // Query hubs in parallel, merge results
+    Promise.all(hubIds.map(hid=>boxAiAskHub(hid,t).catch(err=>({answer:'Error querying hub: '+err.message,citations:[]})))).then(results=>{
+      hideT(panel);
+      const answers=results.map(r=>r.answer||'').filter(Boolean);
+      const citations=results.flatMap(r=>(r.citations||[]).map(c=>c.name||c.content||'')).filter(Boolean);
+      const combined=answers.length>1?answers.map((a,i)=>'<p>'+a.replace(/\n/g,'<br>')+'</p>').join(''):'<p>'+(answers[0]||'No answer returned.').replace(/\n/g,'<br>')+'</p>';
+      const r={t:combined,ci:[...new Set(citations)]};
+      w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);
+    }).catch(err=>{
+      hideT(panel);
+      const r={t:'<p style="color:var(--t3)">Error: '+err.message.slice(0,200)+'</p>',ci:[]};
+      w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);
+    });
+  } else {
+    setTimeout(()=>{hideT(panel);const r=genResponse(t);w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci)},800+Math.random()*800);
+  }}
 function renderMsgs(panel,msgs){const el=document.getElementById('ch-msgs-'+panel);el.innerHTML='';msgs.filter(m=>!m.p||m.p===panel).forEach(m=>aMsg(panel,m.c,m.u,m.ci));if(!el.children.length)el.innerHTML='<div class="empty-c">Ask a question to begin.</div>'}
 function aMsg(panel,c,u,ci){const el=document.getElementById('ch-msgs-'+panel);const av=DEMOS[currentDemo].avatar;let ch='';if(ci?.length)ch=`<div class="msg-ci">${ci.map(x=>'📄 '+x).join(' · ')}</div>`;el.innerHTML+=`<div class="msg ${u?'msg-u':''}"><div class="msg-av ${u?'msg-av-u':'msg-av-ai'}">${u?av[0]:'B'}</div><div class="msg-b"><div class="msg-t">${c}</div>${ch}<div class="msg-tm">${fmtTime(new Date())}</div></div></div>`;el.scrollTop=el.scrollHeight}
 function showT(p){const el=document.getElementById('ch-msgs-'+p);el.innerHTML+='<div class="typing" id="typ-'+p+'"><div class="msg-av msg-av-ai">B</div><div class="td"><span></span><span></span><span></span></div></div>';el.scrollTop=el.scrollHeight}
@@ -779,9 +752,9 @@ function hideT(p){document.getElementById('typ-'+p)?.remove()}
 function syncScope(){S.selLibs=[...activeIds];if(S.aWs){const w=S.ws.find(x=>x.id===S.aWs);if(w)w.scope=[...activeIds]}renderRightLibs();updatePlaceholder()}
 function scopeRender(){scopeRenderPresets();scopeRenderCards();scopeUpdateSummary();scopeUpdateFades();if(!S.aWs)document.getElementById('scope-preset-toggle').classList.toggle('on',scopePresetsVisible)}
 function scopeRenderPresets(){document.getElementById('scope-preset-list').innerHTML=scopePresets.map((p,i)=>`<div class="preset ${i===scopeActivePreset?'active':''}" onclick="scopeLoadPreset(${i})"><div class="preset-dot" style="background:${p.color}"></div><span class="preset-name">${p.name}</span><span class="preset-ct">${p.ids.length}</span><div class="preset-menu"><button class="preset-menu-btn" onclick="event.stopPropagation();scopeToggleMenu(${i})">⋯</button><div class="preset-dd ${scopeOpenMenu===i?'open':''}" id="spmenu-${i}"><button class="pdd-item" onclick="event.stopPropagation();scopeRenamePreset(${i})">Rename</button><button class="pdd-item danger" onclick="event.stopPropagation();scopeDeletePreset(${i})">Delete</button></div></div></div>`).join('')}
-function scopeRenderCards(){const track=document.getElementById('scope-cards-track');if(!activeIds.size){track.innerHTML='<div class="scope-empty">No libraries selected.</div>';return}track.innerHTML=[...activeIds].map(id=>{const f=LIBS.find(x=>x.id===id);if(!f)return'';const docs=f.docs||[];const show=docs.slice(0,4);const more=docs.length-4;return `<div class="lib-card"><div class="lc-top"><div class="lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div><span class="lc-name">${f.name}</span><button class="lc-remove" onclick="scopeRemoveLib('${id}')">×</button></div><div class="lc-ct">${docs.length} docs</div><div class="lc-files">${show.map(d=>`<div class="lc-file">${d.n}</div>`).join('')}${more>0?`<div class="lc-more">+${more} more</div>`:''}</div></div>`}).join('')}
-function scopeRenderPicker(){const term=(document.getElementById('scope-pk-search')?.value||'').toLowerCase();const avail=LIBS.filter(f=>!activeIds.has(f.id)).map(f=>{const fm=fuzzyMatch(term,f.name);return{lib:f,match:fm.match||!term,score:fm.score,indices:fm.indices}}).filter(x=>x.match).sort((a,b)=>b.score-a.score);document.getElementById('scope-pk-list').innerHTML=avail.map(({lib:f,indices})=>`<div class="spk-item" onclick="event.stopPropagation();scopeAddLib('${f.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>${indices?.length?fuzzyHL(f.name,indices):f.name}<span class="spk-item-ct">${f.docs.length}</span></div>`).join('')||'<div style="padding:6px;font-size:var(--fs-micro);color:var(--t4)">No matches.</div>'}
-function scopeUpdateSummary(){const total=[...activeIds].reduce((a,id)=>{const f=LIBS.find(x=>x.id===id);return a+(f?f.docs.length:0)},0);document.getElementById('scope-summary').textContent=activeIds.size?total+' docs · '+activeIds.size+' libraries':''}
+function scopeRenderCards(){const track=document.getElementById('scope-cards-track');if(!activeIds.size){track.innerHTML='<div class="scope-empty">No hubs selected.</div>';return}track.innerHTML=[...activeIds].map(id=>{const f=LIBS.find(x=>x.id===id);if(!f)return'';const docs=f.docs||[];const show=docs.slice(0,4);const more=docs.length-4;return `<div class="lib-card"><div class="lc-top"><div class="lc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><span class="lc-name">${f.name}</span><button class="lc-remove" onclick="scopeRemoveLib('${id}')">×</button></div><div class="lc-ct">${docs.length} docs</div><div class="lc-files">${show.map(d=>`<div class="lc-file">${d.n}</div>`).join('')}${more>0?`<div class="lc-more">+${more} more</div>`:''}</div></div>`}).join('')}
+function scopeRenderPicker(){const term=(document.getElementById('scope-pk-search')?.value||'').toLowerCase();const avail=LIBS.filter(f=>!activeIds.has(f.id)).map(f=>{const fm=fuzzyMatch(term,f.name);return{lib:f,match:fm.match||!term,score:fm.score,indices:fm.indices}}).filter(x=>x.match).sort((a,b)=>b.score-a.score);document.getElementById('scope-pk-list').innerHTML=avail.map(({lib:f,indices})=>`<div class="spk-item" onclick="event.stopPropagation();scopeAddLib('${f.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>${indices?.length?fuzzyHL(f.name,indices):f.name}<span class="spk-item-ct">${f.docs.length}</span></div>`).join('')||'<div style="padding:6px;font-size:var(--fs-micro);color:var(--t4)">No matches.</div>'}
+function scopeUpdateSummary(){const total=[...activeIds].reduce((a,id)=>{const f=LIBS.find(x=>x.id===id);return a+(f?f.docs.length:0)},0);document.getElementById('scope-summary').textContent=activeIds.size?total+' docs · '+activeIds.size+' hubs':''}
 function scopeUpdateFades(){const t=document.querySelector('.cards-track'),w=document.getElementById('track-wrap');if(!t||!w)return;w.classList.toggle('fade-left',t.scrollLeft>4);w.classList.toggle('fade-right',t.scrollWidth-t.clientWidth>4&&t.scrollLeft<t.scrollWidth-t.clientWidth-4)}
 function scopeLoadPreset(i){scopeActivePreset=i;activeIds=new Set(scopePresets[i].ids);scopeClosePicker();scopeOpenMenu=null;scopeRender();syncScope()}
 function scopeRemoveLib(id){activeIds.delete(id);scopeActivePreset=-1;scopeRender();syncScope()}
@@ -794,7 +767,7 @@ function scopeToggleMenu(i){scopeOpenMenu=scopeOpenMenu===i?null:i;scopeRenderPr
 function scopeSavePreset(){if(!activeIds.size)return;const n=prompt('Preset name:');if(!n)return;scopePresets.push({name:n,color:DEMOS[currentDemo].ac,ids:[...activeIds]});scopeActivePreset=scopePresets.length-1;scopeRender()}
 function scopeRenamePreset(i){const n=prompt('Rename:',scopePresets[i].name);if(n){scopePresets[i].name=n;scopeOpenMenu=null;scopeRender()}}
 function scopeDeletePreset(i){scopePresets.splice(i,1);if(scopeActivePreset>=i)scopeActivePreset=Math.max(0,scopeActivePreset-1);scopeOpenMenu=null;scopeRender()}
-function updatePlaceholder(){const names=[...activeIds].map(id=>LIBS.find(x=>x.id===id)?.name).filter(Boolean);const d=names.slice(0,2).join(' + ')+(names.length>2?' +'+(names.length-2):'');document.getElementById('inp').placeholder=activeIds.size?'Ask about '+d+'...':'Add libraries to begin...'}
+function updatePlaceholder(){const names=[...activeIds].map(id=>LIBS.find(x=>x.id===id)?.name).filter(Boolean);const d=names.slice(0,2).join(' + ')+(names.length>2?' +'+(names.length-2):'');document.getElementById('inp').placeholder=activeIds.size?'Ask about '+d+'...':'Add hubs to begin...'}
 function getSelLibNames(){return[...activeIds].map(id=>LIBS.find(x=>x.id===id)?.name).filter(Boolean).join(' + ')}
 
 // Right panel
@@ -802,7 +775,7 @@ function renderRightLibs(){const term=rightSearch.toLowerCase();const scoped=LIB
 function ms(lib){if(!term)return{folder:true,score:0,fi:[],dm:[]};const fm=fuzzyMatch(term,lib.name);const dm=lib.docs.map(d=>{const m=fuzzyMatch(term,d.n);return{doc:d,match:m.match,score:m.score,indices:m.indices}}).filter(x=>x.match);return{folder:fm.match||dm.length>0,score:Math.max(fm.score,...dm.map(d=>d.score),0),fi:fm.indices,dm}}
 const fs=scoped.map(l=>({lib:l,sr:ms(l)})).filter(x=>x.sr.folder).sort((a,b)=>b.sr.score-a.sr.score);
 const fu=unscoped.map(l=>({lib:l,sr:ms(l)})).filter(x=>x.sr.folder).sort((a,b)=>b.sr.score-a.sr.score);
-const fi='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>';
+const fi='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>';
 let h='';
 if(fs.length){h+=`<div class="rlib-divider active-div">Active · ${fs.length}</div>`;fs.forEach(({lib:l,sr:m})=>{const nm=m.fi?.length?fuzzyHL(l.name,m.fi):l.name;h+=`<div class="rlib-card scoped" onclick="scopeRemoveLib('${l.id}')"><div class="rlib-card-top"><div class="rlib-card-icon">${fi}</div><div class="rlib-card-name">${nm}</div><div class="rlib-card-ct">${l.docs.length} docs</div></div><div class="rlib-card-files">${l.docs.slice(0,3).map((d,i)=>`<div class="rlib-card-doc" onclick="event.stopPropagation();openV('${l.id}',${i})">${d.n}</div>`).join('')}${l.docs.length>3?`<div class="rlib-card-viewall" onclick="event.stopPropagation();toggleExpand('${l.id}-e')">View all (${l.docs.length})</div><div class="rlib-card-expanded" id="${l.id}-e">${l.docs.slice(3).map((d,i)=>`<div class="rlib-card-doc" onclick="event.stopPropagation();openV('${l.id}',${i+3})">${d.n}</div>`).join('')}</div>`:''}</div></div>`})}
 if(fu.length){h+=`<div class="rlib-divider">Available · ${fu.length}</div>`;fu.forEach(({lib:l,sr:m})=>{const nm=m.fi?.length?fuzzyHL(l.name,m.fi):l.name;const ck=rightChecked.has(l.id);h+=`<div class="rlib-card avail ${ck?'checked':''}" onclick="toggleRightCheck('${l.id}')"><div class="rlib-card-top"><div class="rlib-check ${ck?'on':''}">✓</div><div class="rlib-card-name">${nm}</div><div class="rlib-card-ct">${l.docs.length} docs</div></div><div class="rlib-card-files">${l.docs.slice(0,2).map(d=>`<div class="rlib-card-doc">${d.n}</div>`).join('')}</div></div>`})}
@@ -813,7 +786,28 @@ document.getElementById('lib-scroll').style.display='block';document.getElementB
 function toggleRightCheck(id){rightChecked.has(id)?rightChecked.delete(id):rightChecked.add(id);renderRightLibs()}
 function commitRightAdd(){rightChecked.forEach(id=>scopeAddLib(id));rightChecked.clear()}
 function toggleExpand(id){document.getElementById(id)?.classList.toggle('open')}
-function openV(libId,i){const l=LIBS.find(x=>x.id===libId);if(!l||!l.docs[i])return;const d=l.docs[i];document.querySelector('.lib-scroll-wrap').style.display='none';document.querySelector('.lib-head').style.display='none';document.getElementById('rlib-action-bar').classList.remove('show');document.getElementById('lib-viewer').classList.add('active');document.getElementById('lv-t').textContent=d.n;document.getElementById('lv-d').textContent=d.d+' · '+l.name;document.getElementById('lv-frame').style.display='none';document.getElementById('lv-b').style.display='block';document.getElementById('lv-b').textContent=d.c||'No preview available.'}
+function openV(libId,i){const l=LIBS.find(x=>x.id===libId);if(!l||!l.docs[i])return;const d=l.docs[i];document.querySelector('.lib-scroll-wrap').style.display='none';document.querySelector('.lib-head').style.display='none';document.getElementById('rlib-action-bar').classList.remove('show');document.getElementById('lib-viewer').classList.add('active');document.getElementById('lv-t').textContent=d.n;document.getElementById('lv-d').textContent=d.d+' · '+l.name;document.getElementById('lv-frame').style.display='none';document.getElementById('lv-b').style.display='block';
+  if(boxConnected&&d.fileId){
+    document.getElementById('lv-b').textContent='Loading...';
+    // Try to get text representation
+    fetch(BOX+'/files/'+d.fileId+'/content',{headers:{'Authorization':'Bearer '+boxToken}})
+      .then(r=>{if(!r.ok)throw new Error(r.status);return r.text()})
+      .then(text=>{document.getElementById('lv-b').textContent=text.slice(0,5000)+(text.length>5000?'\n\n[Truncated — '+text.length+' chars total]':'')})
+      .catch(()=>{
+        // Fallback: show file info
+        boxGet('/files/'+d.fileId+'?fields=name,size,modified_at,description,extension').then(info=>{
+          document.getElementById('lv-b').textContent=
+            'File: '+info.name+'\n'+
+            'Size: '+(info.size>1048576?(info.size/1048576).toFixed(1)+' MB':(info.size/1024|0)+' KB')+'\n'+
+            'Modified: '+(info.modified_at?new Date(info.modified_at).toLocaleString():'')+'\n'+
+            'Type: '+(info.extension||'unknown').toUpperCase()+'\n\n'+
+            (info.description||'No description.')+'\n\n'+
+            'Preview not available for this file type. Use Box to view the full document.';
+        }).catch(()=>{document.getElementById('lv-b').textContent='Unable to load file content.'});
+      });
+  } else {
+    document.getElementById('lv-b').textContent=d.c||'No preview available.';
+  }}
 function closeV(){document.querySelector('.lib-scroll-wrap').style.display='';document.querySelector('.lib-head').style.display='';document.getElementById('lib-scroll').style.display='block';document.getElementById('lib-viewer').classList.remove('active')}
 
 // Overlays
@@ -837,17 +831,81 @@ function showAssist(){document.getElementById('main-app').style.display='flex';d
 let dcLibs=[],dcSelLib=null;
 function dcUpdateUI(){const ta=document.getElementById('dc-token-area'),st=document.getElementById('dc-status');if(boxConnected){ta.style.display='none';st.style.display='flex';document.getElementById('dc-refresh-btn').style.display='flex';document.getElementById('dc-disconnect-btn').style.display='flex';document.getElementById('dc-root').textContent='Root: '+boxRootId}else{ta.style.display='flex';st.style.display='none';document.getElementById('dc-refresh-btn').style.display='none';document.getElementById('dc-disconnect-btn').style.display='none';document.getElementById('dc-root').textContent='Not connected'}}
 function dcShowBanner(m,t){const b=document.getElementById('dc-banner');b.textContent=m;b.className='dc-banner '+t;b.style.display='block';if(t==='info')setTimeout(()=>b.style.display='none',3000)}
-async function dcConnect(){const t=document.getElementById('dc-token').value.trim();if(!t)return;boxToken=t;try{await boxGet('/users/me');const items=await boxGet('/folders/0/items?fields=name,type&limit=100');let root=items.entries.find(e=>e.type==='folder'&&e.name===DEMOS[currentDemo].brand+' Libraries');if(!root)root=await boxPost('/folders',{name:DEMOS[currentDemo].brand+' Libraries',parent:{id:'0'}});boxRootId=root.id;boxConnected=true;dcUpdateUI();await dcLoadLibs()}catch(e){boxConnected=false;dcUpdateUI();dcShowBanner('Failed: '+e.message,'error')}}
-function dcDisconnect(){boxToken=null;boxRootId=null;boxConnected=false;dcLibs=[];dcSelLib=null;dcUpdateUI();dcRender();LIBS=[...DEMOS[currentDemo].libs];activeIds=new Set(DEMOS[currentDemo].defaultScope);renderAll()}
-async function dcLoadLibs(){const items=await boxGet('/folders/'+boxRootId+'/items?fields=name,type&limit=200');dcLibs=[];for(const f of items.entries.filter(e=>e.type==='folder')){const files=await boxGet('/folders/'+f.id+'/items?fields=name,size,modified_at&limit=200');dcLibs.push({id:f.id,name:f.name,files:files.entries.filter(e=>e.type==='file').map(x=>({id:x.id,name:x.name,size:x.size>1048576?(x.size/1048576).toFixed(1)+' MB':(x.size/1024|0)+' KB',date:x.modified_at?new Date(x.modified_at).toLocaleDateString([],{month:'short',year:'numeric'}):'—'}))})}dcRender();LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f=>({n:f.name.replace(/\.[^.]+$/,''),d:f.date,fileId:f.id,c:''}))}));if(LIBS.length){activeIds=new Set([LIBS[0].id]);scopePresets=[{name:'All',color:DEMOS[currentDemo].ac,ids:LIBS.map(l=>l.id)}];scopeActivePreset=0}syncScope();scopeRender()}
-function dcRender(){const total=dcLibs.reduce((a,l)=>a+l.files.length,0);document.getElementById('dc-lib-list').innerHTML=dcLibs.length?dcLibs.map(l=>`<div class="dc-lib ${dcSelLib===l.id?'active':''}" onclick="dcSelLib='${l.id}';dcRender()"><div class="dc-lib-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg></div><div class="dc-lib-name">${l.name}</div><div class="dc-lib-count">${l.files.length}</div></div>`).join(''):'<div style="padding:20px;text-align:center;font-family:var(--mono);font-size:11px;color:#4a4860">'+(boxConnected?'No libraries yet.':'Connect to Box to manage.')+'</div>';document.getElementById('dc-master-foot').textContent=boxConnected?`${total} files · ${dcLibs.length} libs`:'Disconnected';
-const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib){document.getElementById('dc-empty').style.display='flex';document.getElementById('dc-detail-inner').style.display='none';return}document.getElementById('dc-empty').style.display='none';document.getElementById('dc-detail-inner').style.display='flex';document.getElementById('dc-dh-name').textContent=lib.name;document.getElementById('dc-dh-count').textContent=lib.files.length+' docs';document.getElementById('dc-dh-id').textContent='id: '+lib.id;document.getElementById('dc-file-list').innerHTML=lib.files.map(f=>`<div class="dc-file"><div class="dc-file-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="dc-file-name">${f.name}</div><div class="dc-file-size">${f.size}</div><div class="dc-file-date">${f.date}</div><button class="dc-file-del" onclick="dcDelFile('${lib.id}','${f.id}')">×</button></div>`).join('')||'<div style="padding:24px;text-align:center;font-family:var(--mono);font-size:11px;color:#4a4860">Drop files to upload.</div>'}
-async function dcNewLib(){const n=prompt('Library name:');if(!n)return;if(boxConnected){const f=await boxPost('/folders',{name:n,parent:{id:boxRootId}});dcLibs.push({id:f.id,name:f.name,files:[]});dcSelLib=f.id}else{dcLibs.push({id:'f'+Date.now(),name:n,files:[]});dcSelLib=dcLibs[dcLibs.length-1].id}dcRender()}
-async function dcDeleteLib(){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!confirm('Delete "'+lib.name+'"?'))return;if(boxConnected)await boxDel('/folders/'+lib.id+'?recursive=true');dcLibs=dcLibs.filter(l=>l.id!==dcSelLib);dcSelLib=null;dcRender()}
-async function dcDelFile(lid,fid){const lib=dcLibs.find(l=>l.id===lid);if(!lib)return;if(boxConnected)await boxDel('/files/'+fid);lib.files=lib.files.filter(f=>f.id!==fid);dcRender()}
-function dcStartRename(el){el.contentEditable='true';el.focus();el.onblur=async()=>{el.contentEditable='false';const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib)return;lib.name=el.textContent.trim();dcRender()};el.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();el.blur()}}}
+async function dcConnect(){const t=document.getElementById('dc-token').value.trim();if(!t)return;boxToken=t;try{
+  const me=await boxGet('/users/me');
+  boxConnected=true;dcUpdateUI();
+  dcShowBanner('Connected as '+me.name,'info');
+  await dcLoadLibs();
+}catch(e){boxConnected=false;dcUpdateUI();dcShowBanner('Failed: '+e.message,'error')}}
+function dcDisconnect(){boxToken=null;boxRootId=null;boxHubId=null;boxConnected=false;dcLibs=[];dcSelLib=null;dcUpdateUI();dcRender();LIBS=[...DEMOS[currentDemo].libs];activeIds=new Set(DEMOS[currentDemo].defaultScope);renderAll()}
+async function dcLoadLibs(){
+  dcLibs=[];
+  try{
+    const hubs=await boxGet('/hubs',HV);
+    for(const hub of (hubs.entries||[])){
+      // Get files inside each hub
+      let files=[];
+      try{
+        const items=await boxGet('/hub_items?hub_id='+hub.id,HV);
+        files=(items.entries||[]).filter(e=>e.type==='file').map(x=>({
+          id:x.id,name:x.name||'Unknown',
+          size:x.size>1048576?(x.size/1048576).toFixed(1)+' MB':x.size?(x.size/1024|0)+' KB':'—',
+          date:x.modified_at?new Date(x.modified_at).toLocaleDateString([],{month:'short',year:'numeric'}):'—'
+        }));
+      }catch(e){}
+      dcLibs.push({id:hub.id,name:hub.title||hub.name||'Untitled',desc:hub.description||'',files});
+    }
+  }catch(e){dcShowBanner('Could not load hubs: '+e.message,'error')}
+  dcRender();
+  // Map hubs to LIBS format for the assistant view
+  LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f=>({n:f.name.replace(/\.[^.]+$/,''),d:f.date,fileId:f.id,c:''}))}));
+  if(LIBS.length){
+    activeIds=new Set(LIBS.map(l=>l.id));
+    scopePresets=[{name:'All Hubs',color:DEMOS[currentDemo].ac,ids:LIBS.map(l=>l.id)}];
+    scopeActivePreset=0;
+  }
+  syncScope();scopeRender();
+  S.ws=[];S.saved=[];S.wc=0;renderWs();renderSaved();
+}
+function dcRender(){const total=dcLibs.reduce((a,l)=>a+l.files.length,0);document.getElementById('dc-lib-list').innerHTML=dcLibs.length?dcLibs.map(l=>`<div class="dc-lib ${dcSelLib===l.id?'active':''}" onclick="dcSelLib='${l.id}';dcRender()"><div class="dc-lib-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><div class="dc-lib-name">${l.name}</div><div class="dc-lib-count">${l.files.length}</div></div>`).join(''):'<div style="padding:24px;text-align:center;font-size:13px;color:#909090">'+(boxConnected?'No hubs yet. Create one to get started.':'Connect to Box to manage hubs.')+'</div>';document.getElementById('dc-master-foot').textContent=boxConnected?`${total} files · ${dcLibs.length} hubs`:'Disconnected';
+const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib){document.getElementById('dc-empty').style.display='flex';document.getElementById('dc-detail-inner').style.display='none';return}document.getElementById('dc-empty').style.display='none';document.getElementById('dc-detail-inner').style.display='flex';document.getElementById('dc-dh-name').textContent=lib.name;document.getElementById('dc-dh-count').textContent=lib.files.length+' docs';document.getElementById('dc-dh-id').textContent='hub: '+lib.id;document.getElementById('dc-file-list').innerHTML=lib.files.map(f=>`<div class="dc-file"><div class="dc-file-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="dc-file-name">${f.name}</div><div class="dc-file-size">${f.size}</div><div class="dc-file-date">${f.date}</div><button class="dc-file-del" onclick="dcDelFile('${lib.id}','${f.id}')">×</button></div>`).join('')||'<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Drop files here or click upload to add documents to this hub.</div>'}
+async function dcNewHub(){const n=prompt('Hub name:');if(!n)return;if(boxConnected){
+  try{
+    const hub=await boxPost('/hubs',{title:n,description:'',is_ai_enabled:true},HV);
+    dcLibs.push({id:hub.id,name:hub.title,desc:'',files:[]});dcSelLib=hub.id;
+    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,c:''}))}));
+    syncScope();scopeRender();
+  }catch(e){dcShowBanner('Create hub failed: '+e.message,'error')}
+}else{dcLibs.push({id:'h'+Date.now(),name:n,desc:'',files:[]});dcSelLib=dcLibs[dcLibs.length-1].id}dcRender()}
+async function dcDeleteHub(){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!confirm('Delete hub "'+lib.name+'"?'))return;if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken,...HV}})}catch(e){dcShowBanner('Delete failed: '+e.message,'error');return}}dcLibs=dcLibs.filter(l=>l.id!==dcSelLib);dcSelLib=null;LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,c:''}))}));syncScope();scopeRender();dcRender()}
+async function dcDelFile(hubId,fid){const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;if(boxConnected){try{await boxDel('/files/'+fid)}catch(e){}}lib.files=lib.files.filter(f=>f.id!==fid);dcRender();LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,c:''}))}));syncScope();scopeRender()}
+function dcStartRename(el){el.contentEditable='true';el.focus();el.onblur=async()=>{el.contentEditable='false';const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib)return;const newName=el.textContent.trim();lib.name=newName;if(boxConnected){try{await fetch(BOX+'/hubs/'+lib.id,{method:'PUT',headers:{'Authorization':'Bearer '+boxToken,'Content-Type':'application/json',...HV},body:JSON.stringify({title:newName})})}catch(e){}}dcRender()};el.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();el.blur()}}}
 function dcHandleDrop(e){dcHandleFiles(e.dataTransfer.files)}
-async function dcHandleFiles(fl){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!fl.length)return;for(const f of Array.from(fl))lib.files.push({id:'f'+Date.now()+Math.random(),name:f.name,size:(f.size/1024|0)+' KB',date:'Just now'});dcRender();document.getElementById('dc-file-input').value=''}
+async function dcHandleFiles(fl){const lib=dcLibs.find(l=>l.id===dcSelLib);if(!lib||!fl.length)return;
+  if(boxConnected){
+    for(const f of Array.from(fl)){
+      try{
+        // Upload file to Box root, then add to hub
+        const form=new FormData();
+        form.append('attributes',JSON.stringify({name:f.name,parent:{id:'0'}}));
+        form.append('file',f);
+        const r=await fetch(BOX_UPLOAD+'/files/content',{method:'POST',headers:{'Authorization':'Bearer '+boxToken},body:form});
+        if(!r.ok)throw new Error(r.status);
+        const data=await r.json();
+        const uploaded=data.entries[0];
+        // Add file to this hub
+        try{await boxPost('/hub_items',{hub_id:lib.id,items:[{type:'file',id:uploaded.id}]},HV)}catch(e){dcShowBanner('Upload ok but hub add failed: '+e.message,'error')}
+        lib.files.push({id:uploaded.id,name:uploaded.name,size:f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024|0)+' KB',date:'Just now'});
+      }catch(e){dcShowBanner('Upload failed: '+e.message,'error')}
+    }
+    dcRender();
+    LIBS=dcLibs.map(l=>({id:l.id,name:l.name,docs:l.files.map(f2=>({n:f2.name.replace(/\.[^.]+$/,''),d:f2.date,fileId:f2.id,c:''}))}));
+    syncScope();scopeRender();
+  } else {
+    for(const f of Array.from(fl))lib.files.push({id:'f'+Date.now()+Math.random(),name:f.name,size:(f.size/1024|0)+' KB',date:'Just now'});
+    dcRender();
+  }
+  document.getElementById('dc-file-input').value=''}
 async function dcRefresh(){if(boxConnected){await dcLoadLibs();dcShowBanner('Refreshed','info')}}
 
 init();dcUpdateUI();
