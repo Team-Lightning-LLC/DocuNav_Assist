@@ -682,12 +682,12 @@ async function boxGet(p,hdr={}){const r=await fetch(BOX+p,{headers:{'Authorizati
 async function boxPost(p,b,hdr={}){const r=await fetch(BOX+p,{method:'POST',headers:{'Authorization':'Bearer '+boxToken,'Content-Type':'application/json',...hdr},body:JSON.stringify(b)});if(!r.ok)throw new Error(r.status+' '+await r.text().catch(()=>''));return r.json()}
 async function boxDel(p){await fetch(BOX+p,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken}})}
 const HV={'box-version':'2025.0'};
-async function boxAiAskHub(hubId,prompt){
-  return boxPost('/ai/ask',{mode:'single_item_qa',prompt,items:[{id:hubId,type:'hubs'}]});
-}
+let boxAgentConfig=null; // cached from GET /ai_agents on connect
 async function boxAiAskFiles(fileIds,prompt){
   const items=fileIds.map(id=>({id,type:'file'}));
-  return boxPost('/ai/ask',{mode:items.length===1?'single_item_qa':'multiple_item_qa',prompt,items});
+  const body={mode:items.length===1?'single_item_qa':'multiple_item_qa',prompt,items,include_citations:true};
+  if(boxAgentConfig)body.ai_agent=boxAgentConfig;
+  return boxPost('/ai/ask',body);
 }
 
 let LIBS=[...DEMOS[0].libs];
@@ -723,17 +723,16 @@ function toggleSplit(){S.split=!S.split;renderSplitState()}
 function renderSplitState(){const panels=document.getElementById('chat-panels');const btn=document.getElementById('split-btn');if(S.split){if(!document.getElementById('panel-2')){const p=document.createElement('div');p.className='chat-panel';p.id='panel-2';p.innerHTML='<div class="chat-panel-head"><span>Panel 2</span><button class="chat-panel-close" onclick="toggleSplit()">×</button></div><div class="chat-msgs" id="ch-msgs-2"><div class="empty-c">Ask in this panel for a parallel thread.</div></div>';panels.appendChild(p)}document.getElementById('panel-2').style.display='flex';btn.style.background='var(--ac-s)';btn.style.color='var(--ac)'}else{const p2=document.getElementById('panel-2');if(p2)p2.style.display='none';btn.style.background='';btn.style.color='';S.activePanel=1}}
 function send(){const inp=document.getElementById('inp');const t=inp.value.trim();if(!t)return;inp.value='';const panel=S.split?S.activePanel:1;if(!S.aWs){S.wc++;const w={id:'w'+S.wc,title:t.length>42?t.slice(0,42)+'...':t,meta:getSelLibNames().split(' + ')[0]||'General',msgs:[],t:new Date(),scope:[...activeIds]};S.ws.unshift(w);openWs(w.id)}const w=S.ws.find(x=>x.id===S.aWs);if(!w)return;const el=document.getElementById('ch-msgs-'+panel);if(el.querySelector('.empty-c'))el.innerHTML='';w.msgs.push({c:t,u:true,p:panel});aMsg(panel,t,true);showT(panel);
   if(boxConnected){
-    // Query each scoped hub and merge answers
+    // Resolve scoped hubs to file IDs
     const scopedLibs=LIBS.filter(l=>activeIds.has(l.id));
-    const hubIds=scopedLibs.map(l=>l.id).filter(id=>id!=='_loose');
-    if(!hubIds.length){hideT(panel);const r={t:'<p>No hubs in the current scope. Add hubs to ask questions.</p>',ci:[]};w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);return}
-    // Query hubs in parallel, merge results
-    Promise.all(hubIds.map(hid=>boxAiAskHub(hid,t).catch(err=>({answer:'Error querying hub: '+err.message,citations:[]})))).then(results=>{
+    const fileIds=scopedLibs.flatMap(l=>l.docs.filter(d=>d.fileId).map(d=>d.fileId));
+    if(!fileIds.length){hideT(panel);const r={t:'<p>No files in the current scope. Add documents to your hubs first.</p>',ci:[]};w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);return}
+    if(fileIds.length>25){hideT(panel);const r={t:'<p>Scope contains '+fileIds.length+' files (limit is 25). Narrow your scope by removing some hubs.</p>',ci:[]};w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);return}
+    boxAiAskFiles(fileIds,t).then(res=>{
       hideT(panel);
-      const answers=results.map(r=>r.answer||'').filter(Boolean);
-      const citations=results.flatMap(r=>(r.citations||[]).map(c=>c.name||c.content||'')).filter(Boolean);
-      const combined=answers.length>1?answers.map((a,i)=>'<p>'+a.replace(/\n/g,'<br>')+'</p>').join(''):'<p>'+(answers[0]||'No answer returned.').replace(/\n/g,'<br>')+'</p>';
-      const r={t:combined,ci:[...new Set(citations)]};
+      const answer=res.answer||'No answer returned.';
+      const citations=(res.citations||[]).map(c=>c.name||c.content||'').filter(Boolean);
+      const r={t:'<p>'+answer.replace(/\n/g,'<br>')+'</p>',ci:[...new Set(citations)]};
       w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);
     }).catch(err=>{
       hideT(panel);
@@ -829,15 +828,29 @@ function showAssist(){document.getElementById('main-app').style.display='flex';d
 
 // Dev console (simplified for brevity — same Box wiring)
 let dcLibs=[],dcSelLib=null;
-function dcUpdateUI(){const ta=document.getElementById('dc-token-area'),st=document.getElementById('dc-status');if(boxConnected){ta.style.display='none';st.style.display='flex';document.getElementById('dc-refresh-btn').style.display='flex';document.getElementById('dc-disconnect-btn').style.display='flex';document.getElementById('dc-root').textContent='Root: '+boxRootId}else{ta.style.display='flex';st.style.display='none';document.getElementById('dc-refresh-btn').style.display='none';document.getElementById('dc-disconnect-btn').style.display='none';document.getElementById('dc-root').textContent='Not connected'}}
+function dcUpdateUI(){const ta=document.getElementById('dc-token-area'),st=document.getElementById('dc-status');if(boxConnected){ta.style.display='none';st.style.display='flex';document.getElementById('dc-refresh-btn').style.display='flex';document.getElementById('dc-disconnect-btn').style.display='flex';document.getElementById('dc-root').textContent=dcLibs.length+' hubs'+(boxAgentConfig?' · Agent loaded':'')}else{ta.style.display='flex';st.style.display='none';document.getElementById('dc-refresh-btn').style.display='none';document.getElementById('dc-disconnect-btn').style.display='none';document.getElementById('dc-root').textContent='Powered by Box'}}
 function dcShowBanner(m,t){const b=document.getElementById('dc-banner');b.textContent=m;b.className='dc-banner '+t;b.style.display='block';if(t==='info')setTimeout(()=>b.style.display='none',3000)}
 async function dcConnect(){const t=document.getElementById('dc-token').value.trim();if(!t)return;boxToken=t;try{
   const me=await boxGet('/users/me');
   boxConnected=true;dcUpdateUI();
   dcShowBanner('Connected as '+me.name,'info');
+  // Try to load AI Studio agent config
+  try{
+    const agents=await boxGet('/ai_agents');
+    if(agents.entries&&agents.entries.length>0){
+      const agent=agents.entries.find(a=>a.name==='ENTERPRISE RAG');
+      if(agent){
+        const full=await boxGet('/ai_agents/'+agent.id+'?fields=ask');
+        if(full.ask)boxAgentConfig=full.ask;
+        dcShowBanner('Connected as '+me.name+' · Agent: ENTERPRISE RAG','info');
+      } else {
+        dcShowBanner('Connected as '+me.name+' · ENTERPRISE RAG agent not found','error');
+      }
+    }
+  }catch(e){/* no agents or no access, use default */}
   await dcLoadLibs();
 }catch(e){boxConnected=false;dcUpdateUI();dcShowBanner('Failed: '+e.message,'error')}}
-function dcDisconnect(){boxToken=null;boxRootId=null;boxHubId=null;boxConnected=false;dcLibs=[];dcSelLib=null;dcUpdateUI();dcRender();LIBS=[...DEMOS[currentDemo].libs];activeIds=new Set(DEMOS[currentDemo].defaultScope);renderAll()}
+function dcDisconnect(){boxToken=null;boxRootId=null;boxHubId=null;boxAgentConfig=null;boxConnected=false;dcLibs=[];dcSelLib=null;dcUpdateUI();dcRender();LIBS=[...DEMOS[currentDemo].libs];activeIds=new Set(DEMOS[currentDemo].defaultScope);renderAll()}
 async function dcLoadLibs(){
   dcLibs=[];
   try{
