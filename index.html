@@ -700,6 +700,19 @@ let beforeChatScope=null,beforeChatPreset=-1;
 let rightSearch='',rightChecked=new Set();
 
 function fuzzyMatch(q,t){q=q.toLowerCase();t=t.toLowerCase();if(!q)return{match:true,score:0,indices:[]};let qi=0,sc=0,idx=[],li=-1,con=0;for(let ti=0;ti<t.length&&qi<q.length;ti++){if(t[ti]===q[qi]){idx.push(ti);if(ti===li+1){con++;sc+=con*3}else con=0;if(ti===0||' -_/('.includes(t[ti-1]))sc+=5;if(ti===0)sc+=8;sc++;li=ti;qi++}}if(qi<q.length)return{match:false,score:0,indices:[]};sc-=(idx.length>1?idx[idx.length-1]-idx[0]:0)*0.5;return{match:true,score:sc,indices:idx}}
+function mdToHtml(md){
+  return md.split('\n').map(line=>{
+    line=line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+    line=line.replace(/\*(.+?)\*/g,'<em>$1</em>');
+    if(/^### /.test(line))return'<h4 style="margin:8px 0 4px;font-size:13px;font-weight:700;color:var(--t1)">'+line.slice(4)+'</h4>';
+    if(/^## /.test(line))return'<h3 style="margin:10px 0 4px;font-size:14px;font-weight:700;color:var(--t1)">'+line.slice(3)+'</h3>';
+    if(/^# /.test(line))return'<h3 style="margin:10px 0 4px;font-size:15px;font-weight:700;color:var(--t1)">'+line.slice(2)+'</h3>';
+    if(/^[-*] /.test(line))return'<div style="padding-left:12px;margin:1px 0">• '+line.slice(2)+'</div>';
+    if(/^\d+\. /.test(line))return'<div style="padding-left:12px;margin:1px 0">'+line+'</div>';
+    if(line.trim()==='')return'<br>';
+    return'<p style="margin:2px 0">'+line+'</p>';
+  }).join('');
+}
 function fuzzyHL(t,idx){if(!idx.length)return t;let o='';const s=new Set(idx);for(let i=0;i<t.length;i++)o+=s.has(i)?`<b style="color:var(--ac);font-weight:600">${t[i]}</b>`:t[i];return o}
 
 function init(){
@@ -732,7 +745,7 @@ function send(){const inp=document.getElementById('inp');const t=inp.value.trim(
       hideT(panel);
       const answer=res.answer||'No answer returned.';
       const citations=(res.citations||[]).map(c=>c.name||c.content||'').filter(Boolean);
-      const r={t:'<p>'+answer.replace(/\n/g,'<br>')+'</p>',ci:[...new Set(citations)]};
+      const r={t:mdToHtml(answer),ci:[...new Set(citations)]};
       w.msgs.push({c:r.t,u:false,ci:r.ci,p:panel});aMsg(panel,r.t,false,r.ci);
     }).catch(err=>{
       hideT(panel);
