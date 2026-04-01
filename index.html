@@ -450,8 +450,11 @@ button{font-family:var(--f);cursor:pointer}
 .hm-file-name{font-size:13px;font-weight:600;color:#222;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;line-height:1.3}
 .hm-file-name:hover{color:#0061D5}
 .hm-file-meta{font-size:11px;color:#909090;margin-top:2px}
-.hm-file-actions{display:flex;gap:4px;flex-shrink:0;opacity:0;transition:opacity .1s}
-.hm-file:hover .hm-file-actions{opacity:1}
+.hm-file-actions{display:flex;gap:4px;flex-shrink:0;align-items:center}
+.hm-file-acts-inner{display:none;gap:4px;align-items:center}
+.hm-file:hover .hm-file-acts-inner{display:flex}
+.hm-file-more{width:28px;height:28px;border:none;background:transparent;border-radius:6px;cursor:pointer;color:#C4C4C4;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.hm-file-more:hover{background:#F5F7FA;color:#222}
 .hm-act{padding:6px 12px;font-size:11px;font-weight:700;border-radius:5px;cursor:pointer;border:1px solid #E4E4E4;background:#fff;color:#4A4A4A;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
 .hm-act:hover{border-color:#0061D5;color:#0061D5;background:#F5F7FA}
 .hm-act.primary{background:#0061D5;color:#fff;border-color:#0061D5}
@@ -460,12 +463,21 @@ button{font-family:var(--f);cursor:pointer}
 .hm-act.danger:hover{background:#FDE8EA;border-color:#ED4956;color:#ED4956}
 .hm-act svg{width:12px;height:12px}
 .hm-act-pop{position:relative;display:inline-block}
-.hm-act-dd{display:none;position:absolute;top:100%;right:0;margin-top:4px;background:#fff;border:1px solid #E4E4E4;border-radius:8px;min-width:180px;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:4px;max-height:220px;overflow-y:auto}
+.hm-act-dd{display:none;position:absolute;top:100%;right:0;margin-top:4px;background:#fff;border:1px solid #E4E4E4;border-radius:8px;min-width:200px;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:4px;max-height:260px;overflow-y:auto}
 .hm-act-dd.open{display:block}
-.hm-act-dd-item{display:block;width:100%;padding:8px 12px;font-size:12px;color:#4A4A4A;border:none;background:none;text-align:left;border-radius:5px;cursor:pointer;font-weight:500}
+.hm-act-dd-head{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#909090;padding:6px 12px 4px}
+.hm-act-dd-item{display:block;width:100%;padding:9px 12px;font-size:12px;color:#4A4A4A;border:none;background:none;text-align:left;border-radius:5px;cursor:pointer;font-weight:500}
 .hm-act-dd-item:hover{background:#E8F1FD;color:#0061D5}
 .hm-act-dd-item.danger{color:#ED4956}
 .hm-act-dd-item.danger:hover{background:#FDE8EA}
+.hm-act-dd-sep{height:1px;background:#F0F0F0;margin:4px 0}
+
+/* Compact upload bar (when hub has files) */
+.hm-upload-compact{display:flex;align-items:center;gap:12px;padding:12px 16px;background:#fff;border:1px solid #E4E4E4;border-radius:8px;margin-bottom:12px;cursor:pointer}
+.hm-upload-compact:hover{border-color:#0061D5;background:#F5F7FA}
+.hm-upload-compact svg{width:18px;height:18px;color:#0061D5;flex-shrink:0}
+.hm-upload-compact span{font-size:13px;font-weight:600;color:#4A4A4A}
+.hm-upload-compact:hover span{color:#0061D5}
 
 /* Browse panel */
 .hm-browse-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
@@ -484,8 +496,9 @@ button{font-family:var(--f);cursor:pointer}
 .hm-folder-name{font-size:13px;font-weight:600;color:#222;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;line-height:1.3}
 .hm-folder-name:hover{color:#0061D5}
 .hm-folder-sub{font-size:11px;color:#909090;margin-top:2px}
-.hm-folder-actions{display:flex;gap:4px;flex-shrink:0;opacity:0;transition:opacity .1s}
-.hm-folder-item:hover .hm-folder-actions{opacity:1}
+.hm-folder-actions{display:flex;gap:4px;flex-shrink:0;align-items:center}
+.hm-folder-acts-inner{display:none;gap:4px;align-items:center}
+.hm-folder-item:hover .hm-folder-acts-inner{display:flex}
 
 /* Preview overlay */
 .hm-preview{position:absolute;inset:0;background:#fff;z-index:50;display:flex;flex-direction:column}
@@ -1119,16 +1132,18 @@ function hmRenderDetail(){
     <div class="hm-detail-id">hub: ${lib.id}</div>
     <button class="hm-btn danger" onclick="dcDeleteHub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Delete Hub</button>`;
   const body=document.getElementById('hm-detail-body');
-  let h=`<div class="hm-upload" id="hm-upload-zone" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)" onclick="document.getElementById('dc-file-input').click()"><div class="hm-upload-icon">${SVG_UPLOAD}</div><h3>Drop files here or click to upload</h3><p>PDF, DOCX, TXT, XLSX, MD</p></div>`;
-  if(boxConnected){
-    h+=`<div class="hm-addbox-btn" onclick="hmBrowseForHub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16" height="16"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg>Add files from Box</div>`;
-  }
+  let h='';
   if(lib.files.length){
+    h+=`<div style="display:flex;gap:8px;margin-bottom:16px">
+      <div class="hm-upload-compact" style="flex:1" ondragover="event.preventDefault();this.style.borderColor='#0061D5'" ondragleave="this.style.borderColor=''" ondrop="event.preventDefault();this.style.borderColor='';dcHandleDrop(event)" onclick="document.getElementById('dc-file-input').click()">${SVG_UPLOAD}<span>Upload files</span></div>
+      ${boxConnected?`<div class="hm-upload-compact" style="flex:1" onclick="hmAddFilesModal('${lib.id}')">${SVG_FOLDER}<span>Add from Box</span></div>`:''}
+    </div>`;
     h+=`<div class="hm-file-label">Documents <span class="hm-file-badge">${lib.files.length}</span></div>`;
     lib.files.forEach((f,i)=>{
       const ext=(f.name||'').split('.').pop().toLowerCase();
       const icoClass=ext==='pdf'?'pdf':['doc','docx'].includes(ext)?'doc':['xls','xlsx','csv'].includes(ext)?'xls':'';
       const eName=(f.name||'').replace(/'/g,"\\'");
+      const hubDDItems=dcLibs.filter(ol=>ol.id!==lib.id).map(ol=>`<button class="hm-act-dd-item" onclick="event.stopPropagation();hmMoveFileToHub('${lib.id}','${ol.id}','${f.id}','${eName}')">${ol.name}</button>`).join('');
       h+=`<div class="hm-file" style="animation-delay:${i*30}ms">
         <div class="hm-file-ico ${icoClass}">${SVG_FILE}</div>
         <div class="hm-file-info">
@@ -1136,14 +1151,21 @@ function hmRenderDetail(){
           <div class="hm-file-meta">${[f.size,f.date].filter(Boolean).join(' · ')}</div>
         </div>
         <div class="hm-file-actions">
-          <div class="hm-act-pop"><button class="hm-act" onclick="event.stopPropagation();hmToggleDD(this)">Move to Hub</button><div class="hm-act-dd">${dcLibs.filter(ol=>ol.id!==lib.id).map(ol=>`<button class="hm-act-dd-item" onclick="event.stopPropagation();hmMoveFileToHub('${lib.id}','${ol.id}','${f.id}','${eName}')">${ol.name}</button>`).join('')||'<div style="padding:8px 12px;font-size:12px;color:#909090">No other hubs</div>'}</div></div>
-          <button class="hm-act danger" onclick="event.stopPropagation();hmRemoveFromHub('${lib.id}','${f.id}')">Remove</button>
-          <button class="hm-act danger" onclick="event.stopPropagation();hmDeleteFile('${lib.id}','${f.id}','${eName}')">Delete</button>
+          <div class="hm-file-acts-inner"><button class="hm-act" onclick="event.stopPropagation();hmRemoveFromHub('${lib.id}','${f.id}')">Remove from Hub</button></div>
+          <div class="hm-act-pop"><button class="hm-file-more" onclick="event.stopPropagation();hmToggleDD(this)">⋯</button><div class="hm-act-dd">
+            <div class="hm-act-dd-head">Move to hub</div>
+            ${hubDDItems||'<div style="padding:6px 12px;font-size:11px;color:#C4C4C4">No other hubs</div>'}
+            <div class="hm-act-dd-sep"></div>
+            <button class="hm-act-dd-item" onclick="event.stopPropagation();dcPreviewFile('${f.id}','${eName}')">Preview</button>
+            <button class="hm-act-dd-item" onclick="event.stopPropagation();hmRemoveFromHub('${lib.id}','${f.id}')">Remove from Hub</button>
+            <button class="hm-act-dd-item danger" onclick="event.stopPropagation();hmDeleteFile('${lib.id}','${f.id}','${eName}')">Delete from Box</button>
+          </div></div>
         </div>
       </div>`;
     });
   } else {
-    h+=`<div style="padding:32px;text-align:center;font-size:13px;color:#909090;background:#fff;border:1px solid #F0F0F0;border-radius:8px">No documents yet. Upload files or add from Box.</div>`;
+    h+=`<div class="hm-upload" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)" onclick="document.getElementById('dc-file-input').click()"><div class="hm-upload-icon">${SVG_UPLOAD}</div><h3>Drop files here or click to upload</h3><p>PDF, DOCX, TXT, XLSX, MD</p></div>`;
+    if(boxConnected){h+=`<div class="hm-upload-compact" onclick="hmAddFilesModal('${lib.id}')">${SVG_FOLDER}<span>Add files from Box</span></div>`}
   }
   body.innerHTML=h;
 }
@@ -1161,7 +1183,6 @@ function hmStartRename(el){
   el.onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();el.blur()}};
 }
 
-function hmBrowseForHub(){dcSelLib=null;hmNav('browse')}
 
 // Browse panel
 let hmBrowseFolderId='0';
@@ -1173,7 +1194,6 @@ async function hmLoadFolder(fid){
     const cls=i===dcFolderStack.length-1?'hm-crumb current':'hm-crumb';
     return`<span class="${cls}" onclick="hmNavFolder(${i})">${f.name}</span>`;
   }).join('<span class="hm-crumb-sep">/</span>');
-  const curFolder=dcFolderStack[dcFolderStack.length-1];
   body.innerHTML=`<div class="hm-browse-bar"><div class="hm-browse-crumbs">${crumbs}</div><div class="hm-browse-actions"><button class="hm-act" onclick="hmUploadToFolder('${fid}')">${SVG_UPLOAD.replace(/width="[^"]*"|height="[^"]*"/g,'').replace('<svg','<svg width="12" height="12"')} Upload here</button><button class="hm-act" onclick="hmNewFolder('${fid}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M12 5v14M5 12h14"/></svg> New Folder</button></div></div><div id="hm-folder-list" style="font-size:13px;color:#909090;padding:24px;text-align:center">Loading...</div>`;
   try{
     const res=await boxGet('/folders/'+fid+'/items?fields=name,type,size,modified_at&limit=200');
@@ -1181,17 +1201,22 @@ async function hmLoadFolder(fid){
     let h='';
     items.forEach((it,i)=>{
       const eName=it.name.replace(/'/g,"\\'");
+      const hubItems=dcLibs.map(l=>`<button class="hm-act-dd-item" onclick="event.stopPropagation();hmAdd${it.type==='folder'?'Folder':'File'}ToHub('${l.id}','${it.id}','${eName}')">${l.name}</button>`).join('');
+      const noHubs='<div style="padding:6px 12px;font-size:11px;color:#C4C4C4">No hubs yet</div>';
       if(it.type==='folder'){
         h+=`<div class="hm-folder-item" style="animation-delay:${i*25}ms">
           <div class="hm-folder-ico dir">${SVG_FOLDER}</div>
-          <div class="hm-folder-info">
-            <div class="hm-folder-name" onclick="hmEnterFolder('${it.id}','${eName}')">${it.name}</div>
-          </div>
+          <div class="hm-folder-info"><div class="hm-folder-name" onclick="hmEnterFolder('${it.id}','${eName}')">${it.name}</div></div>
           <div class="hm-folder-actions">
-            <button class="hm-act primary" onclick="event.stopPropagation();dcMakeHub('${it.id}','${eName}')">Make Hub</button>
-            <div class="hm-act-pop"><button class="hm-act" onclick="event.stopPropagation();hmToggleDD(this)">Add to Hub</button><div class="hm-act-dd">${dcLibs.map(l=>`<button class="hm-act-dd-item" onclick="event.stopPropagation();hmAddFolderToHub('${l.id}','${it.id}','${eName}')">${l.name}</button>`).join('')||'<div style="padding:8px 12px;font-size:12px;color:#909090">No hubs yet</div>'}</div></div>
-            <button class="hm-act" onclick="event.stopPropagation();hmUploadToFolder('${it.id}')">Upload</button>
-            <button class="hm-act danger" onclick="event.stopPropagation();hmDeleteFolder('${it.id}','${eName}')">Delete</button>
+            <div class="hm-folder-acts-inner"><button class="hm-act primary" onclick="event.stopPropagation();dcMakeHub('${it.id}','${eName}')">Make Hub</button></div>
+            <div class="hm-act-pop"><button class="hm-file-more" onclick="event.stopPropagation();hmToggleDD(this)">⋯</button><div class="hm-act-dd">
+              <button class="hm-act-dd-item" onclick="event.stopPropagation();dcMakeHub('${it.id}','${eName}')">Make Hub from folder</button>
+              <div class="hm-act-dd-head">Add contents to hub</div>
+              ${hubItems||noHubs}
+              <div class="hm-act-dd-sep"></div>
+              <button class="hm-act-dd-item" onclick="event.stopPropagation();hmUploadToFolder('${it.id}')">Upload to this folder</button>
+              <button class="hm-act-dd-item danger" onclick="event.stopPropagation();hmDeleteFolder('${it.id}','${eName}')">Delete folder</button>
+            </div></div>
           </div>
         </div>`;
       } else {
@@ -1203,8 +1228,13 @@ async function hmLoadFolder(fid){
             <div class="hm-folder-sub">${sz}${it.modified_at?' · '+new Date(it.modified_at).toLocaleDateString():''}</div>
           </div>
           <div class="hm-folder-actions">
-            <div class="hm-act-pop"><button class="hm-act primary" onclick="event.stopPropagation();hmToggleDD(this)">Add to Hub</button><div class="hm-act-dd">${dcLibs.map(l=>`<button class="hm-act-dd-item" onclick="event.stopPropagation();hmAddFileToHub('${l.id}','${it.id}','${eName}')">${l.name}</button>`).join('')||'<div style="padding:8px 12px;font-size:12px;color:#909090">No hubs yet</div>'}</div></div>
-            <button class="hm-act danger" onclick="event.stopPropagation();hmDeleteBoxFile('${it.id}','${eName}')">Delete</button>
+            <div class="hm-act-pop"><button class="hm-file-more" onclick="event.stopPropagation();hmToggleDD(this)">⋯</button><div class="hm-act-dd">
+              <div class="hm-act-dd-head">Add to hub</div>
+              ${hubItems||noHubs}
+              <div class="hm-act-dd-sep"></div>
+              <button class="hm-act-dd-item" onclick="event.stopPropagation();dcPreviewFile('${it.id}','${eName}')">Preview</button>
+              <button class="hm-act-dd-item danger" onclick="event.stopPropagation();hmDeleteBoxFile('${it.id}','${eName}')">Delete from Box</button>
+            </div></div>
           </div>
         </div>`;
       }
@@ -1357,6 +1387,88 @@ async function hmNewFolder(parentId){
     await boxPost('/folders',{name:name,parent:{id:parentId}});
     hmLoadFolder(hmBrowseFolderId);
     hmShowBanner('Created folder "'+name+'"','info');
+  }catch(e){hmShowBanner('Failed: '+e.message,'error')}
+}
+
+// Inline file picker modal (stays in hub context)
+let hmPickerHub=null,hmPickerFolder='0',hmPickerPath=[{id:'0',name:'All Files'}],hmPickerSelected=new Map();
+function hmAddFilesModal(hubId){
+  hmPickerHub=hubId;hmPickerFolder='0';hmPickerPath=[{id:'0',name:'All Files'}];hmPickerSelected=new Map();
+  const lib=dcLibs.find(l=>l.id===hubId);
+  let m=document.getElementById('hm-picker-modal');if(m)m.remove();
+  m=document.createElement('div');m.id='hm-picker-modal';
+  m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+  m.innerHTML=`<div style="background:#fff;border-radius:12px;width:520px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 16px 48px rgba(0,0,0,.2);font-family:'Lato',sans-serif;overflow:hidden">
+    <div style="padding:16px 24px;border-bottom:1px solid #F0F0F0;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <div><div style="font-size:15px;font-weight:900;color:#222">Add files to ${lib?lib.name:'Hub'}</div><div style="font-size:11px;color:#909090;margin-top:2px">Browse Box and select files or folders to add</div></div>
+      <button onclick="document.getElementById('hm-picker-modal').remove()" style="background:none;border:none;font-size:20px;cursor:pointer;color:#909090;padding:4px">×</button>
+    </div>
+    <div style="padding:8px 24px 4px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0">
+      <div id="hm-pk-crumbs" style="font-size:12px"></div>
+      <span id="hm-pk-count" style="font-size:11px;font-weight:700;color:#0061D5"></span>
+    </div>
+    <div id="hm-pk-browser" style="flex:1;overflow-y:auto;border-top:1px solid #F0F0F0;min-height:200px;max-height:360px"></div>
+    <div id="hm-pk-chips" style="padding:6px 24px;max-height:52px;overflow-y:auto;display:flex;flex-wrap:wrap;gap:4px;flex-shrink:0"></div>
+    <div style="padding:12px 24px 16px;display:flex;gap:8px;justify-content:flex-end;flex-shrink:0;border-top:1px solid #F0F0F0">
+      <button onclick="document.getElementById('hm-picker-modal').remove()" style="padding:9px 20px;border:1px solid #E4E4E4;border-radius:6px;background:#fff;font-size:12px;cursor:pointer;color:#666;font-family:'Lato',sans-serif;font-weight:700">Cancel</button>
+      <button onclick="hmPickerCommit()" id="hm-pk-go" style="padding:9px 20px;border:none;border-radius:6px;background:#0061D5;color:#fff;font-size:12px;cursor:pointer;font-family:'Lato',sans-serif;font-weight:700">Add to Hub</button>
+    </div>
+  </div>`;
+  document.body.appendChild(m);
+  m.onclick=e=>{if(e.target===m)m.remove()};
+  hmPickerLoad('0');
+}
+async function hmPickerLoad(fid){
+  hmPickerFolder=fid;
+  document.getElementById('hm-pk-crumbs').innerHTML=hmPickerPath.map((p,i)=>`<span style="cursor:pointer;${i===hmPickerPath.length-1?'font-weight:700;color:#222':'color:#0061D5'}" onclick="hmPickerNav(${i})">${p.name}</span>`).join(' <span style="color:#C4C4C4">/</span> ');
+  const browser=document.getElementById('hm-pk-browser');
+  browser.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:#909090">Loading...</div>';
+  try{
+    const res=await boxGet('/folders/'+fid+'/items?fields=name,type,size,modified_at&limit=200');
+    const items=(res.entries||[]).sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name):(a.type==='folder'?-1:1)));
+    let h='';
+    items.forEach(it=>{
+      const checked=hmPickerSelected.has(it.id);
+      const icon=it.type==='folder'?SVG_FOLDER.replace('stroke="currentColor"','stroke="#0061D5"'):SVG_FILE.replace('stroke="currentColor"','stroke="#909090"');
+      const sz=it.type==='file'&&it.size?(it.size>1048576?((it.size/1048576).toFixed(1)+' MB'):((it.size/1024|0)+' KB')):'';
+      h+=`<div style="padding:10px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #F5F5F5;font-size:13px;${checked?'background:#F0F6FF':''}">
+        <input type="checkbox" ${checked?'checked':''} onchange="hmPickerToggle('${it.id}','${it.name.replace(/'/g,"\\'")}','${it.type}',this.checked)" style="accent-color:#0061D5;flex-shrink:0;cursor:pointer;width:16px;height:16px">
+        <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0;${it.type==='folder'?'cursor:pointer':''}" ${it.type==='folder'?`onclick="hmPickerEnter('${it.id}','${it.name.replace(/'/g,"\\'")}')"`:''}>
+          <span style="flex-shrink:0;width:18px;height:18px;display:flex;align-items:center">${icon}</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#333;font-weight:500">${it.name}</span>
+        </div>
+        <span style="font-size:11px;color:#C4C4C4;flex-shrink:0">${sz}</span>
+      </div>`;
+    });
+    if(!items.length)h='<div style="padding:24px;text-align:center;font-size:12px;color:#909090">Empty folder</div>';
+    browser.innerHTML=h;
+  }catch(e){browser.innerHTML='<div style="padding:20px;text-align:center;font-size:12px;color:#ED4956">'+e.message+'</div>'}
+}
+function hmPickerToggle(id,name,type,checked){if(checked)hmPickerSelected.set(id,{name,type});else hmPickerSelected.delete(id);hmPickerUpdateUI()}
+function hmPickerEnter(id,name){hmPickerPath.push({id,name});hmPickerLoad(id)}
+function hmPickerNav(idx){hmPickerPath=hmPickerPath.slice(0,idx+1);hmPickerLoad(hmPickerPath[idx].id)}
+function hmPickerUpdateUI(){
+  document.getElementById('hm-pk-count').textContent=hmPickerSelected.size?hmPickerSelected.size+' selected':'';
+  document.getElementById('hm-pk-chips').innerHTML=[...hmPickerSelected.entries()].map(([id,v])=>`<span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;background:#E8F1FD;border:1px solid #cce0ff;border-radius:14px;font-size:11px;color:#0061D5;font-weight:700">${v.type==='folder'?'📁':'📄'} ${v.name}<span onclick="hmPickerSelected.delete('${id}');hmPickerUpdateUI();hmPickerLoad(hmPickerFolder)" style="cursor:pointer;opacity:.5;margin-left:2px">×</span></span>`).join('');
+}
+async function hmPickerCommit(){
+  if(!hmPickerSelected.size||!hmPickerHub)return;
+  const lib=dcLibs.find(l=>l.id===hmPickerHub);if(!lib)return;
+  document.getElementById('hm-picker-modal')?.remove();
+  hmShowBanner('Adding files to '+lib.name+'...','info');
+  const fileItems=[];
+  for(const [id,v] of hmPickerSelected){
+    if(v.type==='file'){if(!lib.files.some(f=>f.id===id))fileItems.push({id,name:v.name})}
+    else if(v.type==='folder'){
+      try{const fRes=await boxGet('/folders/'+id+'/items?fields=name,type,size,modified_at&limit=200');
+      (fRes.entries||[]).filter(e=>e.type==='file').forEach(f=>{if(!lib.files.some(ef=>ef.id===f.id))fileItems.push({id:f.id,name:f.name,size:f.size,date:f.modified_at})})}catch(e){}
+    }
+  }
+  if(!fileItems.length){hmShowBanner('All selected files already in '+lib.name,'info');return}
+  try{
+    await boxPost('/hub_items',{hub_id:hmPickerHub,items:fileItems.map(f=>({type:'file',id:f.id}))},HV);
+    fileItems.forEach(f=>lib.files.push({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.date?new Date(f.date).toLocaleDateString():'Just now'}));
+    hmSyncToLibs();hmRender();
+    hmShowBanner('Added '+fileItems.length+' files to '+lib.name,'info');
   }catch(e){hmShowBanner('Failed: '+e.message,'error')}
 }
 
@@ -1554,8 +1666,10 @@ async function dcMakeHub(folderId,folderName){
       await boxPost('/hub_items',{hub_id:hub.id,items:fileItems.map(f=>({type:'file',id:f.id}))},HV);
     }
     dcLibs.push({id:hub.id,name:hub.title,desc:'',files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.modified_at?new Date(f.modified_at).toLocaleDateString():''}))});
-    dcSelLib=hub.id;
-    hmSyncToLibs();hmRender();
+    hmSyncToLibs();
+    // Update sidebar count without navigating away
+    document.getElementById('hm-hub-ct').textContent=dcLibs.length;
+    document.getElementById('hm-side-stats').textContent=dcLibs.reduce((a,l)=>a+l.files.length,0)+' files · '+dcLibs.length+' hubs';
     hmShowBanner('Hub "'+folderName+'" created with '+fileItems.length+' files','info');
   }catch(e){hmShowBanner('Failed: '+e.message,'error')}
 }
