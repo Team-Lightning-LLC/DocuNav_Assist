@@ -351,7 +351,7 @@ button{font-family:var(--f);cursor:pointer}
 .hm-back-btn svg{width:14px;height:14px}
 
 /* Main area */
-.hm-main{display:flex;flex-direction:column;overflow:hidden;background:#F5F7FA}
+.hm-main{display:flex;flex-direction:column;overflow:hidden;background:#F5F7FA;position:relative}
 .hm-topbar{height:56px;border-bottom:1px solid #E4E4E4;display:flex;align-items:center;padding:0 28px;flex-shrink:0;background:#fff;gap:12px}
 .hm-tb-title{font-size:15px;font-weight:700;color:#222}
 .hm-tb-desc{font-size:12px;color:#909090}
@@ -439,36 +439,53 @@ button{font-family:var(--f);cursor:pointer}
 /* File list */
 .hm-file-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#909090;margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .hm-file-badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:10px;background:#E8F1FD;color:#0061D5}
-.hm-file{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:6px;background:#fff;border:1px solid #F0F0F0;margin-bottom:4px}
-.hm-file:hover{border-color:#E4E4E4;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.hm-file-ico{flex-shrink:0;color:#909090}
-.hm-file-ico svg{width:16px;height:16px}
+.hm-file{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:8px;background:#fff;border:1px solid #F0F0F0;margin-bottom:6px;min-height:52px}
+.hm-file:hover{border-color:#0061D5;box-shadow:0 2px 8px rgba(0,97,213,.06)}
+.hm-file-ico{flex-shrink:0;color:#909090;width:20px;display:flex;align-items:center;justify-content:center}
+.hm-file-ico svg{width:20px;height:20px}
 .hm-file-ico.pdf{color:#ED4956}
 .hm-file-ico.doc{color:#0061D5}
 .hm-file-ico.xls{color:#26C281}
-.hm-file-name{font-size:13px;font-weight:500;color:#222;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.hm-file-info{flex:1;min-width:0}
+.hm-file-name{font-size:13px;font-weight:600;color:#222;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer;line-height:1.3}
 .hm-file-name:hover{color:#0061D5}
-.hm-file-size{font-size:11px;color:#909090;flex-shrink:0}
-.hm-file-date{font-size:11px;color:#909090;flex-shrink:0;min-width:70px}
-.hm-file-del{background:none;border:none;color:#C4C4C4;cursor:pointer;font-size:16px;padding:2px 6px;line-height:1;border-radius:4px}
-.hm-file-del:hover{color:#ED4956;background:#FDE8EA}
+.hm-file-meta{font-size:11px;color:#909090;margin-top:2px}
+.hm-file-actions{display:flex;gap:4px;flex-shrink:0;opacity:0;transition:opacity .1s}
+.hm-file:hover .hm-file-actions{opacity:1}
+.hm-act{padding:6px 12px;font-size:11px;font-weight:700;border-radius:5px;cursor:pointer;border:1px solid #E4E4E4;background:#fff;color:#4A4A4A;white-space:nowrap;display:inline-flex;align-items:center;gap:4px}
+.hm-act:hover{border-color:#0061D5;color:#0061D5;background:#F5F7FA}
+.hm-act.primary{background:#0061D5;color:#fff;border-color:#0061D5}
+.hm-act.primary:hover{background:#004EAA}
+.hm-act.danger{color:#ED4956}
+.hm-act.danger:hover{background:#FDE8EA;border-color:#ED4956;color:#ED4956}
+.hm-act svg{width:12px;height:12px}
+.hm-act-pop{position:relative;display:inline-block}
+.hm-act-dd{display:none;position:absolute;top:100%;right:0;margin-top:4px;background:#fff;border:1px solid #E4E4E4;border-radius:8px;min-width:180px;z-index:30;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:4px;max-height:220px;overflow-y:auto}
+.hm-act-dd.open{display:block}
+.hm-act-dd-item{display:block;width:100%;padding:8px 12px;font-size:12px;color:#4A4A4A;border:none;background:none;text-align:left;border-radius:5px;cursor:pointer;font-weight:500}
+.hm-act-dd-item:hover{background:#E8F1FD;color:#0061D5}
+.hm-act-dd-item.danger{color:#ED4956}
+.hm-act-dd-item.danger:hover{background:#FDE8EA}
 
 /* Browse panel */
-.hm-browse-crumbs{display:flex;align-items:center;gap:6px;margin-bottom:16px;flex-wrap:wrap;font-size:12px}
-.hm-crumb{cursor:pointer;color:#0061D5;font-weight:700}
+.hm-browse-bar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+.hm-browse-crumbs{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:13px;flex:1}
+.hm-crumb{cursor:pointer;color:#0061D5;font-weight:700;padding:4px 2px}
 .hm-crumb.current{color:#222;cursor:default}
 .hm-crumb-sep{color:#C4C4C4}
-.hm-folder-item{display:flex;align-items:center;gap:12px;padding:10px 14px;background:#fff;border:1px solid #F0F0F0;border-radius:6px;margin-bottom:4px}
-.hm-folder-item:hover{border-color:#E4E4E4;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.hm-folder-ico{flex-shrink:0}
-.hm-folder-ico svg{width:16px;height:16px}
+.hm-browse-actions{display:flex;gap:6px;flex-shrink:0}
+.hm-folder-item{display:flex;align-items:center;gap:12px;padding:14px 16px;background:#fff;border:1px solid #F0F0F0;border-radius:8px;margin-bottom:6px;min-height:52px}
+.hm-folder-item:hover{border-color:#0061D5;box-shadow:0 2px 8px rgba(0,97,213,.06)}
+.hm-folder-ico{flex-shrink:0;width:20px;display:flex;align-items:center;justify-content:center}
+.hm-folder-ico svg{width:20px;height:20px}
 .hm-folder-ico.dir{color:#0061D5}
 .hm-folder-ico.file{color:#909090}
-.hm-folder-name{font-size:13px;font-weight:500;color:#222;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}
+.hm-folder-info{flex:1;min-width:0}
+.hm-folder-name{font-size:13px;font-weight:600;color:#222;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;cursor:pointer;line-height:1.3}
 .hm-folder-name:hover{color:#0061D5}
-.hm-folder-size{font-size:11px;color:#C4C4C4;flex-shrink:0}
-.hm-folder-make{padding:5px 14px;background:#0061D5;color:#fff;border:none;border-radius:5px;font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0}
-.hm-folder-make:hover{background:#004EAA}
+.hm-folder-sub{font-size:11px;color:#909090;margin-top:2px}
+.hm-folder-actions{display:flex;gap:4px;flex-shrink:0;opacity:0;transition:opacity .1s}
+.hm-folder-item:hover .hm-folder-actions{opacity:1}
 
 /* Preview overlay */
 .hm-preview{position:absolute;inset:0;background:#fff;z-index:50;display:flex;flex-direction:column}
@@ -1095,14 +1112,12 @@ function hmRenderGrid(){
 function hmRenderDetail(){
   const lib=dcLibs.find(l=>l.id===dcSelLib);
   if(!lib)return;
-  // Header bar
   document.getElementById('hm-detail-bar').innerHTML=`
     <button class="hm-detail-back" onclick="dcSelLib=null;hmRender()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg></button>
     <div class="hm-detail-name" id="hm-dn" contenteditable="false" onclick="hmStartRename(this)">${lib.name}</div>
     <div class="hm-detail-ct">${lib.files.length} docs</div>
     <div class="hm-detail-id">hub: ${lib.id}</div>
-    <button class="hm-btn danger" onclick="dcDeleteHub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Delete</button>`;
-  // Body
+    <button class="hm-btn danger" onclick="dcDeleteHub()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg> Delete Hub</button>`;
   const body=document.getElementById('hm-detail-body');
   let h=`<div class="hm-upload" id="hm-upload-zone" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="event.preventDefault();this.classList.remove('drag');dcHandleDrop(event)" onclick="document.getElementById('dc-file-input').click()"><div class="hm-upload-icon">${SVG_UPLOAD}</div><h3>Drop files here or click to upload</h3><p>PDF, DOCX, TXT, XLSX, MD</p></div>`;
   if(boxConnected){
@@ -1113,7 +1128,19 @@ function hmRenderDetail(){
     lib.files.forEach((f,i)=>{
       const ext=(f.name||'').split('.').pop().toLowerCase();
       const icoClass=ext==='pdf'?'pdf':['doc','docx'].includes(ext)?'doc':['xls','xlsx','csv'].includes(ext)?'xls':'';
-      h+=`<div class="hm-file" style="animation-delay:${i*30}ms"><div class="hm-file-ico ${icoClass}">${SVG_FILE}</div><div class="hm-file-name" onclick="dcPreviewFile('${f.id}','${(f.name||'').replace(/'/g,"\\'")}')"><span>${f.name}</span></div><div class="hm-file-size">${f.size||''}</div><div class="hm-file-date">${f.date||''}</div><button class="hm-file-del" onclick="dcDelFile('${lib.id}','${f.id}')">×</button></div>`;
+      const eName=(f.name||'').replace(/'/g,"\\'");
+      h+=`<div class="hm-file" style="animation-delay:${i*30}ms">
+        <div class="hm-file-ico ${icoClass}">${SVG_FILE}</div>
+        <div class="hm-file-info">
+          <div class="hm-file-name" onclick="dcPreviewFile('${f.id}','${eName}')">${f.name}</div>
+          <div class="hm-file-meta">${[f.size,f.date].filter(Boolean).join(' · ')}</div>
+        </div>
+        <div class="hm-file-actions">
+          <div class="hm-act-pop"><button class="hm-act" onclick="event.stopPropagation();hmToggleDD(this)">Move to Hub</button><div class="hm-act-dd">${dcLibs.filter(ol=>ol.id!==lib.id).map(ol=>`<button class="hm-act-dd-item" onclick="event.stopPropagation();hmMoveFileToHub('${lib.id}','${ol.id}','${f.id}','${eName}')">${ol.name}</button>`).join('')||'<div style="padding:8px 12px;font-size:12px;color:#909090">No other hubs</div>'}</div></div>
+          <button class="hm-act danger" onclick="event.stopPropagation();hmRemoveFromHub('${lib.id}','${f.id}')">Remove</button>
+          <button class="hm-act danger" onclick="event.stopPropagation();hmDeleteFile('${lib.id}','${f.id}','${eName}')">Delete</button>
+        </div>
+      </div>`;
     });
   } else {
     h+=`<div style="padding:32px;text-align:center;font-size:13px;color:#909090;background:#fff;border:1px solid #F0F0F0;border-radius:8px">No documents yet. Upload files or add from Box.</div>`;
@@ -1137,25 +1164,49 @@ function hmStartRename(el){
 function hmBrowseForHub(){dcSelLib=null;hmNav('browse')}
 
 // Browse panel
+let hmBrowseFolderId='0';
 async function hmLoadFolder(fid){
   if(!boxConnected)return;
+  hmBrowseFolderId=fid;
   const body=document.getElementById('hm-browse-body');
-  // Breadcrumbs
   let crumbs=dcFolderStack.map((f,i)=>{
     const cls=i===dcFolderStack.length-1?'hm-crumb current':'hm-crumb';
     return`<span class="${cls}" onclick="hmNavFolder(${i})">${f.name}</span>`;
   }).join('<span class="hm-crumb-sep">/</span>');
-  body.innerHTML=`<div class="hm-browse-crumbs">${crumbs}</div><div id="hm-folder-list" style="font-size:13px;color:#909090;padding:24px;text-align:center">Loading...</div>`;
+  const curFolder=dcFolderStack[dcFolderStack.length-1];
+  body.innerHTML=`<div class="hm-browse-bar"><div class="hm-browse-crumbs">${crumbs}</div><div class="hm-browse-actions"><button class="hm-act" onclick="hmUploadToFolder('${fid}')">${SVG_UPLOAD.replace(/width="[^"]*"|height="[^"]*"/g,'').replace('<svg','<svg width="12" height="12"')} Upload here</button><button class="hm-act" onclick="hmNewFolder('${fid}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="12" height="12"><path d="M12 5v14M5 12h14"/></svg> New Folder</button></div></div><div id="hm-folder-list" style="font-size:13px;color:#909090;padding:24px;text-align:center">Loading...</div>`;
   try{
     const res=await boxGet('/folders/'+fid+'/items?fields=name,type,size,modified_at&limit=200');
     const items=(res.entries||[]).sort((a,b)=>(a.type===b.type?a.name.localeCompare(b.name):(a.type==='folder'?-1:1)));
     let h='';
     items.forEach((it,i)=>{
+      const eName=it.name.replace(/'/g,"\\'");
       if(it.type==='folder'){
-        h+=`<div class="hm-folder-item" style="animation-delay:${i*25}ms"><div class="hm-folder-ico dir">${SVG_FOLDER}</div><div class="hm-folder-name" onclick="hmEnterFolder('${it.id}','${it.name.replace(/'/g,"\\'")}')"><span>${it.name}</span></div><button class="hm-folder-make" onclick="event.stopPropagation();dcMakeHub('${it.id}','${it.name.replace(/'/g,"\\'")}')">Make Hub</button></div>`;
+        h+=`<div class="hm-folder-item" style="animation-delay:${i*25}ms">
+          <div class="hm-folder-ico dir">${SVG_FOLDER}</div>
+          <div class="hm-folder-info">
+            <div class="hm-folder-name" onclick="hmEnterFolder('${it.id}','${eName}')">${it.name}</div>
+          </div>
+          <div class="hm-folder-actions">
+            <button class="hm-act primary" onclick="event.stopPropagation();dcMakeHub('${it.id}','${eName}')">Make Hub</button>
+            <div class="hm-act-pop"><button class="hm-act" onclick="event.stopPropagation();hmToggleDD(this)">Add to Hub</button><div class="hm-act-dd">${dcLibs.map(l=>`<button class="hm-act-dd-item" onclick="event.stopPropagation();hmAddFolderToHub('${l.id}','${it.id}','${eName}')">${l.name}</button>`).join('')||'<div style="padding:8px 12px;font-size:12px;color:#909090">No hubs yet</div>'}</div></div>
+            <button class="hm-act" onclick="event.stopPropagation();hmUploadToFolder('${it.id}')">Upload</button>
+            <button class="hm-act danger" onclick="event.stopPropagation();hmDeleteFolder('${it.id}','${eName}')">Delete</button>
+          </div>
+        </div>`;
       } else {
         const sz=it.size?(it.size>1048576?((it.size/1048576).toFixed(1)+' MB'):((it.size/1024|0)+' KB')):'';
-        h+=`<div class="hm-folder-item" style="animation-delay:${i*25}ms"><div class="hm-folder-ico file">${SVG_FILE}</div><div class="hm-folder-name" style="cursor:default;color:#666">${it.name}</div><div class="hm-folder-size">${sz}</div></div>`;
+        h+=`<div class="hm-folder-item" style="animation-delay:${i*25}ms">
+          <div class="hm-folder-ico file">${SVG_FILE}</div>
+          <div class="hm-folder-info">
+            <div class="hm-folder-name" onclick="dcPreviewFile('${it.id}','${eName}')">${it.name}</div>
+            <div class="hm-folder-sub">${sz}${it.modified_at?' · '+new Date(it.modified_at).toLocaleDateString():''}</div>
+          </div>
+          <div class="hm-folder-actions">
+            <div class="hm-act-pop"><button class="hm-act primary" onclick="event.stopPropagation();hmToggleDD(this)">Add to Hub</button><div class="hm-act-dd">${dcLibs.map(l=>`<button class="hm-act-dd-item" onclick="event.stopPropagation();hmAddFileToHub('${l.id}','${it.id}','${eName}')">${l.name}</button>`).join('')||'<div style="padding:8px 12px;font-size:12px;color:#909090">No hubs yet</div>'}</div></div>
+            <button class="hm-act danger" onclick="event.stopPropagation();hmDeleteBoxFile('${it.id}','${eName}')">Delete</button>
+          </div>
+        </div>`;
       }
     });
     if(!items.length)h='<div style="padding:40px;text-align:center;font-size:13px;color:#909090">Empty folder</div>';
@@ -1165,8 +1216,6 @@ async function hmLoadFolder(fid){
   }
 }
 
-function hmEnterFolder(id,name){dcFolderStack.push({id,name});hmLoadFolder(id);hmRenderBrowseCrumbs()}
-function hmNavFolder(idx){dcFolderStack=dcFolderStack.slice(0,idx+1);hmLoadFolder(dcFolderStack[idx].id);hmRenderBrowseCrumbs()}
 function hmRenderBrowseCrumbs(){
   const el=document.querySelector('.hm-browse-crumbs');
   if(!el)return;
@@ -1174,6 +1223,141 @@ function hmRenderBrowseCrumbs(){
     const cls=i===dcFolderStack.length-1?'hm-crumb current':'hm-crumb';
     return`<span class="${cls}" onclick="hmNavFolder(${i})">${f.name}</span>`;
   }).join('<span class="hm-crumb-sep">/</span>');
+}
+
+function hmEnterFolder(id,name){dcFolderStack.push({id,name});hmLoadFolder(id)}
+function hmNavFolder(idx){dcFolderStack=dcFolderStack.slice(0,idx+1);hmLoadFolder(dcFolderStack[idx].id)}
+
+// ═══ FILE MANAGEMENT ═══
+// Toggle action dropdown
+function hmToggleDD(btn){
+  const dd=btn.nextElementSibling;
+  const wasOpen=dd.classList.contains('open');
+  document.querySelectorAll('.hm-act-dd.open').forEach(d=>d.classList.remove('open'));
+  if(!wasOpen)dd.classList.add('open');
+}
+// Close all dropdowns on outside click
+document.addEventListener('click',e=>{if(!e.target.closest('.hm-act-pop'))document.querySelectorAll('.hm-act-dd.open').forEach(d=>d.classList.remove('open'))});
+
+// Add a single file to a hub
+async function hmAddFileToHub(hubId,fileId,fileName){
+  document.querySelectorAll('.hm-act-dd.open').forEach(d=>d.classList.remove('open'));
+  const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;
+  if(lib.files.some(f=>f.id===fileId)){hmShowBanner(fileName+' is already in '+lib.name,'error');return}
+  try{
+    await boxPost('/hub_items',{hub_id:hubId,items:[{type:'file',id:fileId}]},HV);
+    lib.files.push({id:fileId,name:fileName,size:'',date:'Just now'});
+    hmSyncToLibs();hmShowBanner('Added "'+fileName+'" to '+lib.name,'info');
+    if(dcSelLib)hmRender();
+  }catch(e){hmShowBanner('Failed to add file: '+e.message,'error')}
+}
+
+// Add all files from a folder to a hub
+async function hmAddFolderToHub(hubId,folderId,folderName){
+  document.querySelectorAll('.hm-act-dd.open').forEach(d=>d.classList.remove('open'));
+  const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;
+  hmShowBanner('Adding files from "'+folderName+'" to '+lib.name+'...','info');
+  try{
+    const res=await boxGet('/folders/'+folderId+'/items?fields=name,type,size,modified_at&limit=200');
+    const files=(res.entries||[]).filter(e=>e.type==='file');
+    const newFiles=files.filter(f=>!lib.files.some(ef=>ef.id===f.id));
+    if(!newFiles.length){hmShowBanner('All files already in '+lib.name,'info');return}
+    await boxPost('/hub_items',{hub_id:hubId,items:newFiles.map(f=>({type:'file',id:f.id}))},HV);
+    newFiles.forEach(f=>lib.files.push({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.modified_at?new Date(f.modified_at).toLocaleDateString():''}));
+    hmSyncToLibs();hmRender();
+    hmShowBanner('Added '+newFiles.length+' files to '+lib.name,'info');
+  }catch(e){hmShowBanner('Failed: '+e.message,'error')}
+}
+
+// Remove file from hub (does not delete from Box)
+async function hmRemoveFromHub(hubId,fileId){
+  const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;
+  // hub_items removal — try the API, fall back to local removal
+  try{await fetch(BOX+'/hub_items/'+fileId,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken,...HV}})}catch(e){}
+  lib.files=lib.files.filter(f=>f.id!==fileId);
+  hmSyncToLibs();hmRender();
+  hmShowBanner('Removed from hub','info');
+}
+
+// Move file between hubs (add to target, remove from source)
+async function hmMoveFileToHub(srcHubId,dstHubId,fileId,fileName){
+  document.querySelectorAll('.hm-act-dd.open').forEach(d=>d.classList.remove('open'));
+  const dst=dcLibs.find(l=>l.id===dstHubId);if(!dst)return;
+  if(dst.files.some(f=>f.id===fileId)){hmShowBanner(fileName+' is already in '+dst.name,'error');return}
+  try{
+    await boxPost('/hub_items',{hub_id:dstHubId,items:[{type:'file',id:fileId}]},HV);
+    const src=dcLibs.find(l=>l.id===srcHubId);
+    const fObj=src?.files.find(f=>f.id===fileId);
+    dst.files.push(fObj?{...fObj}:{id:fileId,name:fileName,size:'',date:'Just now'});
+  }catch(e){hmShowBanner('Failed: '+e.message,'error');return}
+  // Remove from source
+  await hmRemoveFromHub(srcHubId,fileId);
+  hmShowBanner('Moved "'+fileName+'" to '+dst.name,'info');
+}
+
+// Delete file from Box entirely
+async function hmDeleteFile(hubId,fileId,fileName){
+  if(!confirm('Permanently delete "'+fileName+'" from Box? This cannot be undone.'))return;
+  try{await boxDel('/files/'+fileId)}catch(e){hmShowBanner('Delete failed: '+e.message,'error');return}
+  // Remove from all hubs that reference this file
+  dcLibs.forEach(l=>{l.files=l.files.filter(f=>f.id!==fileId)});
+  hmSyncToLibs();hmRender();
+  hmShowBanner('Deleted "'+fileName+'"','info');
+}
+
+// Delete a file from Box (browse context, not in a hub)
+async function hmDeleteBoxFile(fileId,fileName){
+  if(!confirm('Permanently delete "'+fileName+'" from Box?'))return;
+  try{await boxDel('/files/'+fileId)}catch(e){hmShowBanner('Delete failed: '+e.message,'error');return}
+  dcLibs.forEach(l=>{l.files=l.files.filter(f=>f.id!==fileId)});
+  hmSyncToLibs();
+  hmLoadFolder(hmBrowseFolderId);
+  hmShowBanner('Deleted "'+fileName+'"','info');
+}
+
+// Delete a folder from Box
+async function hmDeleteFolder(folderId,folderName){
+  if(!confirm('Delete folder "'+folderName+'" and all its contents from Box?'))return;
+  try{
+    await fetch(BOX+'/folders/'+folderId+'?recursive=true',{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken}});
+    hmLoadFolder(hmBrowseFolderId);
+    hmShowBanner('Deleted folder "'+folderName+'"','info');
+  }catch(e){hmShowBanner('Delete failed: '+e.message,'error')}
+}
+
+// Upload files to a specific Box folder
+function hmUploadToFolder(folderId){
+  const inp=document.createElement('input');
+  inp.type='file';inp.multiple=true;inp.accept='.pdf,.docx,.txt,.xlsx,.md,.png,.jpg';
+  inp.onchange=async()=>{
+    if(!inp.files.length)return;
+    hmShowBanner('Uploading '+inp.files.length+' file(s)...','info');
+    let ok=0;
+    for(const f of Array.from(inp.files)){
+      try{
+        const form=new FormData();
+        form.append('attributes',JSON.stringify({name:f.name,parent:{id:folderId}}));
+        form.append('file',f);
+        const r=await fetch(BOX_UPLOAD+'/files/content',{method:'POST',headers:{'Authorization':'Bearer '+boxToken},body:form});
+        if(!r.ok)throw new Error(r.status);
+        ok++;
+      }catch(e){hmShowBanner('Failed to upload '+f.name+': '+e.message,'error')}
+    }
+    if(ok)hmShowBanner('Uploaded '+ok+' file(s)','info');
+    hmLoadFolder(hmBrowseFolderId);
+  };
+  inp.click();
+}
+
+// Create a new subfolder
+async function hmNewFolder(parentId){
+  const name=prompt('New folder name:');
+  if(!name)return;
+  try{
+    await boxPost('/folders',{name:name,parent:{id:parentId}});
+    hmLoadFolder(hmBrowseFolderId);
+    hmShowBanner('Created folder "'+name+'"','info');
+  }catch(e){hmShowBanner('Failed: '+e.message,'error')}
 }
 
 // Sync hub manager state to LIBS (assistant view)
@@ -1401,7 +1585,7 @@ async function dcHandleFiles(fl){
 
 async function dcPreviewFile(fileId,fileName){
   if(!boxConnected)return;
-  const panel=document.getElementById('hm-p-detail');
+  const panel=document.querySelector('.hm-main');
   let ov=document.getElementById('hm-preview-ov');
   if(ov)ov.remove();
   ov=document.createElement('div');ov.id='hm-preview-ov';ov.className='hm-preview';
