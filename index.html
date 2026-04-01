@@ -869,6 +869,15 @@ async function boxAiAskFiles(fileIds,prompt){
   if(boxAgentConfig)body.ai_agent=boxAgentConfig;
   return boxPost('/ai/ask',body);
 }
+// Hub items — POST /hubs/{id}/manage_items with operations array
+// Docs: https://developer.box.com/reference/v2025.0/post-hubs-id-manage-items
+async function boxHubAdd(hubId,items){
+  const operations=items.map(it=>({action:'add',item:{type:it.type,id:it.id}}));
+  return boxPost('/hubs/'+hubId+'/manage_items',{operations},HV);
+}
+async function boxHubRemoveItem(hubId,fileId){
+  return boxPost('/hubs/'+hubId+'/manage_items',{operations:[{action:'remove',item:{type:'file',id:fileId}}]},HV);
+}
 
 let LIBS=[...DEMOS[0].libs];
 let genResponse=DEMOS[0].genFn;
@@ -1275,7 +1284,7 @@ async function hmAddFileToHub(hubId,fileId,fileName){
   const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;
   if(lib.files.some(f=>f.id===fileId)){hmShowBanner(fileName+' is already in '+lib.name,'error');return}
   try{
-    await boxPost('/hub_items',{hub_id:hubId,items:[{type:'file',id:fileId}]},HV);
+    await boxHubAdd(hubId,[{type:'file',id:fileId}]);
     lib.files.push({id:fileId,name:fileName,size:'',date:'Just now'});
     hmSyncToLibs();hmShowBanner('Added "'+fileName+'" to '+lib.name,'info');
     if(dcSelLib)hmRender();
@@ -1292,7 +1301,7 @@ async function hmAddFolderToHub(hubId,folderId,folderName){
     const files=(res.entries||[]).filter(e=>e.type==='file');
     const newFiles=files.filter(f=>!lib.files.some(ef=>ef.id===f.id));
     if(!newFiles.length){hmShowBanner('All files already in '+lib.name,'info');return}
-    await boxPost('/hub_items',{hub_id:hubId,items:newFiles.map(f=>({type:'file',id:f.id}))},HV);
+    await boxHubAdd(hubId,newFiles.map(f=>({type:'file',id:f.id})));
     newFiles.forEach(f=>lib.files.push({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.modified_at?new Date(f.modified_at).toLocaleDateString():''}));
     hmSyncToLibs();hmRender();
     hmShowBanner('Added '+newFiles.length+' files to '+lib.name,'info');
@@ -1303,7 +1312,7 @@ async function hmAddFolderToHub(hubId,folderId,folderName){
 async function hmRemoveFromHub(hubId,fileId){
   const lib=dcLibs.find(l=>l.id===hubId);if(!lib)return;
   // hub_items removal — try the API, fall back to local removal
-  try{await fetch(BOX+'/hub_items/'+fileId,{method:'DELETE',headers:{'Authorization':'Bearer '+boxToken,...HV}})}catch(e){}
+  try{await boxHubRemoveItem(hubId,fileId)}catch(e){}
   lib.files=lib.files.filter(f=>f.id!==fileId);
   hmSyncToLibs();hmRender();
   hmShowBanner('Removed from hub','info');
@@ -1315,7 +1324,7 @@ async function hmMoveFileToHub(srcHubId,dstHubId,fileId,fileName){
   const dst=dcLibs.find(l=>l.id===dstHubId);if(!dst)return;
   if(dst.files.some(f=>f.id===fileId)){hmShowBanner(fileName+' is already in '+dst.name,'error');return}
   try{
-    await boxPost('/hub_items',{hub_id:dstHubId,items:[{type:'file',id:fileId}]},HV);
+    await boxHubAdd(dstHubId,[{type:'file',id:fileId}]);
     const src=dcLibs.find(l=>l.id===srcHubId);
     const fObj=src?.files.find(f=>f.id===fileId);
     dst.files.push(fObj?{...fObj}:{id:fileId,name:fileName,size:'',date:'Just now'});
@@ -1465,7 +1474,7 @@ async function hmPickerCommit(){
   }
   if(!fileItems.length){hmShowBanner('All selected files already in '+lib.name,'info');return}
   try{
-    await boxPost('/hub_items',{hub_id:hmPickerHub,items:fileItems.map(f=>({type:'file',id:f.id}))},HV);
+    await boxHubAdd(hmPickerHub,fileItems.map(f=>({type:'file',id:f.id})));
     fileItems.forEach(f=>lib.files.push({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.date?new Date(f.date).toLocaleDateString():'Just now'}));
     hmSyncToLibs();hmRender();
     hmShowBanner('Added '+fileItems.length+' files to '+lib.name,'info');
@@ -1627,7 +1636,7 @@ async function dcCreateHub(){
         }
       }
       if(fileItems.length){
-        try{await boxPost('/hub_items',{hub_id:hub.id,items:fileItems.map(f=>({type:'file',id:f.id}))},HV)}catch(e){hmShowBanner('Hub created but some files failed to add','error')}
+        try{await boxHubAdd(hub.id,fileItems.map(f=>({type:'file',id:f.id})))}catch(e){hmShowBanner('Hub created but some files failed to add','error')}
       }
       dcLibs.push({id:hub.id,name:hub.title,desc:desc,files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.date?new Date(f.date).toLocaleDateString():''}))});
       dcSelLib=hub.id;
@@ -1663,7 +1672,7 @@ async function dcMakeHub(folderId,folderName){
     const files=await boxGet('/folders/'+folderId+'/items?fields=name,type,size,modified_at&limit=200');
     const fileItems=(files.entries||[]).filter(f=>f.type==='file');
     if(fileItems.length){
-      await boxPost('/hub_items',{hub_id:hub.id,items:fileItems.map(f=>({type:'file',id:f.id}))},HV);
+      await boxHubAdd(hub.id,fileItems.map(f=>({type:'file',id:f.id})));
     }
     dcLibs.push({id:hub.id,name:hub.title,desc:'',files:fileItems.map(f=>({id:f.id,name:f.name,size:f.size?((f.size/1024|0)+' KB'):'',date:f.modified_at?new Date(f.modified_at).toLocaleDateString():''}))});
     hmSyncToLibs();
@@ -1686,7 +1695,7 @@ async function dcHandleFiles(fl){
         const r=await fetch(BOX_UPLOAD+'/files/content',{method:'POST',headers:{'Authorization':'Bearer '+boxToken},body:form});
         if(!r.ok)throw new Error(r.status);
         const data=await r.json();const uploaded=data.entries[0];
-        try{await boxPost('/hub_items',{hub_id:lib.id,items:[{type:'file',id:uploaded.id}]},HV)}catch(e){hmShowBanner('Upload ok but hub add failed: '+e.message,'error')}
+        try{await boxHubAdd(lib.id,[{type:'file',id:uploaded.id}])}catch(e){hmShowBanner('Upload ok but hub add failed: '+e.message,'error')}
         lib.files.push({id:uploaded.id,name:uploaded.name,size:f.size>1048576?(f.size/1048576).toFixed(1)+' MB':(f.size/1024|0)+' KB',date:'Just now'});
       }catch(e){hmShowBanner('Upload failed: '+e.message,'error')}
     }
